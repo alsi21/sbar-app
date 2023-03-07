@@ -1,0 +1,229 @@
+#:kivy 1.0.9
+
+<SbarNote@BoxLayout>:
+    id: SbarNote
+    orientation: 'horizontal'
+    size_hint_y: None
+    height: 80
+    canvas.before:
+        Color:
+            rgba: 217/255,225/255,1,1
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    RoundedRedButton:
+        id: buttonone
+        text: ''
+        background_color: 0,0,0,0.02
+        color: 0,0,0,1
+        size_hint_x: .8
+        note: None
+    Button:
+        background_normal: 'SBAR_v3\images\trashcan.png'
+        background_down: 'SBAR_v3\images\trashcan.png'
+        allow_stretch: True
+        keep_ratio: True
+        background_color: 1,1,1,1
+        size_hint_x: .2
+        on_press: root.delete_boxlayout(self)
+<EmergNote@BoxLayout>:
+    id: EmergNote
+    orientation: 'horizontal'
+    size_hint_y: None
+    height: 80
+    canvas.before:
+        Color:
+            rgba: 227/255,210/255,210/255,1
+        Rectangle:
+            size: self.size
+            pos: self.pos
+    RoundedRedButton:
+        id: buttonone
+        text: ''
+        background_color: 0,0,0,0.02
+        color: 0,0,0,1
+        size_hint_x: .8
+        note: None
+    Button:
+        background_normal: 'SBAR_v3\images\trashcan.png'
+        background_down: 'SBAR_v3\images\trashcan.png'
+        allow_stretch: True
+        keep_ratio: True
+        background_color: 1,1,1,1
+        size_hint_x: .2
+        on_press: root.delete_boxlayout(self)
+<BackgroundColor@Widget>:
+    background_color: 1, 1, 1, 1
+    canvas.before:
+        Color:
+            rgba: root.background_color
+        Rectangle:
+            size: self.size
+            pos: self.pos
+
+<RoundButton@Button>:   
+    background_color: 1,1,1,1
+    background_normal: ''
+    canvas:
+        Color:
+            rgba: 209/255,219/255,1,1
+        Ellipse:
+            pos: self.pos
+            size: self.size
+        Rectangle:
+            texture: self.texture
+            size: self.texture_size
+            pos: self.center_x - self.texture_size[0]/2, self.center_y - self.texture_size[1]/2
+<SquareBlueButton@Button>:   
+    background_color: 1,1,1,1
+    background_normal: ''
+    canvas:
+        Color:
+            rgba: 102/255,136/255,1,1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+        Rectangle:
+            texture: self.texture
+            size: self.texture_size
+            pos: self.center_x - self.texture_size[0]/2, self.center_y - self.texture_size[1]/2
+<SquareWhiteButton@Button>:   
+    background_color: 1,1,1,1
+    background_normal: ''
+    canvas:
+        Color:
+            rgba: 0,0,0,0
+        Rectangle:
+            pos: self.pos
+            size: self.size
+        Rectangle:
+            texture: self.texture
+            size: self.texture_size
+            pos: self.center_x - self.texture_size[0]/2, self.center_y - self.texture_size[1]/2
+
+<SquareRedButton@Button>:   
+    background_color: 1,1,1,1
+    background_normal: ''
+    canvas:
+        Color:
+            rgba: 176/255,21/255,21/255,1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+        Rectangle:
+            texture: self.texture
+            size: self.texture_size
+            pos: self.center_x - self.texture_size[0]/2, self.center_y - self.texture_size[1]/2
+
+<EraseButton@Button>:
+    background_normal: ''
+    background_color: 1,1,1,1
+    canvas:
+        Color:
+            rgba: 209/255, 219/255, 1, 1
+        Rectangle:
+            pos: self.center
+            size: self.size
+        
+<RoundedSquareButton@Button>:
+    background_color: 209/255, 219/255, 1, 1
+    background_normal: ''
+    # background_down: ''
+    canvas.before:
+        Color:
+            rgba: self.background_color
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [10, 10, 10, 10]
+        Color:
+            rgba: self.background_color
+        Line:
+            rounded_rectangle: (self.x, self.y, self.width, self.height, 10)
+            width: 3
+    canvas:
+        Color:
+            rgba: 0,0,0,1
+        Rectangle:
+            texture: self.texture
+            size: self.texture_size
+            pos: (self.center_x - self.texture_size[0] / 2, self.center_y - self.texture_size[1]/2)
+<RoundedRedButton@Button>:
+    background_color: .8, 0, 0, 1
+    background_normal: ''
+    # background_down: ''
+    canvas.before:
+        Color:
+            rgba: self.background_color
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [10, 10, 10, 10]
+        Color:
+            rgba: self.background_color
+        Line:
+            rounded_rectangle: (self.x, self.y, self.width, self.height, 10)
+            width: 3
+    canvas:
+        Color:
+            rgba: 0,0,0,1
+        Rectangle:
+            texture: self.texture
+            size: self.texture_size
+            pos: (self.center_x - self.texture_size[0] / 2, self.center_y - self.texture_size[1]/2)
+
+
+<BackgroundLabel@Label+BackgroundColor>:
+
+    background_color: 1, 1, 1, 1
+
+
+<BlueButton@Button>:   
+    background_color: 217/255,225/255,1,1
+    background_normal: ''
+    background_down: ''
+    canvas:
+        Color:
+            rgba: 0,0,0,1
+        Rectangle:
+            texture: self.texture
+            size: self.texture_size
+            pos: self.center_x - self.texture_size[0]/2, self.center_y - self.texture_size[1]/2
+<MyTextInput@TextInput>:
+    foreground_color: 0, 0, 0, 1  # default text color
+    background_color: 1, 1, 1, 1  # default background color
+    canvas.before:
+        Color:
+            rgba: (0, 1, 0, 1) if self.focus else (1, 1, 1, 1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+<CustomSlider@Slider>:
+    orientation: 'vertical'
+    background_width: '10dp'
+    background_height: self.height
+    background_color: .4, .4, .4, .4
+    slider_color: 0, 0, 1, 1
+    slider_width: '10dp'
+    slider_pos: 'None'
+    size_hint_x: None
+    width: dp(10)
+    slider_disabled: True
+
+<SbarWhiteButton@Button>:
+    font_size: sp(12)
+    background_color: 1, 1, 1, 1
+    background_normal: ''
+    canvas:
+        Color:
+            rgba: 0, 0, 0, 0
+        Rectangle:
+            pos: self.pos
+            size: self.size
+        Rectangle:
+            texture: self.texture
+            size: self.texture_size
+            pos: self.x/2 + (self.width - self.texture_size[0]), self.center_y - self.texture_size[1]/2
+
+<CustomApp@App>:
+    id: app

@@ -1,0 +1,168 @@
+#:kivy 1.0.9
+
+<SettingsScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        id:'outer_box'
+        # spacing: 10
+        canvas.before:
+            Color:
+                rgba: 1,1,1,1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: 0.2
+            Image:
+                source: 'SBAR_v3\images\SBAR_snake.png'
+                allow_stretch: True
+                keep_ratio: False
+                size_hint: .33,1
+            BackgroundLabel:
+                text: 'SBAR'
+                font_size: '50dp'
+                color: 0,0,0,1
+                background_color: 216/255, 210/255, 227/255, 1
+                size_hint: .33,1
+            BackgroundLabel:
+                background_color: 216/255, 210/255, 227/255, 1
+                size_hint: .33,1
+        ScrollView:
+            id: scroll_view
+            size_hint_y: .7
+            GridLayout:
+                id: label_layout
+                cols: 1
+                spacing: 10
+                size_hint_y: None
+                row_force_default: True
+                row_default_height: 90
+                
+                # Add more labels here...
+        BoxLayout:
+            size_hint_y: .1
+            orientation: 'horizontal'
+            canvas.before:
+                Color:
+                    rgba: 216/255, 210/255, 227/255, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            SquareWhiteButton:
+                text: "¤"
+                background_color: 1,1,1,1
+                color: 0,0,0,1
+                font_size: '40dp'
+                on_press: 
+            Label:
+            SquareRedButton:
+                text: "+"
+                background_color: 1,1,1,1
+                color: 0,0,0,1
+                font_size: '50dp'
+                on_press: 
+            Label:
+            SquareBlueButton:
+                text: "+"
+                background_color: 1,1,1,1
+                color: 0,0,0,1
+                font_size: '50dp'
+                on_press: 
+    BoxLayout:
+        size_hint_y: .12
+        orientation: 'vertical'
+        BoxLayout:
+            size_hint_y: .12
+            canvas.before:
+                Color:
+                    rgba: 216/255, 210/255, 227/255, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+        BoxLayout:
+            size_hint_y: .76
+            orientation: 'horizontal'
+            canvas.before:
+                Color:
+                    rgba: 216/255, 210/255, 227/255, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            Label:
+                size_hint_x: .1
+            RoundedRedButton:
+                text: "¤"
+                background_color: 0,0,0,0.05
+                color: 0,0,0,1
+                font_size: '40dp'
+                on_press: root.go_to_settings()
+            Label:
+            RoundedRedButton:
+                text: "+"
+                background_color: .8,.2,.2,.7
+                color: 0,0,0,1
+                font_size: '50dp'
+                on_press: root.add_sbar()
+            Label:
+            RoundedRedButton:
+                text: "+"
+                background_color: .2,.2,.8,.7
+                color: 0,0,0,1
+                font_size: '50dp'
+                on_press: root.add_sbar()
+            Label:
+                size_hint_x: .1
+        BoxLayout:
+            size_hint_y: .12
+            canvas.before:
+                Color:
+                    rgba: 216/255, 210/255, 227/255, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+    BoxLayout:
+        orientation: 'horizontal'
+        size_hint_y: .8
+        pos_hint_y: .3
+        BoxLayout:
+            orientation: 'vertical'
+            canvas.before:
+                Color:
+                    rgba: 216/255, 210/255, 227/255, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            
+            Button:
+                text: 'Manual'
+                background_color: 209/255,219/255,1,1
+                on_press: 
+            Label:
+                size_hint_y: .5
+            Button:
+                text: 'Inställningar'
+                background_color: 209/255,219/255,1,1
+            Label:
+                size_hint_y: .5
+            Button:
+                text: 'Hjälp'
+                background_color: 209/255,219/255,1,1
+            Label:
+                size_hint_y: .5
+            Label:
+            Label:
+            Label:
+            Label:
+            Label:
+        BoxLayout:
+            canvas:
+                Color:
+                    rgba: 0,0,0,0
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            Button:
+                background_color: 0,0,0,.10
+                on_press: root.manager.current = 'main'

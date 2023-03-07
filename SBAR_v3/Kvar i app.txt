@@ -1,0 +1,15 @@
+Kvar i app:
+	- Gör kod finare (bara engelska namn, lättare att förstå namn, ta bort bortkommenterat) 
+	- kommentera
+	- sida för alla beskrivningar (SBAR, EMERG, manual, hjälp)
+	- inställning för font (en multiplier på en slider?)
+	- komma på fler inställningar som kan vara användbara.
+	- spara grejer
+Spara:
+	1. Lösen
+	2. notes
+	3. profit
+
+
+GLÖM EJ:
+	- importera time i buildozer

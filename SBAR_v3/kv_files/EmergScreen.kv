@@ -1,0 +1,192 @@
+#:kivy 1.0.9
+
+<EmergScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        canvas.before:
+            Color:
+                rgba: 1,1,1,1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: 0.15
+            canvas.before:
+                Color:
+                    rgba: 216/255, 210/255, 227/255, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            Button:
+                background_normal: 'SBAR_v3\images\SBAR_snake.png'
+                background_down: 'SBAR_v3\images\SBAR_snake.png'
+                allow_stretch: True
+                keep_ratio: True
+                size_hint_x: .3
+                on_press: root.manager.current = 'main'
+                color: 0,0,0,1
+            BackgroundLabel:
+                text: 'SBAR'
+                font_size: '50dp'
+                color: 0,0,0,1
+                background_color: 216/255, 210/255, 227/255, 1
+                size_hint_x: .4
+            BackgroundLabel:
+                background_color: 216/255, 210/255, 227/255, 1
+                size_hint_x: .3
+        
+        BoxLayout:
+            size_hint_y: .85
+            orientation: 'horizontal'
+            Label:
+                size_hint_x: .05
+            ScrollView:
+                id: scroll_view
+                scroll_type: ['bars','content']
+                bar_width: '20dp'
+                effect_cls: 'ScrollEffect'
+                scroll_size: self.children[0].height
+                BoxLayout:
+                    orientation: 'vertical'
+                    size_hint_y: None
+                    height: self.minimum_height
+                    CustomSlider:
+                        height: scroll_view.height
+                        value: scroll_view.scroll_y
+                        on_value: scroll_view.scroll_y = self.value
+                    Label:
+                        id: toc_var
+                    SbarWhiteButton:
+                        color: 0,0,0,1
+                        text: 'Patient ID'
+                        font_size: dp(24)
+                        size_hint: None,None
+                        height: dp(50)
+                        on_press: 
+                    TextInput:
+                        id: patientid
+                        background_color: (227/255,210/255,210/255,1) if self.focus else (227/255,210/255,210/255,1)
+                        background_normal: ''
+                        foreground_color: .1, .1, .1, 1  # default text color
+                        font_size: dp(30)
+                        hint_text: '' if self.focus else 'Börja skriva här...'
+                        size_hint: 1,None
+                        height: dp(50)
+                        multiline: False
+                        
+                     
+                    SbarWhiteButton:
+                        color: 0,0,0,1
+                        text: 'Aktuellt'
+                        font_size: dp(24)
+                        size_hint: None,None
+                        height: dp(50)
+                        on_press: 
+                    TextInput:
+                        id: aktuellt
+                        background_color: (227/255,210/255,210/255,1) if self.focus else (227/255,210/255,210/255,1)
+                        background_normal: ''
+                        foreground_color: .1, .1, .1, 1  # default text color
+                        font_size: dp(30)
+                        hint_text: '' if self.focus else 'Börja skriva här...'
+                        size_hint: 1,None
+                        height: self.minimum_height
+                    SbarWhiteButton:
+                        color: 0,0,0,1
+                        text: ' A-Luftväg'
+                        font_size: dp(24)
+                        size_hint: None,None
+                        height: dp(50)
+                        on_press: 
+                    TextInput:
+                        id: air
+                        background_color: (227/255,210/255,210/255,1) if self.focus else (227/255,210/255,210/255,1)
+                        background_normal: ''
+                        foreground_color: .1, .1, .1, 1  # default text color
+                        font_size: dp(30)
+                        hint_text: '' if self.focus else 'Börja skriva här...'
+                        size_hint: 1,None
+                        height: self.minimum_height
+                    SbarWhiteButton:
+                        color: 0,0,0,1
+                        text: '  B-Andning'
+                        font_size: dp(24)
+                        size_hint: None,None
+                        height: dp(50)
+                        on_press: 
+                    TextInput:
+                        id: breath
+                        background_color: (227/255,210/255,210/255,1) if self.focus else (227/255,210/255,210/255,1)
+                        background_normal: ''
+                        foreground_color: .1, .1, .1, 1  # default text color
+                        font_size: dp(30)
+                        hint_text: '' if self.focus else 'Börja skriva här...'
+                        size_hint: 1,None
+                        height: self.minimum_height
+                    SbarWhiteButton:
+                        color: 0,0,0,1
+                        text: '      C-cirkulation'
+                        font_size: dp(24)
+                        size_hint: None,None
+                        height: dp(50)
+                        on_press: 
+                    TextInput:
+                        id: circ
+                        background_color: (227/255,210/255,210/255,1) if self.focus else (227/255,210/255,210/255,1)
+                        background_normal: ''
+                        foreground_color: .1, .1, .1, 1  # default text color
+                        font_size: dp(30)
+                        hint_text: '' if self.focus else 'Börja skriva här...'
+                        size_hint: 1,None
+                        height: self.minimum_height
+                    SbarWhiteButton:
+                        color: 0,0,0,1
+                        text: '                 D-Medvetandegrad'
+                        font_size: dp(24)
+                        size_hint: None,None
+                        height: dp(50)
+                        on_press: 
+                    TextInput:
+                        id: deg
+                        background_color: (227/255,210/255,210/255,1) if self.focus else (227/255,210/255,210/255,1)
+                        background_normal: ''
+                        foreground_color: .1, .1, .1, 1  # default text color
+                        font_size: dp(30)
+                        hint_text: '' if self.focus else 'Börja skriva här...'
+                        size_hint: 1,None
+                        height: self.minimum_height
+                    SbarWhiteButton:
+                        color: 0,0,0,1
+                        text: '           Rekomendation'
+                        font_size: dp(24)
+                        size_hint: None,None
+                        height: dp(50)
+                        on_press: 
+                    TextInput:
+                        id: reko
+                        background_color: (227/255,210/255,210/255,1) if self.focus else (227/255,210/255,210/255,1)
+                        background_normal: ''
+                        foreground_color: .1, .1, .1, 1  # default text color
+                        font_size: dp(30)
+                        hint_text: '' if self.focus else 'Börja skriva här...'
+                        size_hint: 1,None
+                        height: self.minimum_height
+                    
+        Label:
+            size_hint_y: .02
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: None
+            height: dp(40)
+            Label:
+            RoundedRedButton:
+                text: "Back"
+                background_color: 227/255,210/255,210/255,1
+                color: 0,0,0,1
+                font_size: '35dp'
+                on_press: root.save_note()
+            Label:
+        Label:
+            size_hint_y: .02

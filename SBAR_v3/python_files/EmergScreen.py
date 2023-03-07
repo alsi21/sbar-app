@@ -1,0 +1,41 @@
+from kivy.uix.screenmanager import ScreenManager, Screen
+
+import classes
+import CustomApp
+
+
+class EmergScreen(Screen):
+    def on_enter(self):
+        self.repeat = False
+        if self.ids.patientid.text:
+            self.old_toc = self.ids.toc_var.text
+            self.old_id = self.ids.patientid.text
+            self.old_akt = self.ids.aktuellt.text
+            self.old_air = self.ids.air.text
+            self.old_bre = self.ids.breath.text
+            self.old_circ = self.ids.circ.text
+            self.old_deg = self.ids.deg.text
+            self.old_rek = self.ids.reko.text
+            for note in CustomApp.CustomApp.notes:
+                if self.old_id == note.patientid and self.old_akt == note.aktuellt and self.old_air == note.airway and self.old_bre == note.breath and self.old_circ == note.circ and self.old_deg == note.deg and self.old_rek == note.rekomendation:
+                    self.repeat = True
+                    self.old_note = note
+
+    def save_note(self):
+        print('saved')
+        patientid = self.ids.patientid.text
+        aktuellt = self.ids.aktuellt.text
+        d = self.ids.deg.text
+        c = self.ids.circ.text
+        b = self.ids.breath.text
+        a = self.ids.air.text
+        rek = self.ids.reko.text
+        toc = self.ids.toc_var.text
+        note = classes.Note(patientid, None, None, aktuellt, rek, None,a,b,c,d, True, toc)
+        # add the new note to the shared notes list
+        if self.repeat:
+            if self.old_note:
+                CustomApp.CustomApp.notes.remove(self.old_note)
+        if patientid or aktuellt or a or b or c or d or rek:
+            CustomApp.CustomApp.notes.append(note)
+        self.manager.current = 'main'
