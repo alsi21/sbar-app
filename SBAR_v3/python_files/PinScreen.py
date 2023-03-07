@@ -1,7 +1,16 @@
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.properties import BooleanProperty, Clock, StringProperty
 
+
 class PinScreen(Screen):
+    '''
+    Screen class for when there is a pincode set
+    pin : str
+        Attempted code
+    text : str
+        Text in label
+    set_code : str
+        Already set code to compare against'''
     pin = ''
     text = StringProperty('Pin:')
     set_code = ''
@@ -51,8 +60,13 @@ class PinScreen(Screen):
         self.text = self.text[:-1]
 
     def update_text(self):
-        if not self.set_code:
-            self.manager.current = 'set'
+        '''
+        # Checks if there is a set code, if not switch to SetScreen 
+        If 4 numbers have been entered, check to see if code is correct
+        Else clear attempted code and label'''
+        # if not self.set_code:
+        #     self.manager.current = 'set'
+
         if len(self.pin) >3 and self.pin == self.set_code:
             # Switch to the next screen
             self.manager.current = 'main'
@@ -61,13 +75,19 @@ class PinScreen(Screen):
             self.pin = ''
 
     def set_set_code(self,code):
+        '''Sets the code to attempt against'''
         self.set_code = code
         self.pin = ''
         self.text = ''
 
     def on_enter(self):
+        '''
+        Executed when entering screen,
+        Gives a delay of .1 seconds to check if there is a code set, 
+        '''
         Clock.schedule_once(self.check_password, .1)
         
     def check_password(self, *args):
+        '''If no password is set, switch to SetScreen'''
         if not self.set_code:
             self.manager.current = 'set'

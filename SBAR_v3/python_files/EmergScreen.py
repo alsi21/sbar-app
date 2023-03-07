@@ -1,11 +1,17 @@
-from kivy.uix.screenmanager import ScreenManager, Screen
-
 import classes
 import CustomApp
 
+from kivy.uix.screenmanager import ScreenManager, Screen
+
 
 class EmergScreen(Screen):
+    '''Screen class to handle emergency notes ,similiar to SbarScreen'''
+
     def on_enter(self):
+        '''
+        Code that gets executed everytime screen gets displayed
+        Checks if there exists a note with exact same content
+        '''
         self.repeat = False
         if self.ids.patientid.text:
             self.old_toc = self.ids.toc_var.text
@@ -22,7 +28,11 @@ class EmergScreen(Screen):
                     self.old_note = note
 
     def save_note(self):
-        print('saved')
+        '''
+        Code that gets executed when button is pressed to go to main menu
+        Creates a note with current info and if it is not a previous note it gets put into list of notes
+        changes to main menu
+        '''
         patientid = self.ids.patientid.text
         aktuellt = self.ids.aktuellt.text
         d = self.ids.deg.text

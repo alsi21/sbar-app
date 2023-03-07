@@ -67,6 +67,7 @@ class SbarNote(BoxLayout):
     '''Mainscreen Sbar note handling'''
 
     def __init__(self, **kwargs):
+        '''Builds note in mainmenu'''
         super().__init__(**kwargs)
         box = BoxLayout(orientation='horizontal', size_hint_y=None, height=80)
         main_btn = Button(size_hint_x=.8)

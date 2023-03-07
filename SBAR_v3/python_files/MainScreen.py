@@ -1,16 +1,22 @@
-from kivy.uix.screenmanager import ScreenManager, Screen
-from kivy.app import App
 import time
 import CustomApp
 import classes
 
+from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.app import App
+
+
+
 class MainScreen(Screen):
+    '''Screen class for main menu'''
+
     def on_enter(self):
-        print('entering')
+        '''
+        Code that gets executed whenever screen is showed,
+        Adds graphical main menu note representation for each note'''
         # clear any existing buttons
         self.ids.label_layout.clear_widgets()
         # add a button for each note
-        print(len(CustomApp.CustomApp.notes))
         for note in CustomApp.CustomApp.notes[::-1]:
             if note.exposure:
                 full_widget = classes.EmergNote()
@@ -24,6 +30,11 @@ class MainScreen(Screen):
             
 
     def edit_note(self, instance, note):
+        '''
+        Executed when entering already saved note,
+        Checks if it is sbar note or emergency note, 
+        depending on type save different note values
+        '''
         if not note.emerg:
             self.manager.current = 'sbar'
             print('note patientid: ',note.patientid)
@@ -49,6 +60,10 @@ class MainScreen(Screen):
             emerg_screen.ids.time_of_creation = note.time_of_creation
 
     def add_sbar(self):
+        '''
+        Enters SbarScreen and clears any existing text, 
+        not saved til save button is pressed on SbarScreen
+        '''
         self.ids.label_layout.height += 90
         self.manager.current = 'sbar'
         sbar_screen = self.manager.get_screen('sbar')
@@ -62,6 +77,10 @@ class MainScreen(Screen):
         
 
     def add_emerg(self):
+        '''
+        Enters EmergScreen and clears any existing text, 
+        not saved til save button is pressed on EmergScreen
+        '''
         self.ids.label_layout.height += 90
         self.manager.current = 'emerg'
         emerg_screen = self.manager.get_screen('emerg')
@@ -75,7 +94,9 @@ class MainScreen(Screen):
         emerg_screen.ids.toc_var.text = time.strftime('[%d/%m]    [%H:%M:%S]')
 
     def go_to_settings(self):
+        '''Simple function to go to SettingsScreen'''
         self.manager.current = 'settings' 
 
     def go_to_sbar(self):
+        '''Simple function to go to SBAR'''
         self.manager.current = 'sbar'

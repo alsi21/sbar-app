@@ -3,6 +3,17 @@ from kivy.properties import BooleanProperty, Clock, StringProperty
 from kivy.app import App
 
 class SetScreen(Screen):
+    '''
+    Screen class to set a new password
+    pin : str
+        Temporary value of entered code
+    text : str
+        Text in label
+    set_code : str
+        Final set password
+    check : str
+        First pin entered gets saved here, check is then compared to second pin entered
+    '''
     pin = ''
     text = StringProperty('Set code(4)')
     set_code = ''
@@ -74,6 +85,7 @@ class SetScreen(Screen):
         self.text = self.text[:-1]
 
     def update_text(self):
+        '''Function to check on what part of setting a password you are'''
         if len(self.pin) >3 and self.check == self.pin:
             # Switch to the next screen
             self.text = 'OK'

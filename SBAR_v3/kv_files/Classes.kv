@@ -19,13 +19,14 @@
         size_hint_x: .8
         note: None
     Button:
-        background_normal: 'SBAR_v3\images\trashcan.png'
-        background_down: 'SBAR_v3\images\trashcan.png'
+        background_normal: 'SBAR_v3/images/trashcan.png'
+        background_down: 'SBAR_v3/images/trashcan.png'
         allow_stretch: True
         keep_ratio: True
         background_color: 1,1,1,1
         size_hint_x: .2
         on_press: root.delete_boxlayout(self)
+
 <EmergNote@BoxLayout>:
     id: EmergNote
     orientation: 'horizontal'
@@ -87,6 +88,7 @@
             texture: self.texture
             size: self.texture_size
             pos: self.center_x - self.texture_size[0]/2, self.center_y - self.texture_size[1]/2
+
 <SquareWhiteButton@Button>:   
     background_color: 1,1,1,1
     background_normal: ''
