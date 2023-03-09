@@ -62,6 +62,23 @@ class Note:
         self.exposure = exposure
         self.checked = False
 
+    def export_note(self, local_storage, encrypt_func):
+        local_storage.put(
+            encrypt_func(self.patientid + self.time_of_creation),
+            patientid = encrypt_func(self.patientid),
+            situation = encrypt_func(self.situation),
+            background = encrypt_func(self.background),
+            relevant = encrypt_func(self.relevant),
+            recommendation = encrypt_func(self.recommendation),
+            extra = encrypt_func(self.extra),
+            airway = encrypt_func(self.airway),
+            breath = encrypt_func(self.breath),
+            circ = encrypt_func(self.circ),
+            disability = encrypt_func(self.disability),
+            exposure = self.exposure,
+            time_of_creation = encrypt_func(self.time_of_creation)
+        )
+
 
 class SbarNote(BoxLayout):
     '''Mainscreen Sbar note handling'''

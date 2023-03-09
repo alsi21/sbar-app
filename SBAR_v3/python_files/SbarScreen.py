@@ -2,6 +2,8 @@ import classes
 import CustomApp
 
 from kivy.uix.screenmanager import ScreenManager, Screen
+from LocalStorage import STORE_NOTES
+from FernetEncryption import encrypt
 
 class SbarScreen(Screen):
     '''Screen class to handle Sbar notes ,similiar to EmergScreen'''
@@ -40,7 +42,8 @@ class SbarScreen(Screen):
         rekomendation = self.ids.rekomendation.text
         extra = self.ids.extra.text
         toc = self.ids.toc_var.text
-        note = classes.Note(patientid, situation, bakgrund, aktuellt, rekomendation, extra, None, None, None, None, False, toc)
+        note = classes.Note(patientid, situation, bakgrund, aktuellt, rekomendation, extra, '', '', '', '', False, toc)
+        note.export_note(local_storage=STORE_NOTES, encrypt_func=encrypt)
         if self.repeat:
             if self.old_note:
                 CustomApp.CustomApp.notes.remove(self.old_note)

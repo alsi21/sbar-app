@@ -5,7 +5,7 @@ import classes
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.app import App
 
-
+from LocalStorage import STORE_NOTES, delete_data
 
 class MainScreen(Screen):
     '''Screen class for main menu'''
@@ -25,9 +25,12 @@ class MainScreen(Screen):
             full_widget.ids.buttonone.text = note.patientid + '        ' + note.time_of_creation
             button_note = note  # create a new variable with the value of note
             full_widget.ids.buttonone.bind(on_press=lambda instance, button_note=button_note: self.edit_note(instance, button_note))
+            full_widget.ids.deletebutton.bind(on_press=lambda instance, button_note=button_note: self.delete_note(instance, button_note))
             self.ids.label_layout.add_widget(full_widget)
             full_widget.ids.buttonone.note = note
-            
+
+    def delete_note(self, instance, note):
+        delete_data(STORE_NOTES, note.patientid + note.time_of_creation)            
 
     def edit_note(self, instance, note):
         '''

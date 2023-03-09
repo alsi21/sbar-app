@@ -13,7 +13,7 @@ from kivy.uix.label import Label
 from kivy.uix.button import Button
 from kivy.uix.popup import Popup
 
-
+from LocalStorage import STORE_NOTES, serialize_notes
 
 class MyScreenManager(ScreenManager):
     '''ScreenManager class'''
@@ -21,7 +21,7 @@ class MyScreenManager(ScreenManager):
 
 class CustomApp(App):
     '''App class, keeps track of notes'''
-    notes = []
+    notes = serialize_notes(STORE_NOTES)
 
     def build(self):
         '''Build function that calls Screenmanager, 
@@ -36,7 +36,7 @@ class CustomApp(App):
         sm.add_widget(EmergScreen.EmergScreen(name='emerg'))
         Window.bind(on_request_close=self.on_request_close)
         return sm
-    
+
     def on_request_close(self, *args):
         '''Function to call TextPopup'''
         #Save here

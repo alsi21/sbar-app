@@ -2,6 +2,9 @@ from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.properties import BooleanProperty, Clock, StringProperty
 from kivy.app import App
 
+from LocalStorage import STORE_PIN
+from FernetEncryption import encrypt
+
 class SetScreen(Screen):
     '''
     Screen class to set a new password
@@ -92,6 +95,7 @@ class SetScreen(Screen):
             app = App.get_running_app()
             second_screen = app.root.get_screen('pin')
             second_screen.set_set_code(self.pin)
+            STORE_PIN.put('pin', code = encrypt(self.pin))
             self.manager.current = 'main'
 
         elif len(self.pin) >3:

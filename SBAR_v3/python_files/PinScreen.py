@@ -1,6 +1,7 @@
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.properties import BooleanProperty, Clock, StringProperty
 
+from LocalStorage import STORE_PIN, serialize_pin
 
 class PinScreen(Screen):
     '''
@@ -13,7 +14,7 @@ class PinScreen(Screen):
         Already set code to compare against'''
     pin = ''
     text = StringProperty('Pin:')
-    set_code = ''
+    set_code = serialize_pin(STORE_PIN)
 
     def on_button1_press(self):
         self.pin += '1'

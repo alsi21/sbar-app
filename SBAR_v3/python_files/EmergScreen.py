@@ -2,7 +2,8 @@ import classes
 import CustomApp
 
 from kivy.uix.screenmanager import ScreenManager, Screen
-
+from LocalStorage import STORE_NOTES
+from FernetEncryption import encrypt
 
 class EmergScreen(Screen):
     '''Screen class to handle emergency notes ,similiar to SbarScreen'''
@@ -41,7 +42,8 @@ class EmergScreen(Screen):
         a = self.ids.air.text
         rek = self.ids.reko.text
         toc = self.ids.toc_var.text
-        note = classes.Note(patientid, None, None, aktuellt, rek, None,a,b,c,d, True, toc)
+        note = classes.Note(patientid, '', '', aktuellt, rek, '',a,b,c,d, True, toc)
+        note.export_note(local_storage=STORE_NOTES, encrypt_func=encrypt)
         # add the new note to the shared notes list
         if self.repeat:
             if self.old_note:
