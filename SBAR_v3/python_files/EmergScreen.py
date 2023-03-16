@@ -24,7 +24,7 @@ class EmergScreen(Screen):
             self.old_deg = self.ids.deg.text
             self.old_rek = self.ids.reko.text
             for note in CustomApp.CustomApp.notes:
-                if self.old_id == note.patientid and self.old_akt == note.aktuellt and self.old_air == note.airway and self.old_bre == note.breath and self.old_circ == note.circ and self.old_deg == note.deg and self.old_rek == note.rekomendation:
+                if self.old_id == note.patientid and self.old_akt == note.relevant and self.old_air == note.airway and self.old_bre == note.breath and self.old_circ == note.circ and self.old_deg == note.disability and self.old_rek == note.recommendation:
                     self.repeat = True
                     self.old_note = note
 

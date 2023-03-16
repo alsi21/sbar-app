@@ -38,15 +38,15 @@ class MainScreen(Screen):
         Checks if it is sbar note or emergency note, 
         depending on type save different note values
         '''
-        if not note.emerg:
+        if not note.exposure:
             self.manager.current = 'sbar'
             print('note patientid: ',note.patientid)
             sbar_screen = self.manager.get_screen('sbar')
             sbar_screen.ids.patientid.text = note.patientid
             sbar_screen.ids.situation.text = note.situation
-            sbar_screen.ids.bakgrund.text = note.bakgrund
-            sbar_screen.ids.aktuellt.text = note.aktuellt
-            sbar_screen.ids.rekomendation.text = note.rekomendation
+            sbar_screen.ids.bakgrund.text = note.background
+            sbar_screen.ids.aktuellt.text = note.relevant
+            sbar_screen.ids.rekomendation.text = note.recommendation
             sbar_screen.ids.extra.text = note.extra
             sbar_screen.ids.time_of_creation = note.time_of_creation
             print(sbar_screen.ids.patientid.text)            
@@ -54,12 +54,12 @@ class MainScreen(Screen):
             self.manager.current = 'emerg'
             emerg_screen = self.manager.get_screen('emerg')
             emerg_screen.ids.patientid.text = note.patientid
-            emerg_screen.ids.aktuellt.text = note.aktuellt
+            emerg_screen.ids.aktuellt.text = note.relevant
             emerg_screen.ids.air.text = note.airway
             emerg_screen.ids.breath.text = note.breath
             emerg_screen.ids.circ.text = note.circ
-            emerg_screen.ids.deg.text = note.deg
-            emerg_screen.ids.reko.text = note.rekomendation
+            emerg_screen.ids.deg.text = note.disability
+            emerg_screen.ids.reko.text = note.recommendation
             emerg_screen.ids.time_of_creation = note.time_of_creation
 
     def add_sbar(self):
