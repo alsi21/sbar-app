@@ -1,5 +1,5 @@
 from classes import Note
-from FernetEncryption import encrypt, decrypt
+from Encryption import encrypt, decrypt
 from kivy.storage.jsonstore import JsonStore
 
 # Storage constants used when interacting with local storage managed by Kivy.

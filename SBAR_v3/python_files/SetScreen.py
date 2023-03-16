@@ -3,7 +3,7 @@ from kivy.properties import BooleanProperty, Clock, StringProperty
 from kivy.app import App
 
 from LocalStorage import STORE_PIN
-from FernetEncryption import encrypt
+from Encryption import encrypt
 
 class SetScreen(Screen):
     '''

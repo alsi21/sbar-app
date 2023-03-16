@@ -3,7 +3,7 @@ import CustomApp
 
 from kivy.uix.screenmanager import ScreenManager, Screen
 from LocalStorage import STORE_NOTES
-from FernetEncryption import encrypt
+from Encryption import encrypt
 
 class EmergScreen(Screen):
     '''Screen class to handle emergency notes ,similiar to SbarScreen'''
