@@ -72,7 +72,6 @@ class EmergScreen(Screen):
         if self.repeat:
             if self.old_note:
                 CustomApp.CustomApp.notes.remove(self.old_note)
-                print('deleting old note')
                 delete_data(STORE_NOTES, self.old_note.patientid, self.old_note.time_of_creation)
         if patientid or situation or bakgrund or aktuellt or a or b or c or d or e or rek or extra:
             CustomApp.CustomApp.notes.append(note)

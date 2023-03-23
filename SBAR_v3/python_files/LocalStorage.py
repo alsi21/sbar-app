@@ -7,6 +7,7 @@ STORE_NOTES = JsonStore('notes.json')
 STORE_PIN = JsonStore('pin.json')
 
 def serialize_notes(notes_storage):
+    '''Takes in JsonStore link, returns a list of Notes.'''
     notes = []
     keys = notes_storage.keys()
     for key in keys:
@@ -29,18 +30,24 @@ def serialize_notes(notes_storage):
         notes.append(note)
     return notes
     
-def serialize_pin(pin_storage):
+def serialize_pin(pin_storage) -> str:
+    '''Takes in JsonStore link, returns pin.'''
     pin = ''
     if pin_storage.exists('pin'):
         pin = decrypt(pin_storage.get('pin')['code'])
     return pin
 
-def get_data(notes_storage, patientid):
-    encoded_pid = encrypt(patientid)
+def get_data(notes_storage, patientid: str, time_of_creation: str):
+    '''Takes in JsonStore link, patient ID and time of creation.
+    Returns data matching ID and ToC.'''
+    id = patientid + time_of_creation
+    encoded_pid = encrypt(id)
     if notes_storage.exists(encoded_pid):
-        notes_storage.get(encoded_pid)
+        return notes_storage.get(encoded_pid)
 
-def delete_data(notes_storage, patientid, time_of_creation):
+def delete_data(notes_storage, patientid: str, time_of_creation: str) -> None:
+    '''Takes in JsonStore link, patient ID and time of creation.
+    Removes data matching ID and ToC.'''
     id = patientid + time_of_creation
     keys = notes_storage.keys()
     for key in keys:
