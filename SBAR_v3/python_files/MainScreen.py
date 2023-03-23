@@ -30,7 +30,7 @@ class MainScreen(Screen):
             full_widget.ids.buttonone.note = note
 
     def delete_note(self, instance, note):
-        delete_data(STORE_NOTES, note.patientid + note.time_of_creation)            
+        delete_data(STORE_NOTES, note.patientid, note.time_of_creation)            
 
     def edit_note(self, instance, note):
         '''

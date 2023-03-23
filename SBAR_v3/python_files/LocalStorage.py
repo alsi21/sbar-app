@@ -40,8 +40,9 @@ def get_data(notes_storage, patientid):
     if notes_storage.exists(encoded_pid):
         notes_storage.get(encoded_pid)
 
-def delete_data(notes_storage, patientid):
+def delete_data(notes_storage, patientid, time_of_creation):
+    id = patientid + time_of_creation
     keys = notes_storage.keys()
     for key in keys:
-        if decrypt(key) == patientid:
+        if decrypt(key) == id:
             notes_storage.delete(key)
