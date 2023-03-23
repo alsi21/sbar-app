@@ -48,7 +48,12 @@ class SbarScreen(Screen):
         aktuellt = self.ids.aktuellt.text
         rekomendation = self.ids.rekomendation.text
         extra = self.ids.extra.text
-        toc = self.ids.toc_var.text
+
+        if self.repeat:
+            toc = self.old_note.time_of_creation
+        else:
+            toc = self.ids.toc_var.text
+
         note = classes.Note(patientid, situation, bakgrund, aktuellt, rekomendation, extra, '', '', '', '', '', False, toc)
         note.export_note(local_storage=STORE_NOTES, encrypt_func=encrypt)
         if self.repeat:

@@ -52,7 +52,12 @@ class EmergScreen(Screen):
         d = self.ids.deg.text
         e = self.ids.exposure.text
         rek = self.ids.reko.text
-        toc = self.ids.toc_var.text
+
+        if self.repeat:
+            toc = self.old_note.time_of_creation
+        else:
+            toc = self.ids.toc_var.text
+
         note = classes.Note(patientid, situation, bakgrund, aktuellt, rek, '', a, b, c, d, e, True, toc)
         note.export_note(local_storage=STORE_NOTES, encrypt_func=encrypt)
         # add the new note to the shared notes list
