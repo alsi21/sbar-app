@@ -40,8 +40,6 @@
         BoxLayout:
             size_hint_y: .85
             orientation: 'horizontal'
-            Label:
-                size_hint_x: .05
             ScrollView:
                 id: scroll_view
                 scroll_type: ['bars','content']
@@ -49,6 +47,7 @@
                 effect_cls: 'ScrollEffect'
                 scroll_size: self.children[0].height
                 BoxLayout:
+                    padding: dp(20), 0
                     orientation: 'vertical'
                     size_hint_y: None
                     height: self.minimum_height
