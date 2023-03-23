@@ -9,7 +9,7 @@
             Rectangle:
                 pos: self.pos
                 size: self.size
-        
+
         BoxLayout:
             orientation: 'horizontal'
             size_hint_y: 0.15
@@ -36,7 +36,7 @@
             BackgroundLabel:
                 background_color: 216/255, 210/255, 227/255, 1
                 size_hint_x: .3
-        
+
         BoxLayout:
             size_hint_y: .85
             orientation: 'horizontal'
@@ -64,7 +64,7 @@
                         font_size: dp(24)
                         size_hint: None,None
                         height: dp(50)
-                        on_press: 
+                        on_press:
                     TextInput:
                         id: patientid
                         background_color: (227/255,210/255,210/255,1) if self.focus else (227/255,210/255,210/255,1)
@@ -75,15 +75,45 @@
                         size_hint: 1,None
                         height: dp(50)
                         multiline: False
-                        
-                     
+                    SbarWhiteButton:
+                        color: 0,0,0,1
+                        text: 'Situation'
+                        font_size: dp(24)
+                        size_hint: None,None
+                        height: dp(50)
+                        on_press:
+                    TextInput:
+                        id: situation
+                        background_color: (227/255,210/255,210/255,1) if self.focus else (227/255,210/255,210/255,1)
+                        background_normal: ''
+                        foreground_color: .1, .1, .1, 1  # default text color
+                        font_size: dp(30)
+                        hint_text: '' if self.focus else 'Börja skriva här...'
+                        size_hint: 1,None
+                        height: self.minimum_height
+                    SbarWhiteButton:
+                        color: 0,0,0,1
+                        text: 'Bakgrund'
+                        font_size: dp(24)
+                        size_hint: None,None
+                        height: dp(50)
+                        on_press:
+                    TextInput:
+                        id: bakgrund
+                        background_color: (227/255,210/255,210/255,1) if self.focus else (227/255,210/255,210/255,1)
+                        background_normal: ''
+                        foreground_color: .1, .1, .1, 1  # default text color
+                        font_size: dp(30)
+                        hint_text: '' if self.focus else 'Börja skriva här...'
+                        size_hint: 1,None
+                        height: self.minimum_height
                     SbarWhiteButton:
                         color: 0,0,0,1
                         text: 'Aktuellt'
                         font_size: dp(24)
                         size_hint: None,None
                         height: dp(50)
-                        on_press: 
+                        on_press:
                     TextInput:
                         id: aktuellt
                         background_color: (227/255,210/255,210/255,1) if self.focus else (227/255,210/255,210/255,1)
@@ -99,7 +129,7 @@
                         font_size: dp(24)
                         size_hint: None,None
                         height: dp(50)
-                        on_press: 
+                        on_press:
                     TextInput:
                         id: air
                         background_color: (227/255,210/255,210/255,1) if self.focus else (227/255,210/255,210/255,1)
@@ -115,7 +145,7 @@
                         font_size: dp(24)
                         size_hint: None,None
                         height: dp(50)
-                        on_press: 
+                        on_press:
                     TextInput:
                         id: breath
                         background_color: (227/255,210/255,210/255,1) if self.focus else (227/255,210/255,210/255,1)
@@ -131,7 +161,7 @@
                         font_size: dp(24)
                         size_hint: None,None
                         height: dp(50)
-                        on_press: 
+                        on_press:
                     TextInput:
                         id: circ
                         background_color: (227/255,210/255,210/255,1) if self.focus else (227/255,210/255,210/255,1)
@@ -147,9 +177,25 @@
                         font_size: dp(24)
                         size_hint: None,None
                         height: dp(50)
-                        on_press: 
+                        on_press:
                     TextInput:
                         id: deg
+                        background_color: (227/255,210/255,210/255,1) if self.focus else (227/255,210/255,210/255,1)
+                        background_normal: ''
+                        foreground_color: .1, .1, .1, 1  # default text color
+                        font_size: dp(30)
+                        hint_text: '' if self.focus else 'Börja skriva här...'
+                        size_hint: 1,None
+                        height: self.minimum_height
+                    SbarWhiteButton:
+                        color: 0,0,0,1
+                        text: '       E-Exponering'
+                        font_size: dp(24)
+                        size_hint: None,None
+                        height: dp(50)
+                        on_press:
+                    TextInput:
+                        id: exposure
                         background_color: (227/255,210/255,210/255,1) if self.focus else (227/255,210/255,210/255,1)
                         background_normal: ''
                         foreground_color: .1, .1, .1, 1  # default text color
@@ -163,7 +209,7 @@
                         font_size: dp(24)
                         size_hint: None,None
                         height: dp(50)
-                        on_press: 
+                        on_press:
                     TextInput:
                         id: reko
                         background_color: (227/255,210/255,210/255,1) if self.focus else (227/255,210/255,210/255,1)
@@ -173,7 +219,7 @@
                         hint_text: '' if self.focus else 'Börja skriva här...'
                         size_hint: 1,None
                         height: self.minimum_height
-                    
+
         Label:
             size_hint_y: .02
         BoxLayout:

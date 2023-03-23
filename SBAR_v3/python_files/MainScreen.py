@@ -38,7 +38,7 @@ class MainScreen(Screen):
         Checks if it is sbar note or emergency note, 
         depending on type save different note values
         '''
-        if not note.exposure:
+        if not note.emergency:
             self.manager.current = 'sbar'
             print('note patientid: ',note.patientid)
             sbar_screen = self.manager.get_screen('sbar')
@@ -54,11 +54,14 @@ class MainScreen(Screen):
             self.manager.current = 'emerg'
             emerg_screen = self.manager.get_screen('emerg')
             emerg_screen.ids.patientid.text = note.patientid
+            emerg_screen.ids.situation.text = note.situation
+            emerg_screen.ids.bakgrund.text = note.background
             emerg_screen.ids.aktuellt.text = note.relevant
             emerg_screen.ids.air.text = note.airway
             emerg_screen.ids.breath.text = note.breath
             emerg_screen.ids.circ.text = note.circ
             emerg_screen.ids.deg.text = note.disability
+            emerg_screen.ids.exposure.text = note.exposure
             emerg_screen.ids.reko.text = note.recommendation
             emerg_screen.ids.time_of_creation = note.time_of_creation
 
@@ -88,6 +91,8 @@ class MainScreen(Screen):
         self.manager.current = 'emerg'
         emerg_screen = self.manager.get_screen('emerg')
         emerg_screen.ids.patientid.text = ''
+        emerg_screen.ids.situation.text = ''
+        emerg_screen.ids.bakgrund.text = ''
         emerg_screen.ids.aktuellt.text = ''
         emerg_screen.ids.air.text = ''
         emerg_screen.ids.breath.text = ''

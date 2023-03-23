@@ -24,7 +24,15 @@ class EmergScreen(Screen):
             self.old_deg = self.ids.deg.text
             self.old_rek = self.ids.reko.text
             for note in CustomApp.CustomApp.notes:
-                if self.old_id == note.patientid and self.old_akt == note.relevant and self.old_air == note.airway and self.old_bre == note.breath and self.old_circ == note.circ and self.old_deg == note.disability and self.old_rek == note.recommendation:
+                if (
+                    self.old_id == note.patientid and
+                    self.old_akt == note.relevant and
+                    self.old_air == note.airway and
+                    self.old_bre == note.breath and
+                    self.old_circ == note.circ and
+                    self.old_deg == note.disability and
+                    self.old_rek == note.recommendation
+                    ):
                     self.repeat = True
                     self.old_note = note
 
@@ -35,19 +43,22 @@ class EmergScreen(Screen):
         changes to main menu
         '''
         patientid = self.ids.patientid.text
+        situation = self.ids.situation.text
+        bakgrund = self.ids.bakgrund.text
         aktuellt = self.ids.aktuellt.text
-        d = self.ids.deg.text
-        c = self.ids.circ.text
-        b = self.ids.breath.text
         a = self.ids.air.text
+        b = self.ids.breath.text
+        c = self.ids.circ.text
+        d = self.ids.deg.text
+        e = self.ids.exposure.text
         rek = self.ids.reko.text
         toc = self.ids.toc_var.text
-        note = classes.Note(patientid, '', '', aktuellt, rek, '',a,b,c,d, True, toc)
+        note = classes.Note(patientid, situation, bakgrund, aktuellt, rek, '', a, b, c, d, e, True, toc)
         note.export_note(local_storage=STORE_NOTES, encrypt_func=encrypt)
         # add the new note to the shared notes list
         if self.repeat:
             if self.old_note:
                 CustomApp.CustomApp.notes.remove(self.old_note)
-        if patientid or aktuellt or a or b or c or d or rek:
+        if patientid or situation or bakgrund or aktuellt or a or b or c or d or e or rek:
             CustomApp.CustomApp.notes.append(note)
         self.manager.current = 'main'

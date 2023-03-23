@@ -24,7 +24,14 @@ class SbarScreen(Screen):
             self.old_rek = self.ids.rekomendation.text
             self.old_ext = self.ids.extra.text
             for note in CustomApp.CustomApp.notes:
-                if self.old_id == note.patientid and self.old_sit == note.situation and self.old_bak == note.background and self.old_akt == note.relevant and self.old_rek == note.recommendation and self.old_ext == note.extra:
+                if (
+                    self.old_id == note.patientid and
+                    self.old_sit == note.situation and
+                    self.old_bak == note.background and
+                    self.old_akt == note.relevant and
+                    self.old_rek == note.recommendation and
+                    self.old_ext == note.extra
+                    ):
                     print('found old note: ', note.patientid)
                     self.old_note = note
                     self.repeat = True
@@ -42,7 +49,7 @@ class SbarScreen(Screen):
         rekomendation = self.ids.rekomendation.text
         extra = self.ids.extra.text
         toc = self.ids.toc_var.text
-        note = classes.Note(patientid, situation, bakgrund, aktuellt, rekomendation, extra, '', '', '', '', False, toc)
+        note = classes.Note(patientid, situation, bakgrund, aktuellt, rekomendation, extra, '', '', '', '', '', False, toc)
         note.export_note(local_storage=STORE_NOTES, encrypt_func=encrypt)
         if self.repeat:
             if self.old_note:

@@ -16,7 +16,7 @@ class BlueTextInput(TextInput):
 class Note:
     '''Class that holds information presented in notes'''
 
-    def __init__(self, patientid, situation, background, relevant, recommendation, extra, airway, breath, circ, disability, exposure, time_of_creation):
+    def __init__(self, patientid, situation, background, relevant, recommendation, extra, airway, breath, circ, disability, exposure, emergency, time_of_creation):
         '''
         Parameters
         ----------
@@ -60,7 +60,7 @@ class Note:
         self.circ = circ
         self.disability = disability
         self.exposure = exposure
-        self.checked = False
+        self.emergency = emergency
 
     def export_note(self, local_storage, encrypt_func):
         local_storage.put(
@@ -75,7 +75,8 @@ class Note:
             breath = encrypt_func(self.breath),
             circ = encrypt_func(self.circ),
             disability = encrypt_func(self.disability),
-            exposure = self.exposure,
+            exposure = encrypt_func(self.exposure),
+            emergency = self.emergency,
             time_of_creation = encrypt_func(self.time_of_creation)
         )
 
