@@ -219,6 +219,22 @@
                         hint_text: '' if self.focus else 'Börja skriva här...'
                         size_hint: 1,None
                         height: self.minimum_height
+                    SbarWhiteButton:
+                        color: 0,0,0,1
+                        text: '        Extra notering'
+                        font_size: dp(24)
+                        size_hint: None,None
+                        height: dp(50)
+                        on_press: 
+                    TextInput:
+                        id: extra
+                        background_color: (227/255,210/255,210/255,1) if self.focus else (227/255,210/255,210/255,1)
+                        background_normal: ''
+                        foreground_color: .1, .1, .1, 1  # default text color
+                        font_size: dp(30)
+                        hint_text: '' if self.focus else 'Börja skriva här...'
+                        size_hint: 1,None
+                        height: self.minimum_height
 
         Label:
             size_hint_y: .02

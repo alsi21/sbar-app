@@ -42,8 +42,8 @@ class Note:
             patient disability
         exposure : str
             patient exposure
-        checked : Bool
-            Value to see if nurse has marked note as finished
+        emergency : Bool
+            Value to see if the note is an emergency note
         '''
         #For SBAR and Emerg
         self.patientid = patientid

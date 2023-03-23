@@ -18,7 +18,7 @@ class MainScreen(Screen):
         self.ids.label_layout.clear_widgets()
         # add a button for each note
         for note in CustomApp.CustomApp.notes[::-1]:
-            if note.exposure:
+            if note.emergency:
                 full_widget = classes.EmergNote()
             else:
                 full_widget = classes.SbarNote()
@@ -63,6 +63,7 @@ class MainScreen(Screen):
             emerg_screen.ids.deg.text = note.disability
             emerg_screen.ids.exposure.text = note.exposure
             emerg_screen.ids.reko.text = note.recommendation
+            emerg_screen.ids.extra.text = note.extra
             emerg_screen.ids.time_of_creation = note.time_of_creation
 
     def add_sbar(self):
@@ -98,7 +99,9 @@ class MainScreen(Screen):
         emerg_screen.ids.breath.text = ''
         emerg_screen.ids.circ.text = ''
         emerg_screen.ids.deg.text = ''
+        emerg_screen.ids.exposure.text = ''
         emerg_screen.ids.reko.text = ''
+        emerg_screen.ids.extra.text = ''
         emerg_screen.ids.toc_var.text = time.strftime('[%d/%m]    [%H:%M:%S]')
 
     def go_to_settings(self):
