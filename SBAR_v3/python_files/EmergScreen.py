@@ -49,8 +49,7 @@ class EmergScreen(Screen):
         Creates a note with current info and if it is not a previous note it gets put into list of notes
         changes to main menu
         '''
-        if self.ids.patientid.text == '':
-            patientid = ''
+
         patientid = self.ids.patientid.text
         situation = self.ids.situation.text
         bakgrund = self.ids.bakgrund.text
@@ -69,12 +68,13 @@ class EmergScreen(Screen):
             toc = self.ids.toc_var.text
 
         note = classes.Note(patientid, situation, bakgrund, aktuellt, rek, extra, a, b, c, d, e, True, toc)
-        note.export_note(local_storage=STORE_NOTES, encrypt_func=encrypt)
         # add the new note to the shared notes list
         if self.repeat:
             if self.old_note:
                 CustomApp.CustomApp.notes.remove(self.old_note)
+                print('deleting old note')
                 delete_data(STORE_NOTES, self.old_note.patientid, self.old_note.time_of_creation)
         if patientid or situation or bakgrund or aktuellt or a or b or c or d or e or rek or extra:
             CustomApp.CustomApp.notes.append(note)
+        note.export_note(local_storage=STORE_NOTES, encrypt_func=encrypt)
         self.manager.current = 'main'
