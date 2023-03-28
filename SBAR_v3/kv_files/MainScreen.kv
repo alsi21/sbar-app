@@ -68,21 +68,27 @@
                     background_color: 0,0,0,0.02
                     color: 0,0,0,1
                     font_size: '40dp'
-                    on_press: root.go_to_settings()
+                    on_press: 
+                        root.manager.transition.direction = 'right'
+                        root.go_to_settings()
                 Label:
                 RoundedRedButton:
                     text: "+"
                     background_color: 176/255,21/255,21/255,1
                     color: 0,0,0,1
                     font_size: '50dp'
-                    on_press: root.add_emerg()
+                    on_press: 
+                        root.manager.transition.direction = 'left'
+                        root.add_emerg()
                 Label:
                 RoundedRedButton:
                     text: "+"
                     background_color: 102/255,136/255,1,1
                     color: 0,0,0,1
                     font_size: '50dp'
-                    on_press: root.add_sbar()
+                    on_press: 
+                        root.manager.transition.direction = 'left'
+                        root.add_sbar()
                 Label:
                     size_hint_x: .1
             BoxLayout:

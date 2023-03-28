@@ -97,7 +97,7 @@
                 background_color: 0,0,0,0.05
                 color: 0,0,0,1
                 font_size: '40dp'
-                on_press: root.go_to_settings()
+                # on_press: root.go_to_settings()
             Label:
             RoundedRedButton:
                 text: "+"
@@ -165,4 +165,6 @@
                     pos: self.pos
             Button:
                 background_color: 0,0,0,.10
-                on_press: root.manager.current = 'main'
+                on_press: 
+                    root.manager.transition.direction = 'left'
+                    root.manager.current = 'main'

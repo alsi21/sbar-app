@@ -170,7 +170,9 @@
                 background_color: 217/255,225/255,1,1
                 color: 0,0,0,1
                 font_size: '35dp'
-                on_press: root.save_note()
+                on_press:
+                    root.manager.transition.direction = 'right'
+                    root.save_note()
             Label:
         Label:
             size_hint_y: .02
