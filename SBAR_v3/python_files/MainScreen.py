@@ -54,12 +54,14 @@ class MainScreen(Screen):
             full_widget.ids.buttonone.note = note
 
     def check_note(self, instance, note):
+        ''' Toggles the checked state for a SBAR Note'''
         state = note.checked
         note.checked = not state
         note.export_note(STORE_NOTES, encrypt)
         self.manager.current = 'main'
 
     def delete_note(self, instance, note):
+        '''Deletes Note from Local Storage'''
         delete_data(STORE_NOTES, note.patientid + note.time_of_creation)            
 
     def edit_note(self, instance, note):
