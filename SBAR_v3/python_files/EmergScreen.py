@@ -42,7 +42,9 @@ class EmergScreen(Screen):
         a = self.ids.air.text
         rek = self.ids.reko.text
         toc = self.ids.toc_var.text
-        note = classes.Note(patientid, '', '', aktuellt, rek, '',a,b,c,d, True, toc)
+        note = classes.Note(patientid, '', '', aktuellt, rek, '',a,b,c,d, True, False, toc)
+        if self.repeat and self.old_note:
+            note.checked = self.old_note.checked
         note.export_note(local_storage=STORE_NOTES, encrypt_func=encrypt)
         # add the new note to the shared notes list
         if self.repeat:

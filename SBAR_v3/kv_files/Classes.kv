@@ -7,6 +7,7 @@
     height: 80
     canvas.before:
         Color:
+            id: color
             rgba: 217/255,225/255,1,1
         Rectangle:
             size: self.size
@@ -20,6 +21,7 @@
         note: None
     CheckBox:
         id: checkbox
+        color: 50/255, 50/255, 50/255, 1
         allow_stretch: True
         keep_ratio: True
         background_color: 1,1,1,1
@@ -34,6 +36,7 @@
     height: 80
     canvas.before:
         Color:
+            id: color
             rgba: 227/255,210/255,210/255,1
         Rectangle:
             size: self.size
@@ -47,12 +50,14 @@
         note: None
     CheckBox:
         id: checkbox
+        color: 50/255, 50/255, 50/255, 1
         allow_stretch: True
         keep_ratio: True
         background_color: 1,1,1,1
         size_hint_x: .2
         active: False
         on_press: root.on_checkbox_active(self)
+
 <BackgroundColor@Widget>:
     background_color: 1, 1, 1, 1
     canvas.before:

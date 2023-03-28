@@ -42,7 +42,9 @@ class SbarScreen(Screen):
         rekomendation = self.ids.rekomendation.text
         extra = self.ids.extra.text
         toc = self.ids.toc_var.text
-        note = classes.Note(patientid, situation, bakgrund, aktuellt, rekomendation, extra, '', '', '', '', False, toc)
+        note = classes.Note(patientid, situation, bakgrund, aktuellt, rekomendation, extra, '', '', '', '', False, False, toc)
+        if self.repeat and self.old_note:
+            note.checked = self.old_note.checked
         note.export_note(local_storage=STORE_NOTES, encrypt_func=encrypt)
         if self.repeat:
             if self.old_note:

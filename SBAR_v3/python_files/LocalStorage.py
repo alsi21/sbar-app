@@ -23,6 +23,7 @@ def serialize_notes(notes_storage):
             decrypt(data['circ']),
             decrypt(data['disability']),
             data['exposure'],
+            decrypt(data['checked']),
             decrypt(data['time_of_creation'])
         )
         notes.append(note)

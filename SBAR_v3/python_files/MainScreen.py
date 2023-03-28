@@ -6,6 +6,7 @@ from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.app import App
 
 from LocalStorage import STORE_NOTES, delete_data
+from Encryption import encrypt
 
 class MainScreen(Screen):
     '''Screen class for main menu'''
@@ -14,20 +15,49 @@ class MainScreen(Screen):
         '''
         Code that gets executed whenever screen is showed,
         Adds graphical main menu note representation for each note'''
+        blue = 217/255,225/255,1,1
+        checked_blue = 108/255,112/255,0.5,1
+        red = 227/255,210/255,210/255,1
+        checked_red = 113/255,105/255,105/255,1
+
         # clear any existing buttons
         self.ids.label_layout.clear_widgets()
         # add a button for each note
         for note in CustomApp.CustomApp.notes[::-1]:
             if note.exposure:
                 full_widget = classes.EmergNote()
+                if note.checked:
+                    full_widget.ids.rgba = checked_red
+                    full_widget.ids.checkbox.active = note.checked
+                    print('ecr')
+                else:
+                    full_widget.ids.rgba = red
+                    full_widget.ids.checkbox.active = note.checked
+                    print('er')
+
             else:
                 full_widget = classes.SbarNote()
+                if note.checked:
+                    print('cb')
+                    full_widget.ids.rgba = checked_blue
+                    full_widget.ids.checkbox.active = note.checked
+                else:
+                    print('b')
+                    full_widget.ids.rgba = blue
+                    full_widget.ids.checkbox.active = note.checked
+                    
             full_widget.ids.buttonone.text = note.patientid + '        ' + note.time_of_creation
             button_note = note  # create a new variable with the value of note
             full_widget.ids.buttonone.bind(on_press=lambda instance, button_note=button_note: self.edit_note(instance, button_note))
-            # full_widget.ids.deletebutton.bind(on_press=lambda instance, button_note=button_note: self.delete_note(instance, button_note))
+            full_widget.ids.checkbox.bind(on_press=lambda instance, button_note=button_note: self.check_note(instance, button_note))
             self.ids.label_layout.add_widget(full_widget)
             full_widget.ids.buttonone.note = note
+
+    def check_note(self, instance, note):
+        state = note.checked
+        note.checked = not state
+        note.export_note(STORE_NOTES, encrypt)
+        self.manager.current = 'main'
 
     def delete_note(self, instance, note):
         delete_data(STORE_NOTES, note.patientid + note.time_of_creation)            
