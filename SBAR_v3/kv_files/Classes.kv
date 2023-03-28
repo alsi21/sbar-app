@@ -18,15 +18,14 @@
         color: 0,0,0,1
         size_hint_x: .8
         note: None
-    Button:
-        id: deletebutton
-        background_normal: 'SBAR_v3/images/trashcan.png'
-        background_down: 'SBAR_v3/images/trashcan.png'
+    CheckBox:
+        id: checkbox
         allow_stretch: True
         keep_ratio: True
         background_color: 1,1,1,1
         size_hint_x: .2
-        on_press: root.delete_boxlayout(self)
+        active: False
+        on_press: root.on_checkbox_active(self)
 
 <EmergNote@BoxLayout>:
     id: EmergNote
@@ -46,15 +45,14 @@
         color: 0,0,0,1
         size_hint_x: .8
         note: None
-    Button:
-        id: deletebutton
-        background_normal: 'SBAR_v3\images\trashcan.png'
-        background_down: 'SBAR_v3\images\trashcan.png'
+    CheckBox:
+        id: checkbox
         allow_stretch: True
         keep_ratio: True
         background_color: 1,1,1,1
         size_hint_x: .2
-        on_press: root.delete_boxlayout(self)
+        active: False
+        on_press: root.on_checkbox_active(self)
 <BackgroundColor@Widget>:
     background_color: 1, 1, 1, 1
     canvas.before:

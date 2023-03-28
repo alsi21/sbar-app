@@ -1,5 +1,6 @@
 import CustomApp
 
+from kivy.uix.checkbox import CheckBox
 from kivy.uix.button import Button
 from kivy.uix.textinput import TextInput
 from kivy.uix.boxlayout import BoxLayout
@@ -8,6 +9,8 @@ from kivy.uix.boxlayout import BoxLayout
 class SquareBlueButton(Button):
     '''Blue button'''
 
+class SBARNoteCheckBox(CheckBox):
+    '''Note CheckBsox'''
 
 class BlueTextInput(TextInput):
     '''Blue TextInput'''
@@ -89,21 +92,23 @@ class SbarNote(BoxLayout):
         box = BoxLayout(orientation='horizontal', size_hint_y=None, height=80)
         main_btn = Button(size_hint_x=.8)
         box.add_widget(main_btn)
-        del_btn = SquareBlueButton(text='del', size_hint_x=.2)
-        del_btn.bind(on_press=self.delete_boxlayout)
-        box.add_widget(del_btn)
+        checkbox = SBARNoteCheckBox(active=False, size_hint_x=.2)
+        checkbox.bind(on_press=self.on_checkbox_active)
+        box.add_widget(checkbox)
 
-    def delete_boxlayout(self, instance):
-        '''Deletes itself (note)'''
-        self.parent.height -= 90
-        CustomApp.CustomApp.notes.remove(self.ids.buttonone.note)
-        self.parent.remove_widget(self)
+    def on_checkbox_active(self, checkbox):
+        '''CheckBox Interaction'''
+        if checkbox.active:
+            print('The checkbox', self, 'is active')
+        else:
+            print('The checkbox', self, 'is inactive')
 
 class EmergNote(BoxLayout):
     '''Mainscreen Emerg note handling'''
 
-    def delete_boxlayout(self, instance):
-        '''Deletes itself (note)'''
-        self.parent.height -= 90
-        CustomApp.CustomApp.notes.remove(self.ids.buttonone.note)
-        self.parent.remove_widget(self)
+    def on_checkbox_active(self, checkbox):
+        '''CheckBox Interaction'''
+        if checkbox.active:
+            print('The checkbox', self, 'is active')
+        else:
+            print('The checkbox', self, 'is inactive')
