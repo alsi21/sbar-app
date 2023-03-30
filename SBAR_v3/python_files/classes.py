@@ -100,17 +100,21 @@ class SbarNote(BoxLayout):
 
     def on_checkbox_active(self, checkbox):
         '''CheckBox Interaction'''
-        if checkbox.active:
+        if not checkbox.active:
             print('The checkbox', self, 'is active')
+            self.ids.buttonone.background_color = 0,0,0,0.02
         else:
             print('The checkbox', self, 'is inactive')
+            self.ids.buttonone.background_color = 0,0,0,0.15
 
 class EmergNote(BoxLayout):
     '''Mainscreen Emerg note handling'''
 
     def on_checkbox_active(self, checkbox):
         '''CheckBox Interaction'''
-        if checkbox.active:
+        if not checkbox.active:
             print('The checkbox', self, 'is active')
+            self.ids.buttonone.background_color = 0,0,0,0.02
         else:
             print('The checkbox', self, 'is inactive')
+            self.ids.buttonone.background_color = 0,0,0,0.15

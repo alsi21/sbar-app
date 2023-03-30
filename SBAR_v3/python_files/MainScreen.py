@@ -27,24 +27,13 @@ class MainScreen(Screen):
             if note.exposure:
                 full_widget = classes.EmergNote()
                 if note.checked:
-                    full_widget.ids.rgba = checked_red
-                    full_widget.ids.checkbox.active = note.checked
-                    print('ecr')
-                else:
-                    full_widget.ids.rgba = red
-                    full_widget.ids.checkbox.active = note.checked
-                    print('er')
-
+                    full_widget.ids.buttonone.background_color = 0,0,0,0.15
+                    full_widget.ids.checkbox.active = True
             else:
                 full_widget = classes.SbarNote()
                 if note.checked:
-                    print('cb')
-                    full_widget.ids.rgba = checked_blue
-                    full_widget.ids.checkbox.active = note.checked
-                else:
-                    print('b')
-                    full_widget.ids.rgba = blue
-                    full_widget.ids.checkbox.active = note.checked
+                    full_widget.ids.buttonone.background_color = 0,0,0,0.15
+                    full_widget.ids.checkbox.active = True
                     
             full_widget.ids.buttonone.text = note.patientid + '        ' + note.time_of_creation
             button_note = note  # create a new variable with the value of note
@@ -59,6 +48,14 @@ class MainScreen(Screen):
         note.checked = not state
         note.export_note(STORE_NOTES, encrypt)
         self.manager.current = 'main'
+        if note.checked:
+            CustomApp.CustomApp.notes.remove(note)
+            CustomApp.CustomApp.notes.insert(0, note)
+        else:
+            CustomApp.CustomApp.notes.remove(note)
+            CustomApp.CustomApp.notes.append(note)
+        self.on_enter()
+
 
     def delete_note(self, instance, note):
         '''Deletes Note from Local Storage'''
