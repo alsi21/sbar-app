@@ -6,7 +6,7 @@ import SbarScreen
 import EmergScreen
 
 from kivy.app import App
-from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.uix.screenmanager import ScreenManager, Screen, SlideTransition
 from kivy.uix.boxlayout import BoxLayout
 from kivy.core.window import Window
 from kivy.uix.label import Label
@@ -17,6 +17,13 @@ from LocalStorage import STORE_NOTES, serialize_notes
 
 class MyScreenManager(ScreenManager):
     '''ScreenManager class'''
+    # def transition(self, screen, direction):
+    #     if screen.name == 'sbar' or screen.name == 'emerg':
+    #         self.transition = SlideTransition(direction = 'right')
+    #     elif screen.name == 'pin' or screen.name == 'set' or screen.name == 'main' or screen.name == 'settings':
+    #         self.transition = SlideTransition(direction = 'left')
+    #     else:
+    #         self.transition = SlideTransition(direction = 'up')
     pass
 
 class CustomApp(App):
@@ -27,7 +34,7 @@ class CustomApp(App):
         '''Build function that calls Screenmanager, 
         adds screens to it 
         and binds a popup window to when you attempt to close window'''
-        sm = ScreenManager()
+        sm = ScreenManager(transition = SlideTransition())
         sm.add_widget(PinScreen.PinScreen(name='pin'))
         sm.add_widget(SetScreen.SetScreen(name='set'))
         sm.add_widget(MainScreen.MainScreen(name='main'))  

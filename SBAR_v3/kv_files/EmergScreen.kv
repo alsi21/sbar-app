@@ -25,7 +25,7 @@
                 allow_stretch: True
                 keep_ratio: True
                 size_hint_x: .3
-                on_press: root.manager.current = 'main'
+                # on_press: root.manager.current = 'main'
                 color: 0,0,0,1
             BackgroundLabel:
                 text: 'SBAR'
@@ -247,7 +247,9 @@
                 background_color: 227/255,210/255,210/255,1
                 color: 0,0,0,1
                 font_size: '35dp'
-                on_press: root.save_note()
+                on_press: 
+                    root.manager.transition.direction = 'right'
+                    root.save_note()
             Label:
         Label:
             size_hint_y: .02
