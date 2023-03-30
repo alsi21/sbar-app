@@ -28,7 +28,10 @@ def serialize_notes(notes_storage):
             data['checked'],
             decrypt(data['time_of_creation'])
         )
-        notes.append(note)
+        if note.checked:
+            notes.insert(0, note)
+        else:
+            notes.append(note)
     return notes
     
 def serialize_pin(pin_storage) -> str:

@@ -15,10 +15,6 @@ class MainScreen(Screen):
         '''
         Code that gets executed whenever screen is showed,
         Adds graphical main menu note representation for each note'''
-        blue = 217/255,225/255,1,1
-        checked_blue = 108/255,112/255,0.5,1
-        red = 227/255,210/255,210/255,1
-        checked_red = 113/255,105/255,105/255,1
 
         # clear any existing buttons
         self.ids.label_layout.clear_widgets()
@@ -46,20 +42,24 @@ class MainScreen(Screen):
         ''' Toggles the checked state for a SBAR Note'''
         state = note.checked
         note.checked = not state
-        note.export_note(STORE_NOTES, encrypt)
         self.manager.current = 'main'
         if note.checked:
             CustomApp.CustomApp.notes.remove(note)
+            self.delete_note(note)
             CustomApp.CustomApp.notes.insert(0, note)
+            note.export_note(STORE_NOTES, encrypt)
         else:
             CustomApp.CustomApp.notes.remove(note)
+            self.delete_note(note)
             CustomApp.CustomApp.notes.append(note)
+            note.export_note(STORE_NOTES, encrypt)
+            
         self.on_enter()
 
 
-    def delete_note(self, instance, note):
+    def delete_note(self, note):
         '''Deletes Note from Local Storage'''
-        delete_data(STORE_NOTES, note.patientid + note.time_of_creation)            
+        delete_data(STORE_NOTES, note.patientid, note.time_of_creation)            
 
     def edit_note(self, instance, note):
         '''
