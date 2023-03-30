@@ -67,7 +67,11 @@ class EmergScreen(Screen):
         else:
             toc = self.ids.toc_var.text
 
-        note = classes.Note(patientid, situation, bakgrund, aktuellt, rek, extra, a, b, c, d, e, True, toc)
+        note = classes.Note(patientid, situation, bakgrund, aktuellt, rek, extra, a, b, c, d, e, True, False, toc)
+
+        if self.repeat and self.old_note:
+            note.checked = self.old_note.checked
+
         # add the new note to the shared notes list
         if self.repeat:
             if self.old_note:

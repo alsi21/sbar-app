@@ -53,7 +53,11 @@ class SbarScreen(Screen):
         else:
             toc = self.ids.toc_var.text
 
-        note = classes.Note(patientid, situation, bakgrund, aktuellt, rekomendation, extra, '', '', '', '', '', False, toc)
+        note = classes.Note(patientid, situation, bakgrund, aktuellt, rekomendation, extra, '', '', '', '', '', False, False, toc)
+
+        if self.repeat and self.old_note:
+            note.checked = self.old_note.checked
+
         if self.repeat:
             if self.old_note:
                 CustomApp.CustomApp.notes.remove(self.old_note)

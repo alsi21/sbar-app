@@ -1,13 +1,16 @@
 import CustomApp
 
+from kivy.uix.checkbox import CheckBox
 from kivy.uix.button import Button
 from kivy.uix.textinput import TextInput
 from kivy.uix.boxlayout import BoxLayout
-
+from kivy.graphics import *
 
 class SquareBlueButton(Button):
     '''Blue button'''
 
+class SBARNoteCheckBox(CheckBox):
+    '''Note CheckBsox'''
 
 class BlueTextInput(TextInput):
     '''Blue TextInput'''
@@ -16,7 +19,7 @@ class BlueTextInput(TextInput):
 class Note:
     '''Class that holds information presented in notes'''
 
-    def __init__(self, patientid, situation, background, relevant, recommendation, extra, airway, breath, circ, disability, exposure, emergency, time_of_creation):
+    def __init__(self, patientid, situation, background, relevant, recommendation, extra, airway, breath, circ, disability, exposure, emergency, checked, time_of_creation):
         '''
         Parameters
         ----------
@@ -61,8 +64,10 @@ class Note:
         self.disability = disability
         self.exposure = exposure
         self.emergency = emergency
+        self.checked = checked
 
     def export_note(self, local_storage, encrypt_func):
+        '''Exports SBAR Note to Local Storage'''
         local_storage.put(
             encrypt_func(self.patientid + self.time_of_creation),
             patientid = encrypt_func(self.patientid),
@@ -77,6 +82,7 @@ class Note:
             disability = encrypt_func(self.disability),
             exposure = encrypt_func(self.exposure),
             emergency = self.emergency,
+            checked = self.checked,
             time_of_creation = encrypt_func(self.time_of_creation)
         )
 
@@ -90,21 +96,27 @@ class SbarNote(BoxLayout):
         box = BoxLayout(orientation='horizontal', size_hint_y=None, height=80)
         main_btn = Button(size_hint_x=.8)
         box.add_widget(main_btn)
-        del_btn = SquareBlueButton(text='del', size_hint_x=.2)
-        del_btn.bind(on_press=self.delete_boxlayout)
-        box.add_widget(del_btn)
+        checkbox = SBARNoteCheckBox(active=False, size_hint_x=.2)
+        checkbox.bind(on_press=self.on_checkbox_active)
+        box.add_widget(checkbox)
 
-    def delete_boxlayout(self, instance):
-        '''Deletes itself (note)'''
-        self.parent.height -= 90
-        CustomApp.CustomApp.notes.remove(self.ids.buttonone.note)
-        self.parent.remove_widget(self)
+    def on_checkbox_active(self, checkbox):
+        '''CheckBox Interaction'''
+        if not checkbox.active:
+            print('The checkbox', self, 'is active')
+            self.ids.buttonone.background_color = 0,0,0,0.02
+        else:
+            print('The checkbox', self, 'is inactive')
+            self.ids.buttonone.background_color = 0,0,0,0.15
 
 class EmergNote(BoxLayout):
     '''Mainscreen Emerg note handling'''
 
-    def delete_boxlayout(self, instance):
-        '''Deletes itself (note)'''
-        self.parent.height -= 90
-        CustomApp.CustomApp.notes.remove(self.ids.buttonone.note)
-        self.parent.remove_widget(self)
+    def on_checkbox_active(self, checkbox):
+        '''CheckBox Interaction'''
+        if not checkbox.active:
+            print('The checkbox', self, 'is active')
+            self.ids.buttonone.background_color = 0,0,0,0.02
+        else:
+            print('The checkbox', self, 'is inactive')
+            self.ids.buttonone.background_color = 0,0,0,0.15
