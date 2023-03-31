@@ -2,7 +2,7 @@ import time
 import CustomApp
 import classes
 
-from kivy.uix.screenmanager import ScreenManager, Screen
+from kivy.uix.screenmanager import ScreenManager, Screen, NoTransition, SlideTransition
 from kivy.app import App
 
 from LocalStorage import STORE_NOTES, delete_data
@@ -15,7 +15,8 @@ class MainScreen(Screen):
         '''
         Code that gets executed whenever screen is showed,
         Adds graphical main menu note representation for each note'''
-
+        #Change transition to slide to left
+        self.manager.transition = SlideTransition(direction='left')
         # clear any existing buttons
         self.ids.label_layout.clear_widgets()
         # add a button for each note
@@ -140,3 +141,7 @@ class MainScreen(Screen):
     def go_to_sbar(self):
         '''Simple function to go to SBAR'''
         self.manager.current = 'sbar'
+    
+    def change_transition(self):
+        self.manager.transition = NoTransition()
+    
