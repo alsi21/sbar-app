@@ -93,7 +93,7 @@ class PinScreen(Screen):
             # Switch to the next screen
             self.manager.current = 'main'
         elif len(self.pin) >3:
-            self.text = 'Wrong'
+            self.text = 'Fel'
             self.pin = ''
 
     def set_set_code(self,code):
