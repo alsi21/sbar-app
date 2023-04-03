@@ -17,48 +17,69 @@ class PinScreen(Screen):
     set_code = serialize_pin(STORE_PIN)
 
     def on_button1_press(self):
+        if self.pin == '':
+            self.text = ''
         self.pin += '1'
         self.text += '*'
         
     def on_button2_press(self):
+        if self.pin == '':
+            self.text = ''
         self.pin += '2'
         self.text += '*'
 
     def on_button3_press(self):
+        if self.pin == '':
+            self.text = ''
         self.pin += '3'
         self.text += '*'
     
     def on_button4_press(self):
+        if self.pin == '':
+            self.text = ''
         self.pin += '4'
         self.text += '*'
     
     def on_button5_press(self):
+        if self.pin == '':
+            self.text = ''
         self.pin += '5'
         self.text += '*'
     
     def on_button6_press(self):
+        if self.pin == '':
+            self.text = ''
         self.pin += '6'
         self.text += '*'
     
     def on_button7_press(self):
+        if self.pin == '':
+            self.text = ''
         self.pin += '7'
         self.text += '*'
     
     def on_button8_press(self):
+        if self.pin == '':
+            self.text = ''
         self.pin += '8'
         self.text += '*'
     
     def on_button9_press(self):
+        if self.pin == '':
+            self.text = ''
         self.pin += '9'
         self.text += '*'
     
     def on_button0_press(self):
+        if self.pin == '':
+            self.text = ''
         self.pin += '0'
         self.text += '*'
     
     def on_buttondel_press(self):
-        self.pin = self.pin[:-1]
-        self.text = self.text[:-1]
+        if self.pin != '':
+            self.pin = self.pin[:-1]
+            self.text = self.text[:-1]
 
     def update_text(self):
         '''
@@ -72,7 +93,7 @@ class PinScreen(Screen):
             # Switch to the next screen
             self.manager.current = 'main'
         elif len(self.pin) >3:
-            self.text = ''
+            self.text = 'Wrong'
             self.pin = ''
 
     def set_set_code(self,code):

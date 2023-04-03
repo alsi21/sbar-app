@@ -62,7 +62,7 @@ class SbarScreen(Screen):
             if self.old_note:
                 CustomApp.CustomApp.notes.remove(self.old_note)
                 delete_data(STORE_NOTES, self.old_note.patientid, self.old_note.time_of_creation)
-        if patientid:
+        if patientid or self.repeat:
             CustomApp.CustomApp.notes.append(note)
             note.export_note(local_storage=STORE_NOTES, encrypt_func=encrypt)
         self.manager.current = 'main'
