@@ -66,6 +66,22 @@ class Note:
         self.emergency = emergency
         self.checked = checked
 
+    def is_empty(self):
+        '''Returns whether the note is empty.'''
+        return not (
+        self.patientid or
+        self.situation or
+        self.background or
+        self.relevant or
+        self.recommendation or
+        self.airway or
+        self.breath or
+        self.circ or
+        self.disability or
+        self.exposure or
+        self.extra
+        )
+
     def export_note(self, local_storage, encrypt_func):
         '''Exports SBAR Note to Local Storage'''
         local_storage.put(
