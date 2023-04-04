@@ -98,7 +98,11 @@ class SetScreen(Screen):
             STORE_PIN.put('pin', code = encrypt(self.pin))
             self.manager.current = 'main'
 
-        elif len(self.pin) >3:
+        elif len(self.pin) > 3 and len(self.check) == 0:
             self.check = self.pin
             self.pin = ''
             self.text = 'Again:'
+
+        elif len(self.pin) > 3:
+            self.pin = ""
+            self.text = "No pin"
