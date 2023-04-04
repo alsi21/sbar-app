@@ -1,9 +1,12 @@
 import classes
 import CustomApp
 
+from kivy.uix.popup import Popup
+from kivy.uix.textinput import TextInput
 from kivy.uix.screenmanager import ScreenManager, Screen
 from LocalStorage import STORE_NOTES, delete_data
 from Encryption import encrypt
+
 
 class SbarScreen(Screen):
     '''Screen class to handle Sbar notes ,similiar to EmergScreen'''
@@ -35,6 +38,104 @@ class SbarScreen(Screen):
                 self.old_note = note
                 self.repeat = True
 
+
+
+    def show_p_id(self):
+        """
+        Code that excutes when you press on the text buttonsthat will show
+        the user information about what should be written in each field.
+        """
+        msg = "Patient ID är ditt val av namn på patienten. Kom ihåg att inte använda riktiga namn, använd istället tex ett alias eller patientens rumsnummer."
+        text = TextInput(text=msg, multiline=True, readonly=True, height = 300, font_size=18)
+        popup = Popup(title="Patient ID", 
+        content=text,
+        size_hint=(0.8, 0.5),
+        title_size="30sp"
+        )
+        popup.open()
+
+
+
+    def show_situation(self):
+        """
+        Code that excutes when you press on the text buttonsthat will show
+        the user information about what should be written in each field.
+        """
+        msg = "Situation är kärnan i det som ska förmedlas och ska fungera som en kortfattad rubrik för att fånga mottagarens uppmärksamhet. Här presenterar sändaren sig själv och vem det gäller."
+        text = TextInput(text=msg, multiline=True, readonly=True, height = 300, font_size=18)
+        popup = Popup(title="Situation", 
+        content=text,
+        size_hint=(0.8, 0.5),
+        title_size="30sp"
+        )
+        popup.open()
+    
+
+
+    def show_bakgrund(self):
+        """
+        Code that excutes when you press on the text buttonsthat will show
+        the user information about what should be written in each field.
+        """
+        msg = "Bakgrunden beskriver det relevanta för den aktuella situationen. Vid akuta tillfällen hinner man bara beskriva det allra viktigaste. Icke akuta situationer kan innehålla mer information."
+        text = TextInput(text=msg, multiline=True, readonly=True, height = 300, font_size=18)
+        popup = Popup(title="Bakgrund", 
+        content=text,
+        size_hint=(0.8, 0.5),
+        title_size="30sp"
+        )
+        popup.open()    
+        
+
+
+    def show_aktuellt(self):
+        """
+        Code that excutes when you press on the text buttonsthat will show
+        the user information about what should be written in each field.
+        """
+        msg = "Aktuell bedömning beskriver den aktuella situationen som ska förmedlas. Använd gärna ABCDE för att strukturera patienternas vitalstatus. Berätta om eventuella åtgärder och resultat av dessa. Förmedla din bedömning av den aktuella situationen."
+        text = TextInput(text=msg, multiline=True, readonly=True, height = 300, font_size=18)
+        popup = Popup(title="Aktuellt", 
+        content=text,
+        size_hint=(0.8, 0.5),
+        title_size="30sp"
+        )
+        popup.open()   
+    
+
+
+    def show_rekommendation(self):
+        """
+        Code that excutes when you press on the text buttonsthat will show
+        the user information about what should be written in each field.
+        """
+        msg = "Rekommendation eller varför du tagit kontakt och vad mottagaren ska göra. Klargör för dig själv vad mottagaren förväntas göra utifrån det som rapporterats under Situation, Bakgrund och Aktuellt, samt inom vilken tid du anser att det ska göras."
+        text = TextInput(text=msg, multiline=True, readonly=True, height = 300, font_size=18)
+        popup = Popup(title="Rekommendation", 
+        content=text,
+        size_hint=(0.8, 0.5),
+        title_size="30sp"
+        )
+        popup.open()    
+        
+        
+    
+    def show_extra_notes(self):
+        """
+        Code that excutes when you press on the text buttonsthat will show
+        the user information about what should be written in each field.
+        """
+        msg = "Här skriver du själv dina egna anteckningar utöver SBAR om du vill."
+        text = TextInput(text=msg, multiline=True, readonly=True, height = 300, font_size=18)
+        popup = Popup(title="Extra notering", 
+        content=text,
+        size_hint=(0.8, 0.5),
+        title_size="30sp"
+        )
+        popup.open()
+
+
+
     def save_note(self):
         '''
         Code that gets executed when button is pressed to go to main menu
@@ -62,7 +163,7 @@ class SbarScreen(Screen):
             if self.old_note:
                 CustomApp.CustomApp.notes.remove(self.old_note)
                 delete_data(STORE_NOTES, self.old_note.patientid, self.old_note.time_of_creation)
-        if patientid or self.repeat:
+        if patientid:
             CustomApp.CustomApp.notes.append(note)
             note.export_note(local_storage=STORE_NOTES, encrypt_func=encrypt)
         self.manager.current = 'main'
