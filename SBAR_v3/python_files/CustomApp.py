@@ -47,7 +47,7 @@ class CustomApp(App):
     def on_request_close(self, *args):
         '''Function to call TextPopup'''
         #Save here
-        self.TextPopup(title='Exit', text='Are you sure?')
+        self.TextPopup(title='Avsltuta', text='Är du säker på att du vill avsluta?')
         return True
 
     def TextPopup(self, title='', text=''):
