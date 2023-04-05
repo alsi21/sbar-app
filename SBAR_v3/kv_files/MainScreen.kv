@@ -4,7 +4,7 @@
     BoxLayout:
         orientation: 'vertical'
         id:'outer_box'
-        spacing: 10
+        # spacing: 10
         canvas.before:
             Color:
                 rgba: 1,1,1,1
@@ -15,6 +15,7 @@
         BoxLayout:
             orientation: 'horizontal'
             size_hint_y: 0.15
+            padding: 0
             Image:
                 source: 'SBAR_v3\images\SBAR_snake.png'
                 allow_stretch: True
@@ -38,12 +39,13 @@
                 spacing: 10
                 size_hint_y: None
                 row_force_default: True
-                row_default_height: 90
+                row_default_height: dp(80)
                 
                 # Add more labels here...
         BoxLayout:
-            size_hint_y: .12
+            size_hint_y: .1
             orientation: 'vertical'
+            padding: 0
             BoxLayout:
                 size_hint_y: .12
                 canvas.before:

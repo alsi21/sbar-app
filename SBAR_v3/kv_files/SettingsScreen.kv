@@ -15,6 +15,7 @@
         BoxLayout:
             orientation: 'horizontal'
             size_hint_y: 0.15
+            padding: 0
             Image:
                 source: 'SBAR_v3\images\SBAR_snake.png'
                 allow_stretch: True
@@ -31,14 +32,14 @@
                 size_hint: .33,1
         ScrollView:
             id: scroll_view
-            size_hint_y: .7
+            size_hint_y: .75
             GridLayout:
                 id: label_layout
                 cols: 1
                 spacing: 10
                 size_hint_y: None
                 row_force_default: True
-                row_default_height: 90
+                row_default_height: dp(80)
                 
                 # Add more labels here...
         BoxLayout:
@@ -71,10 +72,11 @@
                 font_size: '50dp'
                 on_press: 
     BoxLayout:
-        size_hint_y: .12
+        size_hint_y: .1
         orientation: 'vertical'
         BoxLayout:
             size_hint_y: .12
+            padding: 0
             canvas.before:
                 Color:
                     rgba: 216/255, 210/255, 227/255, 1
@@ -97,21 +99,18 @@
                 background_color: 0,0,0,0.05
                 color: 0,0,0,1
                 font_size: '40dp'
-                # on_press: root.go_to_settings()
             Label:
             RoundedRedButton:
                 text: "+"
                 background_color: .8,.2,.2,.7
                 color: 0,0,0,1
                 font_size: '50dp'
-                #on_press: root.add_sbar()
             Label:
             RoundedRedButton:
                 text: "+"
                 background_color: .2,.2,.8,.7
                 color: 0,0,0,1
                 font_size: '50dp'
-                #on_press: root.add_sbar()
             Label:
                 size_hint_x: .1
         BoxLayout:
@@ -125,8 +124,8 @@
     BoxLayout:
         id: SettingsBox
         orientation: 'horizontal'
-        size_hint_y: .85
-        pos_hint_y: .3
+        size_hint_y: 0.85
+        pos_hint_y: 0.3
         BoxLayout:
             orientation: 'vertical'
             canvas.before:
