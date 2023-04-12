@@ -13,7 +13,7 @@ class PinScreen(Screen):
     set_code : str
         Already set code to compare against'''
     pin = ''
-    text = StringProperty('Pin:')
+    text = StringProperty('PIN')
     set_code = serialize_pin(STORE_PIN)
 
     def on_button1_press(self):
