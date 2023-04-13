@@ -2,7 +2,8 @@
 <PinScreen>:
     BoxLayout:
         id:'outer_box'
-        spacing: 10
+        spacing: 15
+        padding: [0, 0, 0, 10]
         canvas.before:
             Color:
                 rgba: 1,1,1,1
@@ -45,7 +46,8 @@
 
         BoxLayout:
             orientation: 'horizontal'
-            spacing: 25
+            spacing: 15
+            padding: dp(20), 0
             RoundButton:
                 text: "1"
                 background_color: 1,1,1,1
@@ -67,7 +69,8 @@
                 
         BoxLayout:
             orientation: 'horizontal'
-            spacing: 25
+            spacing: 12
+            padding: dp(20), 0
             RoundButton:
                 text: '4'
                 background_color: 1,1,1,1
@@ -88,7 +91,8 @@
                 on_press: root.on_button6_press(), root.update_text()
         BoxLayout:
             orientation: 'horizontal'
-            spacing: 25
+            spacing: 12
+            padding: dp(20), 0
             RoundButton:
                 text: '7'
                 background_color: 1,1,1,1
@@ -109,7 +113,8 @@
                 on_press: root.on_button9_press(), root.update_text()
         BoxLayout:
             orientation: 'horizontal'
-            spacing: '20dp'
+            spacing: 12
+            padding: dp(20), 0
             Label:
             RoundButton:
                 text: '0'

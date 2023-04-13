@@ -47,14 +47,14 @@ class CustomApp(App):
     def on_request_close(self, *args):
         '''Function to call TextPopup'''
         #Save here
-        self.TextPopup(title='Exit', text='Are you sure?')
+        self.TextPopup(title='Avsluta', text='Vill du avsluta?')
         return True
 
     def TextPopup(self, title='', text=''):
         '''Function to create a popup boxlayout with a button in it'''
         box = BoxLayout(orientation='vertical')
         box.add_widget(Label(text=text))
-        mybutton = Button(text='OK', size_hint=(1, 0.25))
+        mybutton = Button(text='Ja', size_hint=(1, 0.25))
         box.add_widget(mybutton)
         popup = Popup(title=title, content=box, size_hint=(None, None), size=(600, 300))
         mybutton.bind(on_release=self.stop)

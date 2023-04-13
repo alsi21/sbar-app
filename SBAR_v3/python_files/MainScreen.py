@@ -4,9 +4,12 @@ import classes
 
 from kivy.uix.screenmanager import ScreenManager, Screen, NoTransition, SlideTransition
 from kivy.app import App
+from kivy.metrics import dp
 
 from LocalStorage import STORE_NOTES, delete_data
 from Encryption import encrypt
+
+NOTE_HEIGTH = dp(80) + 10 # +10 because of spacing and bottom padding.
 
 class MainScreen(Screen):
     '''Screen class for main menu'''
@@ -20,7 +23,9 @@ class MainScreen(Screen):
         # clear any existing buttons
         self.ids.label_layout.clear_widgets()
         # add a button for each note
+        self.ids.label_layout.height = 10 # Resets scroll-view height. Set to 10 to take top padding into account.
         for note in CustomApp.CustomApp.notes[::-1]:
+            self.ids.label_layout.height += NOTE_HEIGTH # Calculates new scroll-view height from note count.
             if note.emergency:
                 full_widget = classes.EmergNote()
                 if note.checked:
@@ -32,7 +37,7 @@ class MainScreen(Screen):
                     full_widget.ids.buttonone.background_color = 0,0,0,0.15
                     full_widget.ids.checkbox.active = True
                     
-            full_widget.ids.buttonone.text = note.patientid + '        ' + note.time_of_creation
+            full_widget.ids.buttonone.text = note.patientid + '      ' + note.time_of_creation
             button_note = note  # create a new variable with the value of note
             full_widget.ids.buttonone.bind(on_press=lambda instance, button_note=button_note: self.edit_note(instance, button_note))
             full_widget.ids.checkbox.bind(on_press=lambda instance, button_note=button_note: self.check_note(instance, button_note))
@@ -101,7 +106,7 @@ class MainScreen(Screen):
         Enters SbarScreen and clears any existing text, 
         not saved til save button is pressed on SbarScreen
         '''
-        self.ids.label_layout.height += 90
+        self.ids.label_layout.height += NOTE_HEIGTH
         self.manager.current = 'sbar'
         sbar_screen = self.manager.get_screen('sbar')
         sbar_screen.ids.patientid.text = ''
@@ -110,7 +115,7 @@ class MainScreen(Screen):
         sbar_screen.ids.aktuellt.text = ''
         sbar_screen.ids.rekomendation.text = ''
         sbar_screen.ids.extra.text = ''
-        sbar_screen.ids.toc_var.text = time.strftime('[%d/%m]    [%H:%M:%S]')
+        sbar_screen.ids.toc_var.text = time.strftime('%d/%m    %H:%M:%S')
         
 
     def add_emerg(self):
@@ -118,7 +123,7 @@ class MainScreen(Screen):
         Enters EmergScreen and clears any existing text, 
         not saved til save button is pressed on EmergScreen
         '''
-        self.ids.label_layout.height += 90
+        self.ids.label_layout.height += NOTE_HEIGTH
         self.manager.current = 'emerg'
         emerg_screen = self.manager.get_screen('emerg')
         emerg_screen.ids.patientid.text = ''
@@ -132,7 +137,7 @@ class MainScreen(Screen):
         emerg_screen.ids.exposure.text = ''
         emerg_screen.ids.reko.text = ''
         emerg_screen.ids.extra.text = ''
-        emerg_screen.ids.toc_var.text = time.strftime('[%d/%m]    [%H:%M:%S]')
+        emerg_screen.ids.toc_var.text = time.strftime('%d/%m    %H:%M:%S')
 
     def go_to_settings(self):
         '''Simple function to go to SettingsScreen'''
