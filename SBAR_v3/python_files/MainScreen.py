@@ -23,9 +23,18 @@ class MainScreen(Screen):
         # clear any existing buttons
         self.ids.label_layout.clear_widgets()
         # add a button for each note
-        self.ids.label_layout.height = 10 # Resets scroll-view height. Set to 10 to take top padding into account.
+        # Resets scroll-view height. Set to 10 to take top padding into account.
+        self.ids.label_layout.height = 10
+
+        # Removes notes flagged as timed out.
+        for note in CustomApp.CustomApp.notes:
+            if note.timed_out(3):
+                delete_data(STORE_NOTES, note.patientid, note.time_of_creation)
+                CustomApp.CustomApp.notes.remove(note)
+
         for note in CustomApp.CustomApp.notes[::-1]:
-            self.ids.label_layout.height += NOTE_HEIGTH # Calculates new scroll-view height from note count.
+            # Calculates new scroll-view height from note count.
+            self.ids.label_layout.height += NOTE_HEIGTH
             if note.emergency:
                 full_widget = classes.EmergNote()
                 if note.checked:
