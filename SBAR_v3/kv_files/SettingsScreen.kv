@@ -44,38 +44,7 @@
                 # Add more labels here...
         BoxLayout:
             size_hint_y: .1
-            orientation: 'horizontal'
-            canvas.before:
-                Color:
-                    rgba: 216/255, 210/255, 227/255, 1
-                Rectangle:
-                    pos: self.pos
-                    size: self.size
-            SquareWhiteButton:
-                text: "¤"
-                background_color: 1,1,1,1
-                color: 0,0,0,1
-                font_size: '40dp'
-                on_press: 
-            Label:
-            SquareRedButton:
-                text: "+"
-                background_color: 1,1,1,1
-                color: 0,0,0,1
-                font_size: '50dp'
-                on_press: 
-            Label:
-            SquareBlueButton:
-                text: "+"
-                background_color: 1,1,1,1
-                color: 0,0,0,1
-                font_size: '50dp'
-                on_press: 
-    BoxLayout:
-        size_hint_y: .1
-        orientation: 'vertical'
-        BoxLayout:
-            size_hint_y: .12
+            orientation: 'vertical'
             padding: 0
             canvas.before:
                 Color:
@@ -83,44 +52,37 @@
                 Rectangle:
                     pos: self.pos
                     size: self.size
-        BoxLayout:
-            size_hint_y: .76
-            orientation: 'horizontal'
-            canvas.before:
-                Color:
-                    rgba: 216/255, 210/255, 227/255, 1
-                Rectangle:
-                    pos: self.pos
-                    size: self.size
-            Label:
-                size_hint_x: .1
-            RoundedRedButton:
-                text: "¤"
-                background_color: 0,0,0,0.05
-                color: 0,0,0,1
-                font_size: '40dp'
-            Label:
-            RoundedRedButton:
-                text: "+"
-                background_color: .8,.2,.2,.7
-                color: 0,0,0,1
-                font_size: '50dp'
-            Label:
-            RoundedRedButton:
-                text: "+"
-                background_color: .2,.2,.8,.7
-                color: 0,0,0,1
-                font_size: '50dp'
-            Label:
-                size_hint_x: .1
-        BoxLayout:
-            size_hint_y: .12
-            canvas.before:
-                Color:
-                    rgba: 216/255, 210/255, 227/255, 1
-                Rectangle:
-                    pos: self.pos
-                    size: self.size
+            BoxLayout:
+                size_hint_y: .12
+            BoxLayout:
+                size_hint_y: .76
+                orientation: 'horizontal'
+                Label:
+                    size_hint_x: .1
+                RoundedRedButton:
+                    text: "¤"
+                    background_color: 0,0,0,0.02
+                    color: 0,0,0,1
+                    font_size: '40dp'
+                    on_press:
+                Label:
+                RoundedRedButton:
+                    text: "+"
+                    background_color: 176/255,21/255,21/255,1
+                    color: 0,0,0,1
+                    font_size: '50dp'
+                    on_press:
+                Label:
+                RoundedRedButton:
+                    text: "+"
+                    background_color: 102/255,136/255,1,1
+                    color: 0,0,0,1
+                    font_size: '50dp'
+                    on_press:
+                Label:
+                    size_hint_x: .1
+            BoxLayout:
+                size_hint_y: .12
     BoxLayout:
         id: SettingsBox
         orientation: 'horizontal'
@@ -144,12 +106,6 @@
             Button:
                 text: 'Inställningar'
                 background_color: 209/255,219/255,1,1
-            Label:
-                size_hint_y: .5
-            Button:
-                text: 'Byt Pin'
-                background_color: 209/255,219/255,1,1
-                on_press: root.manager.current = 'set'
             Label:
                 size_hint_y: .5
             Button:
