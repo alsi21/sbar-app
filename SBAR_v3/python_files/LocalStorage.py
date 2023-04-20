@@ -2,6 +2,8 @@ from classes import Note
 from Encryption import encrypt, decrypt
 from kivy.storage.jsonstore import JsonStore
 
+from datetime import datetime
+
 # Storage constants used when interacting with local storage managed by Kivy.
 STORE_NOTES = JsonStore('notes.json')
 STORE_PIN = JsonStore('pin.json')
@@ -26,7 +28,9 @@ def serialize_notes(notes_storage):
             decrypt(data['exposure']),
             data['emergency'],
             data['checked'],
-            decrypt(data['time_of_creation'])
+            decrypt(data['time_of_creation']),
+            decrypt(datetime.strptime(data['timestamp'], '%Y-%m-%d %H:%M:%S'))
+
         )
         if note.checked:
             notes.insert(0, note)

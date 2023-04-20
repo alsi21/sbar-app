@@ -158,6 +158,7 @@ class SbarScreen(Screen):
 
         if self.repeat and self.old_note:
             note.checked = self.old_note.checked
+            note.timestamp = self.old_note.timestamp
 
         if self.repeat:
             if self.old_note:

@@ -235,6 +235,7 @@ class EmergScreen(Screen):
 
         if self.repeat and self.old_note:
             note.checked = self.old_note.checked
+            note.timestamp = self.old_note.timestamp
 
         # add the new note to the shared notes list
         if self.repeat:

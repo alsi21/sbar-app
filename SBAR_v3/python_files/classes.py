@@ -6,6 +6,8 @@ from kivy.uix.textinput import TextInput
 from kivy.uix.boxlayout import BoxLayout
 from kivy.graphics import *
 
+from datetime import datetime
+
 class SquareBlueButton(Button):
     '''Blue button'''
 
@@ -19,7 +21,7 @@ class BlueTextInput(TextInput):
 class Note:
     '''Class that holds information presented in notes'''
 
-    def __init__(self, patientid, situation, background, relevant, recommendation, extra, airway, breath, circ, disability, exposure, emergency, checked, time_of_creation):
+    def __init__(self, patientid, situation, background, relevant, recommendation, extra, airway, breath, circ, disability, exposure, emergency, checked, time_of_creation, timestamp = None):
         '''
         Parameters
         ----------
@@ -51,7 +53,6 @@ class Note:
         #For SBAR and Emerg
         self.patientid = patientid
         self.relevant = relevant
-        self.time_of_creation = time_of_creation
         self.recommendation = recommendation
         #Only for SBAR
         self.situation = situation
@@ -65,6 +66,14 @@ class Note:
         self.exposure = exposure
         self.emergency = emergency
         self.checked = checked
+
+        self.time_of_creation = time_of_creation
+
+        # Timestamp used for auto-deletion.
+        if timestamp == None:
+            timestamp = datetime.now()
+        self.timestamp = timestamp
+        print(f'Created new note with timestamp: {timestamp}.')
 
     def is_empty(self):
         '''Returns whether the note is empty.'''
@@ -99,8 +108,17 @@ class Note:
             exposure = encrypt_func(self.exposure),
             emergency = self.emergency,
             checked = self.checked,
-            time_of_creation = encrypt_func(self.time_of_creation)
+            time_of_creation = encrypt_func(self.time_of_creation),
+            timestamp = encrypt_func(self.timestamp.strftime('%Y-%m-%d %H:%M:%S'))
         )
+
+    def timed_out(self, hours: int) -> bool:
+        now = datetime.now()
+        # temporarily set to 1 instead of 3600
+        timeframe = (hours * 60)
+        if self.checked:
+            timeframe = (hours * 20)
+        return (now - self.timestamp).total_seconds() > timeframe
 
 
 class SbarNote(BoxLayout):
