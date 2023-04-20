@@ -47,6 +47,7 @@
                 effect_cls: 'ScrollEffect'
                 scroll_size: self.children[0].height
                 BoxLayout:
+                    id: ScrollBox
                     padding: dp(20), 0
                     orientation: 'vertical'
                     size_hint_y: None
@@ -199,6 +200,10 @@
                     Label:
                         size_hint: 1, None
                         height: 10
+                    Label:
+                        id: whitespace
+                        size_hint_y: 0
+                        height: 0
         BoxLayout:
             orientation: 'vertical'
             size_hint_y: None
