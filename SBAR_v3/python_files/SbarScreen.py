@@ -38,8 +38,6 @@ class SbarScreen(Screen):
                 self.old_note = note
                 self.repeat = True
 
-
-
     def show_p_id(self):
         """
         Code that excutes when you press on the text buttonsthat will show
@@ -154,7 +152,11 @@ class SbarScreen(Screen):
         else:
             toc = self.ids.toc_var.text
 
-        note = classes.Note(patientid, situation, bakgrund, aktuellt, rekomendation, extra, '', '', '', '', '', '', False, False, toc)
+        note = classes.Note(
+            patientid, situation, bakgrund,
+            aktuellt, rekomendation, extra,
+            '', '', '', '', '', '',
+            False, False, toc)
 
         if self.repeat and self.old_note:
             note.checked = self.old_note.checked
@@ -168,4 +170,3 @@ class SbarScreen(Screen):
             CustomApp.CustomApp.notes.append(note)
             note.export_note(local_storage=STORE_NOTES, encrypt_func=encrypt)
         self.manager.current = 'main'
-
