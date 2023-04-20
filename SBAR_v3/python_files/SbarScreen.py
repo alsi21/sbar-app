@@ -1,6 +1,7 @@
 import classes
 import CustomApp
 
+from kivy.clock import Clock
 from kivy.uix.popup import Popup
 from kivy.uix.textinput import TextInput
 from kivy.uix.screenmanager import ScreenManager, Screen
@@ -46,6 +47,7 @@ class SbarScreen(Screen):
                 print('found old note: ', note.patientid)
                 self.old_note = note
                 self.repeat = True
+        Clock.schedule_interval(self.quick_save, 2.5)
 
     def show_p_id(self):
         """
@@ -141,7 +143,34 @@ class SbarScreen(Screen):
         )
         popup.open()
 
+    def quick_save(self, dt):
+        patientid = self.ids.patientid.text
+        situation = self.ids.situation.text
+        bakgrund = self.ids.bakgrund.text
+        aktuellt = self.ids.aktuellt.text
+        rekomendation = self.ids.rekomendation.text
+        extra = self.ids.extra.text
 
+        if self.repeat:
+            toc = self.old_note.time_of_creation
+        else:
+            toc = self.ids.toc_var.text
+
+        note = classes.Note(
+            patientid, situation, bakgrund,
+            aktuellt, rekomendation, extra,
+            '', '', '', '', '', '',
+            False, False, toc)
+        
+        if self.repeat and self.old_note:
+            note.checked = self.old_note.checked
+            note.timestamp = self.old_note.timestamp
+
+        if self.repeat:
+            if self.old_note:
+                delete_data(STORE_NOTES, self.old_note.time_of_creation)
+        if not note.is_empty():
+            note.export_note(local_storage=STORE_NOTES, encrypt_func=encrypt)
 
     def save_note(self):
         '''
@@ -174,7 +203,7 @@ class SbarScreen(Screen):
         if self.repeat:
             if self.old_note:
                 CustomApp.CustomApp.notes.remove(self.old_note)
-                delete_data(STORE_NOTES, self.old_note.patientid, self.old_note.time_of_creation)
+                delete_data(STORE_NOTES, self.old_note.time_of_creation)
         if not note.is_empty():
             CustomApp.CustomApp.notes.append(note)
             note.export_note(local_storage=STORE_NOTES, encrypt_func=encrypt)

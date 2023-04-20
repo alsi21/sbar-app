@@ -99,7 +99,7 @@ class Note:
     def export_note(self, local_storage, encrypt_func):
         '''Exports SBAR Note to Local Storage'''
         local_storage.put(
-            encrypt_func(self.patientid + self.time_of_creation),
+            encrypt_func(self.time_of_creation),
             patientid = encrypt_func(self.patientid),
             situation = encrypt_func(self.situation),
             background = encrypt_func(self.background),

@@ -30,7 +30,7 @@ class MainScreen(Screen):
         # Removes notes flagged as timed out.
         for note in CustomApp.CustomApp.notes:
             if note.timed_out(3):
-                delete_data(STORE_NOTES, note.patientid, note.time_of_creation)
+                delete_data(STORE_NOTES, note.time_of_creation)
                 CustomApp.CustomApp.notes.remove(note)
 
         for note in CustomApp.CustomApp.notes[::-1]:
@@ -77,7 +77,7 @@ class MainScreen(Screen):
 
     def delete_note(self, note):
         '''Deletes Note from Local Storage'''
-        delete_data(STORE_NOTES, note.patientid, note.time_of_creation)            
+        delete_data(STORE_NOTES, note.time_of_creation)            
 
     def edit_note(self, instance, note):
         '''
