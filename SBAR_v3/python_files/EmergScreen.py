@@ -20,7 +20,8 @@ class EmergScreen(Screen):
         self.old_id = self.ids.patientid.text
         self.old_situation = self.ids.situation.text
         self.old_background = self.ids.bakgrund.text
-        self.old_akt = self.ids.aktuellt.text
+        # self.old_akt = self.ids.aktuellt.text
+        self.old_safety = self.ids.safety.text
         self.old_air = self.ids.air.text
         self.old_bre = self.ids.breath.text
         self.old_circ = self.ids.circ.text
@@ -33,7 +34,8 @@ class EmergScreen(Screen):
                 self.old_id == note.patientid and
                 self.old_situation == note.situation and
                 self.old_background == note.background and
-                self.old_akt == note.relevant and
+                # self.old_akt == note.relevant and
+                self.old_safety == note.safety and
                 self.old_air == note.airway and
                 self.old_bre == note.breath and
                 self.old_circ == note.circ and
@@ -217,7 +219,8 @@ class EmergScreen(Screen):
         patientid = self.ids.patientid.text
         situation = self.ids.situation.text
         bakgrund = self.ids.bakgrund.text
-        aktuellt = self.ids.aktuellt.text
+        # aktuellt = self.ids.aktuellt.text
+        s = self.ids.safety.text
         a = self.ids.air.text
         b = self.ids.breath.text
         c = self.ids.circ.text
@@ -231,7 +234,7 @@ class EmergScreen(Screen):
         else:
             toc = self.ids.toc_var.text
 
-        note = classes.Note(patientid, situation, bakgrund, aktuellt, rek, extra, a, b, c, d, e, True, False, toc)
+        note = classes.Note(patientid, situation, bakgrund, '', rek, extra, s, a, b, c, d, e, True, False, toc)
 
         if self.repeat and self.old_note:
             note.checked = self.old_note.checked

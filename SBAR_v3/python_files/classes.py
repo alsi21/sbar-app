@@ -21,7 +21,7 @@ class BlueTextInput(TextInput):
 class Note:
     '''Class that holds information presented in notes'''
 
-    def __init__(self, patientid, situation, background, relevant, recommendation, extra, airway, breath, circ, disability, exposure, emergency, checked, time_of_creation, timestamp = None):
+    def __init__(self, patientid, situation, background, relevant, recommendation, extra, safety, airway, breath, circ, disability, exposure, emergency, checked, time_of_creation, timestamp = None):
         '''
         Parameters
         ----------
@@ -59,6 +59,7 @@ class Note:
         self.background = background
         self.extra = extra
         #Only for Emerg
+        self.safety = safety
         self.airway = airway
         self.breath = breath
         self.circ = circ
@@ -83,6 +84,7 @@ class Note:
         self.background or
         self.relevant or
         self.recommendation or
+        self.safety or
         self.airway or
         self.breath or
         self.circ or
@@ -101,6 +103,7 @@ class Note:
             relevant = encrypt_func(self.relevant),
             recommendation = encrypt_func(self.recommendation),
             extra = encrypt_func(self.extra),
+            safety = encrypt_func(self.safety),
             airway = encrypt_func(self.airway),
             breath = encrypt_func(self.breath),
             circ = encrypt_func(self.circ),
