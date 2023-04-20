@@ -57,13 +57,20 @@
                         on_value: scroll_view.scroll_y = self.value
                     Label:
                         id: toc_var
-                    SbarWhiteButton:
-                        color: 0,0,0,1
-                        text: 'Patient ID'
-                        font_size: dp(24)
-                        size_hint: None,None
+                    BoxLayout:
                         height: dp(50)
-                        on_press: 
+                        size_hint: 1, None
+                        orientation: 'horizontal'
+                        SbarWhiteButton:
+                            color: 0,0,0,1
+                            text: 'Patient ID'
+                            valign: "middle"
+                            padding: dp(0), dp(10)
+                            font_size: dp(24)
+                            size_hint: None, None
+                            size: self.texture_size
+                            on_press: root.show_p_id()
+                        Label:
                     TextInput:
                         id: patientid
                         background_color: (217/255,225/255,1,1) if self.focus else (217/255,225/255,1,1)
@@ -72,17 +79,21 @@
                         font_size: dp(30)
                         hint_text: '' if self.focus else 'Börja skriva här...'
                         size_hint: 1,None
+                        height: self.minimum_height
+                    BoxLayout:
                         height: dp(50)
-                        multiline: False
-                        
-                     
-                    SbarWhiteButton:
-                        color: 0,0,0,1
-                        text: 'Situation'
-                        font_size: dp(24)
-                        size_hint: None,None
-                        height: dp(50)
-                        on_press: root.show_situation()
+                        size_hint: 1, None
+                        orientation: 'horizontal'
+                        SbarWhiteButton:
+                            color: 0,0,0,1
+                            text: 'Situation'
+                            valign: "middle"
+                            padding: dp(0), dp(10)
+                            font_size: dp(24)
+                            size_hint: None, None
+                            size: self.texture_size
+                            on_press: root.show_situation()
+                        Label:
                     TextInput:
                         id: situation
                         background_color: (217/255,225/255,1,1) if self.focus else (217/255,225/255,1,1)
@@ -92,13 +103,20 @@
                         hint_text: '' if self.focus else 'Börja skriva här...'
                         size_hint: 1,None
                         height: self.minimum_height
-                    SbarWhiteButton:
-                        color: 0,0,0,1
-                        text: 'Bakgrund'
-                        font_size: dp(24)
-                        size_hint: None,None
+                    BoxLayout:
                         height: dp(50)
-                        on_press: root.show_bakgrund()
+                        size_hint: 1, None
+                        orientation: 'horizontal'
+                        SbarWhiteButton:
+                            color: 0,0,0,1
+                            text: 'Bakgrund'
+                            valign: "middle"
+                            padding: dp(0), dp(10)
+                            font_size: dp(24)
+                            size_hint: None, None
+                            size: self.texture_size
+                            on_press: root.show_bakgrund()
+                        Label:
                     TextInput:
                         id: bakgrund
                         background_color: (217/255,225/255,1,1) if self.focus else (217/255,225/255,1,1)
@@ -108,13 +126,20 @@
                         hint_text: '' if self.focus else 'Börja skriva här...'
                         size_hint: 1,None
                         height: self.minimum_height
-                    SbarWhiteButton:
-                        color: 0,0,0,1
-                        text: 'Aktuellt'
-                        font_size: dp(24)
-                        size_hint: None,None
+                    BoxLayout:
                         height: dp(50)
-                        on_press: root.show_aktuellt()
+                        size_hint: 1, None
+                        orientation: 'horizontal'
+                        SbarWhiteButton:
+                            color: 0,0,0,1
+                            text: 'Aktuellt'
+                            valign: "middle"
+                            padding: dp(0), dp(10)
+                            font_size: dp(24)
+                            size_hint: None, None
+                            size: self.texture_size
+                            on_press: root.show_aktuellt()
+                        Label:
                     TextInput:
                         id: aktuellt
                         background_color: (217/255,225/255,1,1) if self.focus else (217/255,225/255,1,1)
@@ -124,13 +149,20 @@
                         hint_text: '' if self.focus else 'Börja skriva här...'
                         size_hint: 1,None
                         height: self.minimum_height
-                    SbarWhiteButton:
-                        color: 0,0,0,1
-                        text: '            Rekomendation'
-                        font_size: dp(24)
-                        size_hint: None,None
+                    BoxLayout:
                         height: dp(50)
-                        on_press: root.show_rekommendation()
+                        size_hint: 1, None
+                        orientation: 'horizontal'
+                        SbarWhiteButton:
+                            color: 0,0,0,1
+                            text: 'Rekomendation'
+                            valign: "middle"
+                            padding: dp(0), dp(10)
+                            font_size: dp(24)
+                            size_hint: None, None
+                            size: self.texture_size
+                            on_press: root.show_rekommendation()
+                        Label:
                     TextInput:
                         id: rekomendation
                         background_color: (217/255,225/255,1,1) if self.focus else (217/255,225/255,1,1)
@@ -140,13 +172,20 @@
                         hint_text: '' if self.focus else 'Börja skriva här...'
                         size_hint: 1,None
                         height: self.minimum_height
-                    SbarWhiteButton:
-                        color: 0,0,0,1
-                        text: '        Extra notering'
-                        font_size: dp(24)
-                        size_hint: None,None
+                    BoxLayout:
                         height: dp(50)
-                        on_press: root.show_extra_notes()
+                        size_hint: 1, None
+                        orientation: 'horizontal'
+                        SbarWhiteButton:
+                            color: 0,0,0,1
+                            text: 'Övrigt'
+                            valign: "middle"
+                            padding: dp(0), dp(10)
+                            font_size: dp(24)
+                            size_hint: None, None
+                            size: self.texture_size
+                            on_press: root.show_extra_notes()
+                        Label:
                     TextInput:
                         id: extra
                         background_color: (217/255,225/255,1,1) if self.focus else (217/255,225/255,1,1)

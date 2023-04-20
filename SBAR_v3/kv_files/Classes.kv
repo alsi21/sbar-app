@@ -4,7 +4,7 @@
     id: SbarNote
     orientation: 'horizontal'
     size_hint_y: None
-    height: 80
+    height: dp(80)
     canvas.before:
         Color:
             id: color
@@ -15,9 +15,16 @@
     RoundedRedButton:
         id: buttonone
         text: ''
+        font_size: dp(16)
+        text_size: self.width, None
+        size: self.texture_size
+        halign: 'center'
         background_color: 0,0,0,0.02
         color: 0,0,0,1
+        padding: dp(10), dp(5)
         size_hint_x: .8
+        size_hint_y: 1
+        height: self.texture_size[1]
         note: None
     CheckBox:
         id: checkbox
@@ -33,7 +40,7 @@
     id: EmergNote
     orientation: 'horizontal'
     size_hint_y: None
-    height: 80
+    height: dp(80)
     canvas.before:
         Color:
             id: color
@@ -44,9 +51,16 @@
     RoundedRedButton:
         id: buttonone
         text: ''
+        font_size: dp(16)
+        text_size: self.width, None
+        size: self.texture_size
+        halign: 'center'
         background_color: 0,0,0,0.02
         color: 0,0,0,1
+        padding: dp(10), dp(5)
         size_hint_x: .8
+        size_hint_y: 1
+        height: self.texture_size[1]
         note: None
     CheckBox:
         id: checkbox
