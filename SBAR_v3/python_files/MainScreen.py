@@ -103,7 +103,8 @@ class MainScreen(Screen):
             emerg_screen.ids.patientid.text = note.patientid
             emerg_screen.ids.situation.text = note.situation
             emerg_screen.ids.bakgrund.text = note.background
-            emerg_screen.ids.aktuellt.text = note.relevant
+            # emerg_screen.ids.aktuellt.text = note.relevant
+            emerg_screen.ids.safety.text = note.safety
             emerg_screen.ids.air.text = note.airway
             emerg_screen.ids.breath.text = note.breath
             emerg_screen.ids.circ.text = note.circ
@@ -141,7 +142,8 @@ class MainScreen(Screen):
         emerg_screen.ids.patientid.text = ''
         emerg_screen.ids.situation.text = ''
         emerg_screen.ids.bakgrund.text = ''
-        emerg_screen.ids.aktuellt.text = ''
+        # emerg_screen.ids.aktuellt.text = ''
+        emerg_screen.ids.safety.text = ''
         emerg_screen.ids.air.text = ''
         emerg_screen.ids.breath.text = ''
         emerg_screen.ids.circ.text = ''

@@ -21,6 +21,7 @@ def serialize_notes(notes_storage):
             decrypt(data['relevant']),
             decrypt(data['recommendation']),
             decrypt(data['extra']),
+            decrypt(data['safety']),
             decrypt(data['airway']),
             decrypt(data['breath']),
             decrypt(data['circ']),
