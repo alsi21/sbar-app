@@ -6,10 +6,19 @@ from kivy.uix.textinput import TextInput
 from kivy.uix.screenmanager import ScreenManager, Screen
 from LocalStorage import STORE_NOTES, delete_data
 from Encryption import encrypt
-
+from kivy.properties import StringProperty
 
 class SbarScreen(Screen):
     '''Screen class to handle Sbar notes ,similiar to EmergScreen'''
+    def max_length_text(self,text):
+        """
+        Every time text is written it checks the length to see if it's too long,
+        if it is slice the last part of and override text of patientid
+        """
+        print(len(text))
+        if len(text) > 24:
+            text =text[:-1]
+            self.ids.patientid.text = text
 
     def on_enter(self):
         '''
@@ -168,4 +177,3 @@ class SbarScreen(Screen):
             CustomApp.CustomApp.notes.append(note)
             note.export_note(local_storage=STORE_NOTES, encrypt_func=encrypt)
         self.manager.current = 'main'
-

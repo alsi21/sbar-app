@@ -80,6 +80,7 @@
                         hint_text: '' if self.focus else 'Börja skriva här...'
                         size_hint: 1,None
                         height: self.minimum_height
+                        on_text: root.max_length_text(self.text)
                     BoxLayout:
                         height: dp(50)
                         size_hint: 1, None

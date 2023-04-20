@@ -17,7 +17,8 @@ class MainScreen(Screen):
     def on_enter(self):
         '''
         Code that gets executed whenever screen is showed,
-        Adds graphical main menu note representation for each note'''
+        Adds graphical main menu note representation for each note
+        '''
         #Change transition to slide to left
         self.manager.transition = SlideTransition(direction='left')
         # clear any existing buttons
@@ -54,7 +55,9 @@ class MainScreen(Screen):
             full_widget.ids.buttonone.note = note
 
     def check_note(self, instance, note):
-        ''' Toggles the checked state for a SBAR Note'''
+        ''' 
+        Toggles the checked state for a SBAR Note
+        '''
         state = note.checked
         note.checked = not state
         self.manager.current = 'main'
