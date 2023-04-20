@@ -21,7 +21,11 @@ class BlueTextInput(TextInput):
 class Note:
     '''Class that holds information presented in notes'''
 
-    def __init__(self, patientid, situation, background, relevant, recommendation, extra, safety, airway, breath, circ, disability, exposure, emergency, checked, time_of_creation, timestamp = None):
+    def __init__(
+            self, patientid, situation, background,
+            relevant, recommendation, extra, safety, airway,
+            breath, circ, disability, exposure, emergency,
+            checked, time_of_creation, timestamp = None):
         '''
         Parameters
         ----------
@@ -90,8 +94,7 @@ class Note:
         self.circ or
         self.disability or
         self.exposure or
-        self.extra
-        )
+        self.extra)
 
     def export_note(self, local_storage, encrypt_func):
         '''Exports SBAR Note to Local Storage'''
