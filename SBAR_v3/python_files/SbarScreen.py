@@ -7,24 +7,18 @@ from kivy.uix.screenmanager import ScreenManager, Screen
 from LocalStorage import STORE_NOTES, delete_data
 from Encryption import encrypt
 from kivy.properties import StringProperty
+from kivy.core.window import Window
+from kivy.utils import platform
 
 class SbarScreen(Screen):
     '''Screen class to handle Sbar notes ,similiar to EmergScreen'''
-    def max_length_text(self,text):
-        """
-        Every time text is written it checks the length to see if it's too long,
-        if it is slice the last part of and override text of patientid
-        """
-        print(len(text))
-        if len(text) > 24:
-            text =text[:-1]
-            self.ids.patientid.text = text
-
     def on_enter(self):
         '''
         Code that gets executed everytime screen gets displayed
         Checks if there exists a note with exact same content
         '''
+        if platform ==  "android":
+            Window.bind(on_keyboard_height=on_keyboard_height)
         self.repeat = False
         self.old_note = None
         self.old_toc = self.ids.toc_var.text
@@ -48,7 +42,23 @@ class SbarScreen(Screen):
                 self.repeat = True
 
 
+    def on_keyboard_height(self,window,keyboard_height):
+        if keyboard_height > 0:
+            self.ids.whitespace.height = keyboard_height
+            self.ids.ScrollBox.height = self.ids.ScrollBox.minimum_height
+        else:
+            self.ids.whitespace.height = 0
+            self.ids.ScrollBox.height = self.ids.ScrollBox.minimum_height
 
+    def max_length_text(self,text):
+        """
+        Every time text is written it checks the length to see if it's too long,
+        if it is slice the last part of and override text of patientid
+        """
+        print(len(text))
+        if len(text) > 24:
+            text =text[:-1]
+            self.ids.patientid.text = text
     def show_p_id(self):
         """
         Code that excutes when you press on the text buttonsthat will show
