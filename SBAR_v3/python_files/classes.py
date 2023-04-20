@@ -124,33 +124,13 @@ class Note:
 class SbarNote(BoxLayout):
     '''Mainscreen Sbar note handling'''
 
-    def __init__(self, **kwargs):
-        '''Builds note in mainmenu'''
-        super().__init__(**kwargs)
-        box = BoxLayout(orientation='horizontal', size_hint_y=None, height=80)
-        main_btn = Button(size_hint_x=.8)
-        box.add_widget(main_btn)
-        checkbox = SBARNoteCheckBox(active=False, size_hint_x=.2)
-        checkbox.bind(on_press=self.on_checkbox_active)
-        box.add_widget(checkbox)
-
     def on_checkbox_active(self, checkbox):
         '''CheckBox Interaction'''
-        if not checkbox.active:
-            print('The checkbox', self, 'is active')
-            self.ids.buttonone.background_color = 0,0,0,0.02
-        else:
-            print('The checkbox', self, 'is inactive')
-            self.ids.buttonone.background_color = 0,0,0,0.15
+        pass
 
 class EmergNote(BoxLayout):
     '''Mainscreen Emerg note handling'''
 
     def on_checkbox_active(self, checkbox):
         '''CheckBox Interaction'''
-        if not checkbox.active:
-            print('The checkbox', self, 'is active')
-            self.ids.buttonone.background_color = 0,0,0,0.02
-        else:
-            print('The checkbox', self, 'is inactive')
-            self.ids.buttonone.background_color = 0,0,0,0.15
+        pass
