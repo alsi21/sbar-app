@@ -128,7 +128,7 @@
                         font_size: dp(24)
                         size_hint: None,None
                         height: dp(50)
-                        on_press:
+                        on_press: root.show_airway()
                     TextInput:
                         id: air
                         background_color: (227/255,210/255,210/255,1) if self.focus else (227/255,210/255,210/255,1)
@@ -144,7 +144,7 @@
                         font_size: dp(24)
                         size_hint: None,None
                         height: dp(50)
-                        on_press:
+                        on_press: root.show_breathing()
                     TextInput:
                         id: breath
                         background_color: (227/255,210/255,210/255,1) if self.focus else (227/255,210/255,210/255,1)
@@ -160,7 +160,7 @@
                         font_size: dp(24)
                         size_hint: None,None
                         height: dp(50)
-                        on_press:
+                        on_press: root.show_circulation()
                     TextInput:
                         id: circ
                         background_color: (227/255,210/255,210/255,1) if self.focus else (227/255,210/255,210/255,1)
@@ -176,7 +176,7 @@
                         font_size: dp(24)
                         size_hint: None,None
                         height: dp(50)
-                        on_press:
+                        on_press: root.show_disability()
                     TextInput:
                         id: deg
                         background_color: (227/255,210/255,210/255,1) if self.focus else (227/255,210/255,210/255,1)
@@ -192,7 +192,7 @@
                         font_size: dp(24)
                         size_hint: None,None
                         height: dp(50)
-                        on_press:
+                        on_press: root.show_exposure()
                     TextInput:
                         id: exposure
                         background_color: (227/255,210/255,210/255,1) if self.focus else (227/255,210/255,210/255,1)

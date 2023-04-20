@@ -105,6 +105,79 @@ class EmergScreen(Screen):
         )
         popup.open()   
 
+
+    def show_airway(self):
+        """
+        Code that excutes when you press on the text buttonsthat will show
+        the user information about what should be written in each field.
+        """
+        msg = "Stabilisering av nacke?"
+        text = TextInput(text=msg, multiline=True, readonly=True, height = 300, font_size=18)
+        popup = Popup(title="A - Fri luftväg", 
+        content=text,
+        size_hint=(0.8, 0.5),
+        title_size="30sp"
+        )
+        popup.open()   
+
+
+    def show_breathing(self):
+        """
+        Code that excutes when you press on the text buttonsthat will show
+        the user information about what should be written in each field.
+        """
+        msg = "Lyssna på lungor.\nAndningsrörelse."
+        text = TextInput(text=msg, multiline=True, readonly=True, height = 300, font_size=18)
+        popup = Popup(title="B - Syresättning, andningsfrekvens", 
+        content=text,
+        size_hint=(0.8, 0.5),
+        title_size="30sp"
+        )
+        popup.open()   
+
+    def show_circulation(self):
+        """
+        Code that excutes when you press on the text buttonsthat will show
+        the user information about what should be written in each field.
+        """
+        msg = "Blodtryck, puls, kapillär återfyllnad, hudstatus."
+        text = TextInput(text=msg, multiline=True, readonly=True, height = 300, font_size=18)
+        popup = Popup(title="C - cirkulation", 
+        content=text,
+        size_hint=(0.8, 0.5),
+        title_size="30sp"
+        )
+        popup.open() 
+
+    def show_disability(self):
+        """
+        Code that excutes when you press on the text buttonsthat will show
+        the user information about what should be written in each field.
+        """
+        msg = "Medvetande och neurologstatus, P-glukos."
+        text = TextInput(text=msg, multiline=True, readonly=True, height = 300, font_size=18)
+        popup = Popup(title="D - Medvetande och neurologstatus", 
+        content=text,   
+        size_hint=(0.8, 0.5),
+        title_size="30sp"
+        )
+        popup.open() 
+
+    def show_exposure(self):
+        """
+        Code that excutes when you press on the text buttonsthat will show
+        the user information about what should be written in each field.
+        """
+        msg = "Kroppsinspektion. \nVärm patienten om den är kall. \nEKG?"
+        text = TextInput(text=msg, multiline=True, readonly=True, height = 300, font_size=18)
+        popup = Popup(title="E - Exponering", 
+        content=text,   
+        size_hint=(0.8, 0.5),
+        title_size="30sp"
+        )
+        popup.open() 
+
+
     def show_rekommendation(self):
         """
         Code that excutes when you press on the text buttonsthat will show
