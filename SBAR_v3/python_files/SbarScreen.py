@@ -43,7 +43,6 @@ class SbarScreen(Screen):
                 self.repeat = True
         self.auto_save = Clock.schedule_interval(self.quick_save, 2.5)
 
-
     def on_keyboard_height(self,window,keyboard_height):
         if keyboard_height > 0:
             self.ids.whitespace.height = keyboard_height
@@ -61,6 +60,7 @@ class SbarScreen(Screen):
         if len(text) > 24:
             text =text[:-1]
             self.ids.patientid.text = text
+
     def show_p_id(self):
         """
         Code that excutes when you press on the text buttonsthat will show
@@ -75,8 +75,6 @@ class SbarScreen(Screen):
         )
         popup.open()
 
-
-
     def show_situation(self):
         """
         Code that excutes when you press on the text buttonsthat will show
@@ -90,8 +88,6 @@ class SbarScreen(Screen):
         title_size="30sp"
         )
         popup.open()
-    
-
 
     def show_bakgrund(self):
         """
@@ -106,8 +102,6 @@ class SbarScreen(Screen):
         title_size="30sp"
         )
         popup.open()    
-        
-
 
     def show_aktuellt(self):
         """
@@ -122,8 +116,6 @@ class SbarScreen(Screen):
         title_size="30sp"
         )
         popup.open()   
-    
-
 
     def show_rekommendation(self):
         """
@@ -138,9 +130,7 @@ class SbarScreen(Screen):
         title_size="30sp"
         )
         popup.open()    
-        
-        
-    
+
     def show_extra_notes(self):
         """
         Code that excutes when you press on the text buttonsthat will show
