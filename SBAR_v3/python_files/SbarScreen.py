@@ -1,21 +1,25 @@
 import classes
 import CustomApp
 
+from kivy.clock import Clock
 from kivy.uix.popup import Popup
 from kivy.uix.textinput import TextInput
 from kivy.uix.screenmanager import ScreenManager, Screen
 from LocalStorage import STORE_NOTES, delete_data
 from Encryption import encrypt
-
+from kivy.properties import StringProperty
+from kivy.core.window import Window
+from kivy.utils import platform
 
 class SbarScreen(Screen):
     '''Screen class to handle Sbar notes ,similiar to EmergScreen'''
-
     def on_enter(self):
         '''
         Code that gets executed everytime screen gets displayed
         Checks if there exists a note with exact same content
         '''
+        if platform ==  "android":
+            Window.bind(on_keyboard_height=self.on_keyboard_height)
         self.repeat = False
         self.old_note = None
         self.old_toc = self.ids.toc_var.text
@@ -37,9 +41,26 @@ class SbarScreen(Screen):
                 print('found old note: ', note.patientid)
                 self.old_note = note
                 self.repeat = True
+        self.auto_save = Clock.schedule_interval(self.quick_save, 2.5)
 
 
+    def on_keyboard_height(self,window,keyboard_height):
+        if keyboard_height > 0:
+            self.ids.whitespace.height = keyboard_height
+            self.ids.ScrollBox.height = self.ids.ScrollBox.minimum_height
+        else:
+            self.ids.whitespace.height = 0
+            self.ids.ScrollBox.height = self.ids.ScrollBox.minimum_height
 
+    def max_length_text(self,text):
+        """
+        Every time text is written it checks the length to see if it's too long,
+        if it is slice the last part of and override text of patientid
+        """
+        print(len(text))
+        if len(text) > 24:
+            text =text[:-1]
+            self.ids.patientid.text = text
     def show_p_id(self):
         """
         Code that excutes when you press on the text buttonsthat will show
@@ -134,7 +155,34 @@ class SbarScreen(Screen):
         )
         popup.open()
 
+    def quick_save(self, dt):
+        patientid = self.ids.patientid.text
+        situation = self.ids.situation.text
+        bakgrund = self.ids.bakgrund.text
+        aktuellt = self.ids.aktuellt.text
+        rekomendation = self.ids.rekomendation.text
+        extra = self.ids.extra.text
 
+        if self.repeat:
+            toc = self.old_note.time_of_creation
+        else:
+            toc = self.ids.toc_var.text
+
+        note = classes.Note(
+            patientid, situation, bakgrund,
+            aktuellt, rekomendation, extra,
+            '', '', '', '', '', '',
+            False, False, toc)
+        
+        if self.repeat and self.old_note:
+            note.checked = self.old_note.checked
+            note.timestamp = self.old_note.timestamp
+
+        if self.repeat:
+            if self.old_note:
+                delete_data(STORE_NOTES, self.old_note.time_of_creation)
+        if not note.is_empty():
+            note.export_note(local_storage=STORE_NOTES, encrypt_func=encrypt)
 
     def save_note(self):
         '''
@@ -153,18 +201,25 @@ class SbarScreen(Screen):
             toc = self.old_note.time_of_creation
         else:
             toc = self.ids.toc_var.text
-        
-        note = classes.Note(patientid, situation, bakgrund, aktuellt, rekomendation, extra, '', '', '', '', '', False, False, toc)
+
+        note = classes.Note(
+            patientid, situation, bakgrund,
+            aktuellt, rekomendation, extra,
+            '', '', '', '', '', '',
+            False, False, toc)
 
         if self.repeat and self.old_note:
             note.checked = self.old_note.checked
+            note.timestamp = self.old_note.timestamp
 
         if self.repeat:
             if self.old_note:
                 CustomApp.CustomApp.notes.remove(self.old_note)
-                delete_data(STORE_NOTES, self.old_note.patientid, self.old_note.time_of_creation)
+                delete_data(STORE_NOTES, self.old_note.time_of_creation)
+
         if not note.is_empty():
             CustomApp.CustomApp.notes.append(note)
             note.export_note(local_storage=STORE_NOTES, encrypt_func=encrypt)
-        self.manager.current = 'main'
 
+        Clock.unschedule(self.auto_save)
+        self.manager.current = 'main'

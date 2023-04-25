@@ -17,10 +17,18 @@ class SetScreen(Screen):
     check : str
         First pin entered gets saved here, check is then compared to second pin entered
     '''
+
     pin = ''
     text = StringProperty('Set code(4)')
     set_code = ''
     check = ''
+
+    def on_enter(self):
+        self.pin = ''
+        self.text = 'Set code(4)'
+        self.set_code = ''
+        self.check = ''
+
     def on_button1_press(self):
         if len(self.text) > 5:
             self.text = ''

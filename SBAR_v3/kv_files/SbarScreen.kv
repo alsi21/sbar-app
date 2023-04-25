@@ -47,6 +47,7 @@
                 effect_cls: 'ScrollEffect'
                 scroll_size: self.children[0].height
                 BoxLayout:
+                    id: ScrollBox
                     padding: dp(20), 0
                     orientation: 'vertical'
                     size_hint_y: None
@@ -82,6 +83,7 @@
                         hint_text: '' if self.focus else 'Börja skriva här...'
                         size_hint: 1,None
                         height: self.minimum_height
+                        on_text: root.max_length_text(self.text)
                     BoxLayout:
                         height: dp(50)
                         size_hint: 1, None
@@ -197,22 +199,40 @@
                         hint_text: '' if self.focus else 'Börja skriva här...'
                         size_hint: 1,None
                         height: self.minimum_height
-                    
-        Label:
-            size_hint_y: .02
+                    Label:
+                        size_hint: 1, None
+                        height: 10
+                    Label:
+                        id: whitespace
+                        size_hint_y: 0
+                        height: 0
         BoxLayout:
-            orientation: 'horizontal'
+            orientation: 'vertical'
             size_hint_y: None
-            height: dp(40)
+            height: self.minimum_height + dp(15)
+            padding: 0
+            spacing: 0
+            canvas.before:
+                Color:
+                    rgba: 216/255, 210/255, 227/255, 0.5
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
             Label:
-            RoundedRedButton:
-                text: "Back"
-                background_color: 217/255,225/255,1,1
-                color: 0,0,0,1
-                font_size: '35dp'
-                on_press:
-                    root.manager.transition.direction = 'right'
-                    root.save_note()
+                size_hint_y: .02
+            BoxLayout:
+                orientation: 'horizontal'
+                size_hint_y: None
+                height: dp(40)
+                Label:
+                RoundedRedButton:
+                    text: "Back"
+                    background_color: 217/255,225/255,1,1
+                    color: 0,0,0,1
+                    font_size: '35dp'
+                    on_press:
+                        root.manager.transition.direction = 'right'
+                        root.save_note()
+                Label:
             Label:
-        Label:
-            size_hint_y: .02
+                size_hint_y: .02

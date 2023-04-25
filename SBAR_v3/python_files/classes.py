@@ -6,6 +6,8 @@ from kivy.uix.textinput import TextInput
 from kivy.uix.boxlayout import BoxLayout
 from kivy.graphics import *
 
+from datetime import datetime
+
 class SquareBlueButton(Button):
     '''Blue button'''
 
@@ -19,7 +21,11 @@ class BlueTextInput(TextInput):
 class Note:
     '''Class that holds information presented in notes'''
 
-    def __init__(self, patientid, situation, background, relevant, recommendation, extra, airway, breath, circ, disability, exposure, emergency, checked, time_of_creation):
+    def __init__(
+            self, patientid, situation, background,
+            relevant, recommendation, extra, safety, airway,
+            breath, circ, disability, exposure, emergency,
+            checked, time_of_creation, timestamp = None):
         '''
         Parameters
         ----------
@@ -51,13 +57,13 @@ class Note:
         #For SBAR and Emerg
         self.patientid = patientid
         self.relevant = relevant
-        self.time_of_creation = time_of_creation
         self.recommendation = recommendation
         #Only for SBAR
         self.situation = situation
         self.background = background
         self.extra = extra
         #Only for Emerg
+        self.safety = safety
         self.airway = airway
         self.breath = breath
         self.circ = circ
@@ -65,6 +71,14 @@ class Note:
         self.exposure = exposure
         self.emergency = emergency
         self.checked = checked
+
+        self.time_of_creation = time_of_creation
+
+        # Timestamp used for auto-deletion.
+        if timestamp == None:
+            timestamp = datetime.now()
+        self.timestamp = timestamp
+        print(f'Created new note with timestamp: {timestamp}.')
 
     def is_empty(self):
         '''Returns whether the note is empty.'''
@@ -74,24 +88,25 @@ class Note:
         self.background or
         self.relevant or
         self.recommendation or
+        self.safety or
         self.airway or
         self.breath or
         self.circ or
         self.disability or
         self.exposure or
-        self.extra
-        )
+        self.extra)
 
     def export_note(self, local_storage, encrypt_func):
         '''Exports SBAR Note to Local Storage'''
         local_storage.put(
-            encrypt_func(self.patientid + self.time_of_creation),
+            encrypt_func(self.time_of_creation),
             patientid = encrypt_func(self.patientid),
             situation = encrypt_func(self.situation),
             background = encrypt_func(self.background),
             relevant = encrypt_func(self.relevant),
             recommendation = encrypt_func(self.recommendation),
             extra = encrypt_func(self.extra),
+            safety = encrypt_func(self.safety),
             airway = encrypt_func(self.airway),
             breath = encrypt_func(self.breath),
             circ = encrypt_func(self.circ),
@@ -99,40 +114,29 @@ class Note:
             exposure = encrypt_func(self.exposure),
             emergency = self.emergency,
             checked = self.checked,
-            time_of_creation = encrypt_func(self.time_of_creation)
+            time_of_creation = encrypt_func(self.time_of_creation),
+            timestamp = encrypt_func(self.timestamp.strftime('%Y-%m-%d %H:%M:%S'))
         )
+
+    def timed_out(self, hours: int) -> bool:
+        now = datetime.now()
+        # Temporarily set to 1 instead of 3600.
+        timeframe = (hours * 60)
+        if self.checked:
+            timeframe = (hours * 20)
+        return (now - self.timestamp).total_seconds() > timeframe
 
 
 class SbarNote(BoxLayout):
     '''Mainscreen Sbar note handling'''
 
-    def __init__(self, **kwargs):
-        '''Builds note in mainmenu'''
-        super().__init__(**kwargs)
-        box = BoxLayout(orientation='horizontal', size_hint_y=None, height=80)
-        main_btn = Button(size_hint_x=.8)
-        box.add_widget(main_btn)
-        checkbox = SBARNoteCheckBox(active=False, size_hint_x=.2)
-        checkbox.bind(on_press=self.on_checkbox_active)
-        box.add_widget(checkbox)
-
     def on_checkbox_active(self, checkbox):
         '''CheckBox Interaction'''
-        if not checkbox.active:
-            print('The checkbox', self, 'is active')
-            self.ids.buttonone.background_color = 0,0,0,0.02
-        else:
-            print('The checkbox', self, 'is inactive')
-            self.ids.buttonone.background_color = 0,0,0,0.15
+        pass
 
 class EmergNote(BoxLayout):
     '''Mainscreen Emerg note handling'''
 
     def on_checkbox_active(self, checkbox):
         '''CheckBox Interaction'''
-        if not checkbox.active:
-            print('The checkbox', self, 'is active')
-            self.ids.buttonone.background_color = 0,0,0,0.02
-        else:
-            print('The checkbox', self, 'is inactive')
-            self.ids.buttonone.background_color = 0,0,0,0.15
+        pass

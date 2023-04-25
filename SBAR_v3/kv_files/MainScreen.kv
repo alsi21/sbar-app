@@ -47,23 +47,17 @@
             size_hint_y: .1
             orientation: 'vertical'
             padding: 0
+            canvas.before:
+                Color:
+                    rgba: 216/255, 210/255, 227/255, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
             BoxLayout:
                 size_hint_y: .12
-                canvas.before:
-                    Color:
-                        rgba: 216/255, 210/255, 227/255, 1
-                    Rectangle:
-                        pos: self.pos
-                        size: self.size
             BoxLayout:
                 size_hint_y: .76
                 orientation: 'horizontal'
-                canvas.before:
-                    Color:
-                        rgba: 216/255, 210/255, 227/255, 1
-                    Rectangle:
-                        pos: self.pos
-                        size: self.size
                 Label:
                     size_hint_x: .1
                 RoundedRedButton:
@@ -96,9 +90,3 @@
                     size_hint_x: .1
             BoxLayout:
                 size_hint_y: .12
-                canvas.before:
-                    Color:
-                        rgba: 216/255, 210/255, 227/255, 1
-                    Rectangle:
-                        pos: self.pos
-                        size: self.size
