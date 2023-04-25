@@ -153,7 +153,7 @@ class SbarScreen(Screen):
             toc = self.old_note.time_of_creation
         else:
             toc = self.ids.toc_var.text
-
+        
         note = classes.Note(patientid, situation, bakgrund, aktuellt, rekomendation, extra, '', '', '', '', '', False, False, toc)
 
         if self.repeat and self.old_note:

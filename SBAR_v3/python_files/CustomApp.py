@@ -4,6 +4,8 @@ import MainScreen
 import SettingsScreen
 import SbarScreen
 import EmergScreen
+import ManualScreen
+import HelpScreen
 
 from kivy.app import App
 from kivy.uix.screenmanager import ScreenManager, Screen, SlideTransition
@@ -41,14 +43,22 @@ class CustomApp(App):
         sm.add_widget(SettingsScreen.SettingsScreen(name='settings'))
         sm.add_widget(SbarScreen.SbarScreen(name='sbar'))
         sm.add_widget(EmergScreen.EmergScreen(name='emerg'))
-        Window.bind(on_request_close=self.on_request_close)
+        sm.add_widget(HelpScreen.HelpScreen(name='help'))
+        sm.add_widget(ManualScreen.ManualScreen(name='manual'))
+        #Window.bind(on_request_close=self.on_request_close)
         return sm
 
-    def on_request_close(self, *args):
-        '''Function to call TextPopup'''
-        #Save here
-        self.TextPopup(title='Avsluta', text='Vill du avsluta?')
+    # def on_request_close(self, *args):
+    #     '''Function to call TextPopup'''
+    #     #Save here
+    #     self.TextPopup(title='Avsluta', text='Vill du avsluta?')
+    #     return True
+
+    def on_pause(self):
         return True
+    
+    def on_resume(self):
+        pass
 
     def TextPopup(self, title='', text=''):
         '''Function to create a popup boxlayout with a button in it'''

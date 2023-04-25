@@ -1,0 +1,335 @@
+#:kivy 1.0.9
+
+<ManualScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        canvas.before:
+            Color:
+                rgba: 1,1,1,1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: 0.15
+            canvas.before:
+                Color:
+                    rgba: 216/255, 210/255, 227/255, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            Button:
+                background_normal: 'SBAR_v3\images\SBAR_snake.png'
+                background_down: 'SBAR_v3\images\SBAR_snake.png'
+                allow_stretch: True
+                keep_ratio: True
+                size_hint_x: .3
+                on_press: root.manager.current = 'main'
+                color: 0,0,0,1
+            BackgroundLabel:
+                text: 'Hjälp'
+                font_size: '50dp'
+                color: 0,0,0,1
+                background_color: 216/255, 210/255, 227/255, 1
+                size_hint_x: .4
+            BackgroundLabel:
+                background_color: 216/255, 210/255, 227/255, 1
+                size_hint_x: .3
+        
+        BoxLayout:
+            size_hint_y: .85
+            orientation: 'horizontal'
+            ScrollView:
+                id: scroll_view
+                scroll_type: ['bars','content']
+                bar_width: '10dp'
+                effect_cls: 'ScrollEffect'
+                scroll_size: self.children[0].height
+                BoxLayout:
+                    padding: dp(20), 0
+                    orientation: 'vertical'
+                    size_hint_y: None
+                    height: self.minimum_height
+                    CustomSlider:
+                        height: scroll_view.height
+                        value: scroll_view.scroll_y
+                        on_value: scroll_view.scroll_y = self.value
+                    Label:
+                        id: toc_var
+                    BoxLayout:
+                        height: self.minimum_height
+                        padding: 0, dp(10)
+                        size_hint: 1, None
+                        orientation: 'vertical'
+                        spacing: dp(20)
+                        Label:
+                            
+                        Label:
+                            text: "Vad är SBAR?"
+                            color: 0,0,0,1
+                            font_size: dp(24)
+                            size: self.texture_size
+                            # size_hint: None, None
+                            # halign: "left"
+                            padding: dp(0), dp(10)
+                        Label:
+                            text: 'SBAR är en kommunikationsmetodik som används inom hälso- och sjukvård för att rapportera och överföra information på ett strukturerat och tydligt sätt. SBAR står för Situation, Background, aktuellt och Recommendation.'
+                            color: 0,0,0,1
+                            border: (2,2,2,2)
+                            valign: "middle"
+                            padding: dp(0), dp(10)
+                            font_size: dp(18)
+                            size_hint: None, None
+                            size: self.texture_size
+                            height: self.texture_size[1] + dp(20)
+                            text_size: self.width, None
+                            width: dp(320)
+                            halign: "center"
+                            pos_hint_y: 1
+                            canvas.before:
+                                Color:
+                                    rgba: (0,0,0,1)
+                                Line:
+                                    width: 2
+                                    cap: "round"
+                                    rectangle: (self.x, self.y, self.width, self.height)
+                                Color:
+                                    rgba: (217/255,225/255,1,1)
+                                Rectangle:
+                                    pos: self.pos
+                                    size: self.size
+                        Label:
+            
+                        Label:
+                            text: "(S) Situation"
+                            color: 0,0,0,1
+                            font_size: dp(24)
+                            size: self.texture_size
+                            # size_hint: None, None
+                            # halign: "left"
+                            padding: dp(0), dp(10)
+                        Label:
+                            text: 'Situation är kärnan i det som ska förmedlas och ska fungera som en kortfattad "rubrik" för att fånga mottagarens uppmärksamhet. Här presenterar sändaren sig själv och vem det gäller.'
+                            color: 0,0,0,1
+                            border: (2,2,2,2)
+                            valign: "middle"
+                            padding: dp(0), dp(10)
+                            font_size: dp(18)
+                            size_hint: None, None
+                            size: self.texture_size
+                            height: self.texture_size[1] + dp(20)
+                            text_size: self.width, None
+                            width: dp(320)
+                            halign: "center"
+                            pos_hint_y: 1
+                            canvas.before:
+                                Color:
+                                    rgba: (0,0,0,1)
+                                Line:
+                                    width: 2
+                                    cap: "round"
+                                    rectangle: (self.x, self.y, self.width, self.height)
+                                Color:
+                                    rgba: (217/255,225/255,1,1)
+                                Rectangle:
+                                    pos: self.pos
+                                    size: self.size
+                        Label:
+                        
+                        Label:
+                            text: "(B) Bakgrund"
+                            color: 0,0,0,1
+                            font_size: dp(24)
+                            size: self.texture_size
+                            # size_hint: None, None
+                            # halign: "left"
+                            padding: dp(0), dp(10)
+                        Label:
+                            text: 'Bakgrunden beskriver det relevanta för den aktuella situationen. Vid akuta tillfällen hinner man bara beskriva det allra viktigaste. Icke akuta situationer kan innehålla mer information.'
+                            color: 0,0,0,1
+                            border: (2,2,2,2)
+                            valign: "middle"
+                            padding: dp(0), dp(10)
+                            font_size: dp(18)
+                            size_hint: None, None
+                            size: self.texture_size
+                            height: self.texture_size[1] + dp(20)
+                            text_size: self.width, None
+                            width: dp(320)
+                            halign: "center"
+                            pos_hint_y: 1
+                            canvas.before:
+                                Color:
+                                    rgba: (0,0,0,1)
+                                Line:
+                                    width: 2
+                                    cap: "round"
+                                    rectangle: (self.x, self.y, self.width, self.height)
+                                Color:
+                                    rgba: (217/255,225/255,1,1)
+                                Rectangle:
+                                    pos: self.pos
+                                    size: self.size
+                        Label:
+                        
+                        Label:
+                            text: "(A) Aktuell bedömning"
+                            color: 0,0,0,1
+                            font_size: dp(24)
+                            size: self.texture_size
+                            # size_hint: None, None
+                            # halign: "left"
+                            padding: dp(0), dp(10)
+                        Label:
+                            text: 'Aktuell bedömning beskriver den aktuella situationen som ska förmedlas. Använd gärna ABCDE för att strukturera patienternas vitalstatus. Berätta om eventuella åtgärder och resultat av dessa. Förmedla din bedömning av den aktuella situationen.'
+                            color: 0,0,0,1
+                            border: (2,2,2,2)
+                            valign: "middle"
+                            padding: dp(0), dp(10)
+                            font_size: dp(18)
+                            size_hint: None, None
+                            size: self.texture_size
+                            height: self.texture_size[1] + dp(20)
+                            text_size: self.width, None
+                            width: dp(320)
+                            halign: "center"
+                            pos_hint_y: 1
+                            canvas.before:
+                                Color:
+                                    rgba: (0,0,0,1)
+                                Line:
+                                    width: 2
+                                    cap: "round"
+                                    rectangle: (self.x, self.y, self.width, self.height)
+                                Color:
+                                    rgba: (217/255,225/255,1,1)
+                                Rectangle:
+                                    pos: self.pos
+                                    size: self.size
+                        Label:
+                        
+                        Label:
+                            text: "ABCDE"
+                            color: 0,0,0,1
+                            font_size: dp(24)
+                            size: self.texture_size
+                            # size_hint: None, None
+                            # halign: "left"
+                            padding: dp(0), dp(10)
+                        Label:
+                            text: ' (A)Airways dvs är luftvägen fri? Om inte, sätt in åtgärd. \n (B) Breathing  eller andningen (andningsfrekvens, puls, lyssna på lungor, saturation) \n (C) Cirkulation syftar till att ta blodtryck, EKG, blodgas, lyssna på hjärta mm \n (D) Disability, här bedömer man patientens orientering och medvetandegrad (GCS) \n (E) Exposure betyder att hudkostymen gås igenom och kroppstemperatur.'
+                            color: 0,0,0,1
+                            border: (2,2,2,2)
+                            valign: "middle"
+                            padding: dp(0), dp(10)
+                            font_size: dp(18)
+                            size_hint: None, None
+                            size: self.texture_size
+                            height: self.texture_size[1] + dp(20)
+                            text_size: self.width, None
+                            width: dp(320)
+                            halign: "center"
+                            pos_hint_y: 1
+                            canvas.before:
+                                Color:
+                                    rgba: (0,0,0,1)
+                                Line:
+                                    width: 2
+                                    cap: "round"
+                                    rectangle: (self.x, self.y, self.width, self.height)
+                                Color:
+                                    rgba: (217/255,225/255,1,1)
+                                Rectangle:
+                                    pos: self.pos
+                                    size: self.size
+                        Label:
+                        
+                        Label:
+                            text: "(R) Rekommendation"
+                            color: 0,0,0,1
+                            font_size: dp(24)
+                            size: self.texture_size
+                            # size_hint: None, None
+                            # halign: "left"
+                            padding: dp(0), dp(10)
+                        Label:
+                            text: 'Rekommendation eller varför du tagit kontakt och vad mottagaren ska göra. Klargör för dig själv vad mottagaren förväntas göra utifrån det som rapporterats under S, B och A, samt inom vilken tid du anser att det ska göras.'
+                            color: 0,0,0,1
+                            border: (2,2,2,2)
+                            valign: "middle"
+                            padding: dp(0), dp(10)
+                            font_size: dp(18)
+                            size_hint: None, None
+                            size: self.texture_size
+                            height: self.texture_size[1] + dp(20)
+                            text_size: self.width, None
+                            width: dp(320)
+                            halign: "center"
+                            pos_hint_y: 1
+                            canvas.before:
+                                Color:
+                                    rgba: (0,0,0,1)
+                                Line:
+                                    width: 2
+                                    cap: "round"
+                                    rectangle: (self.x, self.y, self.width, self.height)
+                                Color:
+                                    rgba: (217/255,225/255,1,1)
+                                Rectangle:
+                                    pos: self.pos
+                                    size: self.size
+                        Label:
+                        
+                        Label:
+                            text: "Övrigt"
+                            color: 0,0,0,1
+                            font_size: dp(24)
+                            size: self.texture_size
+                            # size_hint: None, None
+                            # halign: "left"
+                            padding: dp(0), dp(10)
+                        Label:
+                            text: 'I övrigt skriver du själv dina egna anteckningar utöver SBAR om du vill.'
+                            color: 0,0,0,1
+                            border: (2,2,2,2)
+                            valign: "middle"
+                            padding: dp(0), dp(10)
+                            font_size: dp(18)
+                            size_hint: None, None
+                            size: self.texture_size
+                            height: self.texture_size[1] + dp(20)
+                            text_size: self.width, None
+                            width: dp(320)
+                            halign: "center"
+                            pos_hint_y: 1
+                            canvas.before:
+                                Color:
+                                    rgba: (0,0,0,1)
+                                Line:
+                                    width: 2
+                                    cap: "round"
+                                    rectangle: (self.x, self.y, self.width, self.height)
+                                Color:
+                                    rgba: (217/255,225/255,1,1)
+                                Rectangle:
+                                    pos: self.pos
+                                    size: self.size
+                        Label:
+                    
+        Label:
+            size_hint_y: .02
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: None
+            height: dp(40)
+            Label:
+            RoundedRedButton:
+                text: "Back"
+                background_color: 217/255,225/255,1,1
+                color: 0,0,0,1
+                font_size: '35dp'
+                on_press: root.manager.current = 'main'
+            Label:
+        Label:
+            size_hint_y: .02

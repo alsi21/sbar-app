@@ -31,3 +31,9 @@ class SettingsScreen(Screen):
             # full_widget.ids.checkbox.bind(on_press=lambda instance, button_note=button_note: self.check_note(instance, button_note))
             self.ids.label_layout.add_widget(full_widget)
             full_widget.ids.buttonone.note = note
+
+    def go_to_help(self):
+        self.manager.current = "help"
+
+    def go_to_manual(self):
+        self.manager.current = "manual"
