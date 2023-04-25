@@ -38,7 +38,7 @@ def serialize_notes(notes_storage):
         else:
             notes.append(note)
     return notes
-    
+
 def serialize_pin(pin_storage) -> str:
     '''Takes in JsonStore link, returns pin.'''
     pin = ''
