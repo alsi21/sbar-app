@@ -21,7 +21,11 @@ class BlueTextInput(TextInput):
 class Note:
     '''Class that holds information presented in notes'''
 
-    def __init__(self, patientid, situation, background, relevant, recommendation, extra, airway, breath, circ, disability, exposure, emergency, checked, time_of_creation, timestamp = None):
+    def __init__(
+            self, patientid, situation, background,
+            relevant, recommendation, extra, safety, airway,
+            breath, circ, disability, exposure, emergency,
+            checked, time_of_creation, timestamp = None):
         '''
         Parameters
         ----------
@@ -59,6 +63,7 @@ class Note:
         self.background = background
         self.extra = extra
         #Only for Emerg
+        self.safety = safety
         self.airway = airway
         self.breath = breath
         self.circ = circ
@@ -83,24 +88,25 @@ class Note:
         self.background or
         self.relevant or
         self.recommendation or
+        self.safety or
         self.airway or
         self.breath or
         self.circ or
         self.disability or
         self.exposure or
-        self.extra
-        )
+        self.extra)
 
     def export_note(self, local_storage, encrypt_func):
         '''Exports SBAR Note to Local Storage'''
         local_storage.put(
-            encrypt_func(self.patientid + self.time_of_creation),
+            encrypt_func(self.time_of_creation),
             patientid = encrypt_func(self.patientid),
             situation = encrypt_func(self.situation),
             background = encrypt_func(self.background),
             relevant = encrypt_func(self.relevant),
             recommendation = encrypt_func(self.recommendation),
             extra = encrypt_func(self.extra),
+            safety = encrypt_func(self.safety),
             airway = encrypt_func(self.airway),
             breath = encrypt_func(self.breath),
             circ = encrypt_func(self.circ),
@@ -114,7 +120,7 @@ class Note:
 
     def timed_out(self, hours: int) -> bool:
         now = datetime.now()
-        # temporarily set to 1 instead of 3600
+        # Temporarily set to 1 instead of 3600.
         timeframe = (hours * 60)
         if self.checked:
             timeframe = (hours * 20)

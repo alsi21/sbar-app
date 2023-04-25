@@ -13,6 +13,8 @@ Builder.load_file('SBAR_v3\kv_files\PinScreen.kv')
 Builder.load_file('SBAR_v3\kv_files\SbarScreen.kv')
 Builder.load_file('SBAR_v3\kv_files\SetScreen.kv')
 Builder.load_file('SBAR_v3\kv_files\SettingsScreen.kv')
+Builder.load_file('SBAR_v3\kv_files\HelpScreen.kv')
+Builder.load_file('SBAR_v3\kv_files\ManualScreen.kv')
 
 if __name__ == '__main__':
     CustomApp.CustomApp().run()

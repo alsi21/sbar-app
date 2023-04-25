@@ -47,6 +47,7 @@
                 effect_cls: 'ScrollEffect'
                 scroll_size: self.children[0].height
                 BoxLayout:
+                    id: ScrollBox
                     padding: dp(20), 0
                     orientation: 'vertical'
                     size_hint_y: None
@@ -74,6 +75,8 @@
                         Label:
                     TextInput:
                         id: patientid
+                        multiline: False
+                        maxlength: 24
                         background_color: (217/255,225/255,1,1) if self.focus else (217/255,225/255,1,1)
                         background_normal: ''
                         foreground_color: .1, .1, .1, 1  # default text color
@@ -81,6 +84,7 @@
                         hint_text: '' if self.focus else 'Börja skriva här...'
                         size_hint: 1,None
                         height: self.minimum_height
+                        on_text: root.max_length_text(self.text)
                     BoxLayout:
                         height: dp(50)
                         size_hint: 1, None
@@ -204,6 +208,10 @@
                     Label:
                         size_hint: 1, None
                         height: 10
+                    Label:
+                        id: whitespace
+                        size_hint_y: 0
+                        height: 0
         BoxLayout:
             orientation: 'vertical'
             size_hint_y: None

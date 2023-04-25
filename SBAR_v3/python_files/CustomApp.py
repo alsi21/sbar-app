@@ -4,6 +4,8 @@ import MainScreen
 import SettingsScreen
 import SbarScreen
 import EmergScreen
+import ManualScreen
+import HelpScreen
 
 from kivy.app import App
 from kivy.uix.screenmanager import ScreenManager, Screen, SlideTransition
@@ -41,21 +43,28 @@ class CustomApp(App):
         sm.add_widget(SettingsScreen.SettingsScreen(name='settings'))
         sm.add_widget(SbarScreen.SbarScreen(name='sbar'))
         sm.add_widget(EmergScreen.EmergScreen(name='emerg'))
-        Window.bind(on_request_close=self.on_request_close)
+        sm.add_widget(HelpScreen.HelpScreen(name='help'))
+        sm.add_widget(ManualScreen.ManualScreen(name='manual'))
+        #Window.bind(on_request_close=self.on_request_close)
         return sm
 
-    def on_request_close(self, *args):
+    def on_request_close(self, *args, **kwargs):
         '''Function to call TextPopup'''
         #Save here
-        self.TextPopup(title='Avsluta', text='Vill du avsluta?')
-        return True
+        # self.TextPopup(title='Avsluta', text='Vill du avsluta?')
+        return False
 
     def TextPopup(self, title='', text=''):
         '''Function to create a popup boxlayout with a button in it'''
         box = BoxLayout(orientation='vertical')
         box.add_widget(Label(text=text))
-        mybutton = Button(text='Ja', size_hint=(1, 0.25))
-        box.add_widget(mybutton)
-        popup = Popup(title=title, content=box, size_hint=(None, None), size=(600, 300))
-        mybutton.bind(on_release=self.stop)
-        popup.open()
+        btn_wrapper = BoxLayout(orientation='horizontal', size_hint=(1, 0.25))
+        btn_exit = Button(text='Ja', size_hint=(0.5, 1), halign='center')
+        btn_stay = Button(text='Nej', size_hint=(0.5, 1), halign='center')
+        btn_wrapper.add_widget(btn_exit)
+        btn_wrapper.add_widget(btn_stay)
+        box.add_widget(btn_wrapper)
+        self.popup = Popup(title=title, content=box, size_hint=(None, None), size=(600, 300))
+        self.popup.open()
+        btn_exit.bind(on_release=self.stop)
+        btn_stay.bind(on_release=self.popup.dismiss)

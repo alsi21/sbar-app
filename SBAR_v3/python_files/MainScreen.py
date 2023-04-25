@@ -17,7 +17,8 @@ class MainScreen(Screen):
     def on_enter(self):
         '''
         Code that gets executed whenever screen is showed,
-        Adds graphical main menu note representation for each note'''
+        Adds graphical main menu note representation for each note
+        '''
         #Change transition to slide to left
         self.manager.transition = SlideTransition(direction='left')
         # clear any existing buttons
@@ -29,7 +30,7 @@ class MainScreen(Screen):
         # Removes notes flagged as timed out.
         for note in CustomApp.CustomApp.notes:
             if note.timed_out(3):
-                delete_data(STORE_NOTES, note.patientid, note.time_of_creation)
+                delete_data(STORE_NOTES, note.time_of_creation)
                 CustomApp.CustomApp.notes.remove(note)
 
         for note in CustomApp.CustomApp.notes[::-1]:
@@ -54,7 +55,9 @@ class MainScreen(Screen):
             full_widget.ids.buttonone.note = note
 
     def check_note(self, instance, note):
-        ''' Toggles the checked state for a SBAR Note'''
+        ''' 
+        Toggles the checked state for a SBAR Note
+        '''
         state = note.checked
         note.checked = not state
         self.manager.current = 'main'
@@ -74,7 +77,7 @@ class MainScreen(Screen):
 
     def delete_note(self, note):
         '''Deletes Note from Local Storage'''
-        delete_data(STORE_NOTES, note.patientid, note.time_of_creation)            
+        delete_data(STORE_NOTES, note.time_of_creation)            
 
     def edit_note(self, instance, note):
         '''
@@ -100,7 +103,8 @@ class MainScreen(Screen):
             emerg_screen.ids.patientid.text = note.patientid
             emerg_screen.ids.situation.text = note.situation
             emerg_screen.ids.bakgrund.text = note.background
-            emerg_screen.ids.aktuellt.text = note.relevant
+            # emerg_screen.ids.aktuellt.text = note.relevant
+            emerg_screen.ids.safety.text = note.safety
             emerg_screen.ids.air.text = note.airway
             emerg_screen.ids.breath.text = note.breath
             emerg_screen.ids.circ.text = note.circ
@@ -138,7 +142,8 @@ class MainScreen(Screen):
         emerg_screen.ids.patientid.text = ''
         emerg_screen.ids.situation.text = ''
         emerg_screen.ids.bakgrund.text = ''
-        emerg_screen.ids.aktuellt.text = ''
+        # emerg_screen.ids.aktuellt.text = ''
+        emerg_screen.ids.safety.text = ''
         emerg_screen.ids.air.text = ''
         emerg_screen.ids.breath.text = ''
         emerg_screen.ids.circ.text = ''

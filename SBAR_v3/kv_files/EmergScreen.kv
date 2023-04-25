@@ -81,6 +81,7 @@
                         hint_text: '' if self.focus else 'Börja skriva här...'
                         size_hint: 1,None
                         height: self.minimum_height
+                        on_text: root.max_length_text(self.text)
                     BoxLayout:
                         height: dp(50)
                         size_hint: 1, None
@@ -144,8 +145,22 @@
                             size: self.texture_size
                             on_press: root.show_aktuellt()
                         Label:
+                    BoxLayout:
+                        height: dp(50)
+                        size_hint: 1, None
+                        orientation: 'horizontal'
+                        SbarWhiteButton:
+                            color: 0,0,0,1
+                            text: 'S-Säkerhet'
+                            valign: "middle"
+                            padding: dp(0), dp(10)
+                            font_size: dp(22)
+                            size_hint: None, None
+                            size: self.texture_size
+                            on_press:
+                        Label:
                     TextInput:
-                        id: aktuellt
+                        id: safety
                         background_color: (227/255,210/255,210/255,1) if self.focus else (227/255,210/255,210/255,1)
                         background_normal: ''
                         foreground_color: .1, .1, .1, 1  # default text color

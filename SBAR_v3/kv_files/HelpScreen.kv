@@ -1,0 +1,335 @@
+#:kivy 1.0.9
+
+<HelpScreen>:
+    BoxLayout:
+        orientation: 'vertical'
+        canvas.before:
+            Color:
+                rgba: 1,1,1,1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: 0.15
+            canvas.before:
+                Color:
+                    rgba: 216/255, 210/255, 227/255, 1
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+            Button:
+                background_normal: 'SBAR_v3\images\SBAR_snake.png'
+                background_down: 'SBAR_v3\images\SBAR_snake.png'
+                allow_stretch: True
+                keep_ratio: True
+                size_hint_x: .3
+                on_press: root.manager.current = 'main'
+                color: 0,0,0,1
+            BackgroundLabel:
+                text: 'Hjälp'
+                font_size: '50dp'
+                color: 0,0,0,1
+                background_color: 216/255, 210/255, 227/255, 1
+                size_hint_x: .4
+            BackgroundLabel:
+                background_color: 216/255, 210/255, 227/255, 1
+                size_hint_x: .3
+        
+        BoxLayout:
+            size_hint_y: .85
+            orientation: 'horizontal'
+            ScrollView:
+                id: scroll_view
+                scroll_type: ['bars','content']
+                bar_width: '10dp'
+                effect_cls: 'ScrollEffect'
+                scroll_size: self.children[0].height
+                BoxLayout:
+                    padding: dp(20), 0
+                    orientation: 'vertical'
+                    size_hint_y: None
+                    height: self.minimum_height
+                    CustomSlider:
+                        height: scroll_view.height
+                        value: scroll_view.scroll_y
+                        on_value: scroll_view.scroll_y = self.value
+                    Label:
+                        id: toc_var
+                    BoxLayout:
+                        height: self.minimum_height
+                        padding: 0, dp(10)
+                        size_hint: 1, None
+                        orientation: 'vertical'
+                        spacing: dp(20)
+                        Label:
+                            
+                        Label:
+                            text: "SBAR"
+                            color: 0,0,0,1
+                            font_size: dp(24)
+                            size: self.texture_size
+                            # size_hint: None, None
+                            # halign: "left"
+                            padding: dp(0), dp(10)
+                        Label:
+                            text: 'För att skapa en ny vanlig SBAR fil så går du till hem sedan skapar man en ny SBAR med hjälp av att trycka på det blåa plusset. När du har tryckt på knappen så kommer du till en ny skärm där du kan fylla ut all information som är nödvändig. Glöm inte att för att SBAR filen ska sparas så behöver du ett patient ID.'
+                            color: 0,0,0,1
+                            border: (2,2,2,2)
+                            valign: "middle"
+                            padding: dp(0), dp(10)
+                            font_size: dp(18)
+                            size_hint: None, None
+                            size: self.texture_size
+                            height: self.texture_size[1] + dp(20)
+                            text_size: self.width, None
+                            width: dp(320)
+                            halign: "center"
+                            pos_hint_y: 1
+                            canvas.before:
+                                Color:
+                                    rgba: (0,0,0,1)
+                                Line:
+                                    width: 2
+                                    cap: "round"
+                                    rectangle: (self.x, self.y, self.width, self.height)
+                                Color:
+                                    rgba: (217/255,225/255,1,1)
+                                Rectangle:
+                                    pos: self.pos
+                                    size: self.size
+                        Label:
+            
+                        Label:
+                            text: "Akut SBAR"
+                            color: 0,0,0,1
+                            font_size: dp(24)
+                            size: self.texture_size
+                            # size_hint: None, None
+                            # halign: "left"
+                            padding: dp(0), dp(10)
+                        Label:
+                            text: 'För att skapa en ny akut SBAR fil så går du till hem sedan skapar man en ny akut SBAR med hjälp av att trycka på det röda plusset. När du har tryckt på knappen så kommer du till en ny skärm där du kan fylla ut all information som är nödvändig. Glöm inte att för att akut SBAR filen ska sparas så behöver du ett patient ID.'
+                            color: 0,0,0,1
+                            border: (2,2,2,2)
+                            valign: "middle"
+                            padding: dp(0), dp(10)
+                            font_size: dp(18)
+                            size_hint: None, None
+                            size: self.texture_size
+                            height: self.texture_size[1] + dp(20)
+                            text_size: self.width, None
+                            width: dp(320)
+                            halign: "center"
+                            pos_hint_y: 1
+                            canvas.before:
+                                Color:
+                                    rgba: (0,0,0,1)
+                                Line:
+                                    width: 2
+                                    cap: "round"
+                                    rectangle: (self.x, self.y, self.width, self.height)
+                                Color:
+                                    rgba: (217/255,225/255,1,1)
+                                Rectangle:
+                                    pos: self.pos
+                                    size: self.size
+                        Label:
+                        
+                        Label:
+                            text: "Patient ID"
+                            color: 0,0,0,1
+                            font_size: dp(24)
+                            size: self.texture_size
+                            # size_hint: None, None
+                            # halign: "left"
+                            padding: dp(0), dp(10)
+                        Label:
+                            text: 'Om du har valt ett patient id så kan du alltid gå tillbaka och ändra och fixa i den filen, alltså behöver du inte fylla i alla fälten på en och samma gång för att rapporten ska sparas.'
+                            color: 0,0,0,1
+                            border: (2,2,2,2)
+                            valign: "middle"
+                            padding: dp(0), dp(10)
+                            font_size: dp(18)
+                            size_hint: None, None
+                            size: self.texture_size
+                            height: self.texture_size[1] + dp(20)
+                            text_size: self.width, None
+                            width: dp(320)
+                            halign: "center"
+                            pos_hint_y: 1
+                            canvas.before:
+                                Color:
+                                    rgba: (0,0,0,1)
+                                Line:
+                                    width: 2
+                                    cap: "round"
+                                    rectangle: (self.x, self.y, self.width, self.height)
+                                Color:
+                                    rgba: (217/255,225/255,1,1)
+                                Rectangle:
+                                    pos: self.pos
+                                    size: self.size
+                        Label:
+                        
+                        Label:
+                            text: "SBAR information"
+                            color: 0,0,0,1
+                            font_size: dp(24)
+                            size: self.texture_size
+                            # size_hint: None, None
+                            # halign: "left"
+                            padding: dp(0), dp(10)
+                        Label:
+                            text: 'Vad SBAR står för och innebär kan du som användare hitta både inne i varje SBAR rapport som du har och det kommer även vara tillgängligt i manuallen. I varje SBAR fil så kan man trycka på texten för att få upp en popup med information om vad som ska stå i textrutan.'
+                            color: 0,0,0,1
+                            border: (2,2,2,2)
+                            valign: "middle"
+                            padding: dp(0), dp(10)
+                            font_size: dp(18)
+                            size_hint: None, None
+                            size: self.texture_size
+                            height: self.texture_size[1] + dp(20)
+                            text_size: self.width, None
+                            width: dp(320)
+                            halign: "center"
+                            pos_hint_y: 1
+                            canvas.before:
+                                Color:
+                                    rgba: (0,0,0,1)
+                                Line:
+                                    width: 2
+                                    cap: "round"
+                                    rectangle: (self.x, self.y, self.width, self.height)
+                                Color:
+                                    rgba: (217/255,225/255,1,1)
+                                Rectangle:
+                                    pos: self.pos
+                                    size: self.size
+                        Label:
+                        
+                        Label:
+                            text: "Auto delete"
+                            color: 0,0,0,1
+                            font_size: dp(24)
+                            size: self.texture_size
+                            # size_hint: None, None
+                            # halign: "left"
+                            padding: dp(0), dp(10)
+                        Label:
+                            text: 'När du skapar en SBAR fil så startar en timer på x timmar som kommer att auto deleta filen, detta är för att hålla GDPRs standards. Sedan om du dessutom har använt checkboxen så kommer timern att minska till y timmar för att den ska deleta.'
+                            color: 0,0,0,1
+                            border: (2,2,2,2)
+                            valign: "middle"
+                            padding: dp(0), dp(10)
+                            font_size: dp(18)
+                            size_hint: None, None
+                            size: self.texture_size
+                            height: self.texture_size[1] + dp(20)
+                            text_size: self.width, None
+                            width: dp(320)
+                            halign: "center"
+                            pos_hint_y: 1
+                            canvas.before:
+                                Color:
+                                    rgba: (0,0,0,1)
+                                Line:
+                                    width: 2
+                                    cap: "round"
+                                    rectangle: (self.x, self.y, self.width, self.height)
+                                Color:
+                                    rgba: (217/255,225/255,1,1)
+                                Rectangle:
+                                    pos: self.pos
+                                    size: self.size
+                        Label:
+                        
+                        Label:
+                            text: "Checkbox"
+                            color: 0,0,0,1
+                            font_size: dp(24)
+                            size: self.texture_size
+                            # size_hint: None, None
+                            # halign: "left"
+                            padding: dp(0), dp(10)
+                        Label:
+                            text: 'Checkboxen funkar som en indikator för användaren så att användaren vet att rapporten är klar och överrapporterad. När rapporten är i checkad så flyttas den till botten av listan av rapporter och får en annan färg. När en rapport är checkboxad så kommer den att auto deletas snabbare.'
+                            color: 0,0,0,1
+                            border: (2,2,2,2)
+                            valign: "middle"
+                            padding: dp(0), dp(10)
+                            font_size: dp(18)
+                            size_hint: None, None
+                            size: self.texture_size
+                            height: self.texture_size[1] + dp(20)
+                            text_size: self.width, None
+                            width: dp(320)
+                            halign: "center"
+                            pos_hint_y: 1
+                            canvas.before:
+                                Color:
+                                    rgba: (0,0,0,1)
+                                Line:
+                                    width: 2
+                                    cap: "round"
+                                    rectangle: (self.x, self.y, self.width, self.height)
+                                Color:
+                                    rgba: (217/255,225/255,1,1)
+                                Rectangle:
+                                    pos: self.pos
+                                    size: self.size
+                        Label:
+                        
+                        Label:
+                            text: "Pin kod"
+                            color: 0,0,0,1
+                            font_size: dp(24)
+                            size: self.texture_size
+                            # size_hint: None, None
+                            # halign: "left"
+                            padding: dp(0), dp(10)
+                        Label:
+                            text: 'Din pin kod har du valt i början när du startar appen, men kan ersättas mot en ny om du går in i inställningar och väljer att byta pin kod.'
+                            color: 0,0,0,1
+                            border: (2,2,2,2)
+                            valign: "middle"
+                            padding: dp(0), dp(10)
+                            font_size: dp(18)
+                            size_hint: None, None
+                            size: self.texture_size
+                            height: self.texture_size[1] + dp(20)
+                            text_size: self.width, None
+                            width: dp(320)
+                            halign: "center"
+                            pos_hint_y: 1
+                            canvas.before:
+                                Color:
+                                    rgba: (0,0,0,1)
+                                Line:
+                                    width: 2
+                                    cap: "round"
+                                    rectangle: (self.x, self.y, self.width, self.height)
+                                Color:
+                                    rgba: (217/255,225/255,1,1)
+                                Rectangle:
+                                    pos: self.pos
+                                    size: self.size
+                        Label:
+                    
+        Label:
+            size_hint_y: .02
+        BoxLayout:
+            orientation: 'horizontal'
+            size_hint_y: None
+            height: dp(40)
+            Label:
+            RoundedRedButton:
+                text: "Back"
+                background_color: 217/255,225/255,1,1
+                color: 0,0,0,1
+                font_size: '35dp'
+                on_press: root.manager.current = 'main'
+            Label:
+        Label:
+            size_hint_y: .02

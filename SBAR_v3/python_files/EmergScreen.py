@@ -1,6 +1,7 @@
 import classes
 import CustomApp
 
+from kivy.clock import Clock
 from kivy.uix.screenmanager import ScreenManager, Screen
 from LocalStorage import STORE_NOTES, delete_data
 from Encryption import encrypt
@@ -9,7 +10,15 @@ from kivy.uix.popup import Popup
 
 class EmergScreen(Screen):
     '''Screen class to handle emergency notes ,similiar to SbarScreen'''
-
+    def max_length_text(self,text):
+        """
+        Every time text is written it checks the length to see if it's too long,
+        if it is slice the last part of and override text of patientid
+        """
+        print(len(text))
+        if len(text) > 24:
+            text =text[:-1]
+            self.ids.patientid.text = text
     def on_enter(self):
         '''
         Code that gets executed everytime screen gets displayed
@@ -20,7 +29,8 @@ class EmergScreen(Screen):
         self.old_id = self.ids.patientid.text
         self.old_situation = self.ids.situation.text
         self.old_background = self.ids.bakgrund.text
-        self.old_akt = self.ids.aktuellt.text
+        # self.old_akt = self.ids.aktuellt.text
+        self.old_safety = self.ids.safety.text
         self.old_air = self.ids.air.text
         self.old_bre = self.ids.breath.text
         self.old_circ = self.ids.circ.text
@@ -33,7 +43,8 @@ class EmergScreen(Screen):
                 self.old_id == note.patientid and
                 self.old_situation == note.situation and
                 self.old_background == note.background and
-                self.old_akt == note.relevant and
+                # self.old_akt == note.relevant and
+                self.old_safety == note.safety and
                 self.old_air == note.airway and
                 self.old_bre == note.breath and
                 self.old_circ == note.circ and
@@ -44,6 +55,8 @@ class EmergScreen(Screen):
                 ):
                 self.repeat = True
                 self.old_note = note
+
+        self.auto_save = Clock.schedule_interval(self.quick_save, 2.5)
 
     def show_p_id(self):
         """
@@ -207,17 +220,12 @@ class EmergScreen(Screen):
         )
         popup.open()
 
-    def save_note(self):
-        '''
-        Code that gets executed when button is pressed to go to main menu
-        Creates a note with current info and if it is not a previous note it gets put into list of notes
-        changes to main menu
-        '''
-
+    def quick_save(self, dt):
         patientid = self.ids.patientid.text
         situation = self.ids.situation.text
         bakgrund = self.ids.bakgrund.text
-        aktuellt = self.ids.aktuellt.text
+        # aktuellt = self.ids.aktuellt.text
+        s = self.ids.safety.text
         a = self.ids.air.text
         b = self.ids.breath.text
         c = self.ids.circ.text
@@ -231,7 +239,50 @@ class EmergScreen(Screen):
         else:
             toc = self.ids.toc_var.text
 
-        note = classes.Note(patientid, situation, bakgrund, aktuellt, rek, extra, a, b, c, d, e, True, False, toc)
+        note = classes.Note(
+            patientid, situation, bakgrund,
+            '', rek, extra, s, a, b, c, d,
+            e, True, False, toc)
+        
+        if self.repeat and self.old_note:
+            note.checked = self.old_note.checked
+            note.timestamp = self.old_note.timestamp
+
+        if self.repeat:
+            if self.old_note:
+                delete_data(STORE_NOTES, self.old_note.time_of_creation)
+        if not note.is_empty():
+            note.export_note(local_storage=STORE_NOTES, encrypt_func=encrypt)
+
+    def save_note(self):
+        '''
+        Code that gets executed when button is pressed to go to main menu
+        Creates a note with current info and if it is not a previous note it gets put into list of notes
+        changes to main menu
+        '''
+
+        patientid = self.ids.patientid.text
+        situation = self.ids.situation.text
+        bakgrund = self.ids.bakgrund.text
+        # aktuellt = self.ids.aktuellt.text
+        s = self.ids.safety.text
+        a = self.ids.air.text
+        b = self.ids.breath.text
+        c = self.ids.circ.text
+        d = self.ids.deg.text
+        e = self.ids.exposure.text
+        rek = self.ids.reko.text
+        extra = self.ids.extra.text
+
+        if self.repeat:
+            toc = self.old_note.time_of_creation
+        else:
+            toc = self.ids.toc_var.text
+
+        note = classes.Note(
+            patientid, situation, bakgrund,
+            '', rek, extra, s, a, b, c, d,
+            e, True, False, toc)
 
         if self.repeat and self.old_note:
             note.checked = self.old_note.checked
@@ -241,8 +292,11 @@ class EmergScreen(Screen):
         if self.repeat:
             if self.old_note:
                 CustomApp.CustomApp.notes.remove(self.old_note)
-                delete_data(STORE_NOTES, self.old_note.patientid, self.old_note.time_of_creation)
+                delete_data(STORE_NOTES, self.old_note.time_of_creation)
+
         if not note.is_empty():
             CustomApp.CustomApp.notes.append(note)
             note.export_note(local_storage=STORE_NOTES, encrypt_func=encrypt)
+
+        Clock.unschedule(self.auto_save)
         self.manager.current = 'main'
