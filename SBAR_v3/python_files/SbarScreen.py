@@ -41,7 +41,7 @@ class SbarScreen(Screen):
                 print('found old note: ', note.patientid)
                 self.old_note = note
                 self.repeat = True
-        Clock.schedule_interval(self.quick_save, 2.5)
+        self.auto_save = Clock.schedule_interval(self.quick_save, 2.5)
 
 
     def on_keyboard_height(self,window,keyboard_height):
@@ -216,7 +216,10 @@ class SbarScreen(Screen):
             if self.old_note:
                 CustomApp.CustomApp.notes.remove(self.old_note)
                 delete_data(STORE_NOTES, self.old_note.time_of_creation)
+
         if not note.is_empty():
             CustomApp.CustomApp.notes.append(note)
             note.export_note(local_storage=STORE_NOTES, encrypt_func=encrypt)
+
+        Clock.unschedule(self.auto_save)
         self.manager.current = 'main'
