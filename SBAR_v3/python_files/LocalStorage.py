@@ -30,7 +30,7 @@ def serialize_notes(notes_storage):
             data['emergency'],
             data['checked'],
             decrypt(data['time_of_creation']),
-            decrypt(datetime.strptime(data['timestamp'], '%Y-%m-%d %H:%M:%S'))
+            datetime.strptime(decrypt(data['timestamp']), '%Y-%m-%d %H:%M:%S')
 
         )
         if note.checked:
