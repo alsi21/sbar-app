@@ -18,3 +18,4 @@ Builder.load_file('SBAR_v3\kv_files\ManualScreen.kv')
 
 if __name__ == '__main__':
     CustomApp.CustomApp().run()
+    
