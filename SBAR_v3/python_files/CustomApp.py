@@ -52,7 +52,8 @@ class CustomApp(App):
         '''Function to call TextPopup'''
         #Save here
         # self.TextPopup(title='Avsluta', text='Vill du avsluta?')
-        return False
+        self.stop
+        return True
 
     def TextPopup(self, title='', text=''):
         '''Function to create a popup boxlayout with a button in it'''
