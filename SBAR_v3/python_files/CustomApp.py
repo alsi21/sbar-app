@@ -52,7 +52,8 @@ class CustomApp(App):
         '''Function to call TextPopup'''
         #Save here
         # self.TextPopup(title='Avsluta', text='Vill du avsluta?')
-        self.stop
+        # self.stop
+        App.get_running_app().stop()
         return True
 
     def TextPopup(self, title='', text=''):
