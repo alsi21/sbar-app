@@ -118,6 +118,19 @@ class EmergScreen(Screen):
         )
         popup.open()   
 
+    def show_safety(self):
+            """
+            Code that excutes when you press on the text buttonsthat will show
+            the user information about what should be written in each field.
+            """
+            msg = "Är det säkert? Behövs skyddskläder? Finns det risk för smitta?"
+            text = TextInput(text=msg, multiline=True, readonly=True, height = 300, font_size=18)
+            popup = Popup(title="S - Säkerhet", 
+            content=text,
+            size_hint=(0.8, 0.5),
+            title_size="30sp"
+            )
+            popup.open()  
 
     def show_airway(self):
         """
