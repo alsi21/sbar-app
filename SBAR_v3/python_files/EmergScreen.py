@@ -85,8 +85,6 @@ class EmergScreen(Screen):
         title_size="30sp"
         )
         popup.open()
-    
-
 
     def show_bakgrund(self):
         """
@@ -101,8 +99,6 @@ class EmergScreen(Screen):
         title_size="30sp"
         )
         popup.open()    
-        
-
 
     def show_aktuellt(self):
         """
@@ -138,7 +134,7 @@ class EmergScreen(Screen):
         the user information about what should be written in each field.
         """
         msg = "Stabilisering av nacke?"
-        text = TextInput(text=msg, multiline=True, readonly=True, height = 300, font_size=18)
+        text = TextInput(text=msg, multiline=True, readonly=True, height = 300, font_size="18dp")
         popup = Popup(title="A - Fri luftväg", 
         content=text,
         size_hint=(0.8, 0.5),
@@ -153,7 +149,7 @@ class EmergScreen(Screen):
         the user information about what should be written in each field.
         """
         msg = "Lyssna på lungor.\nAndningsrörelse."
-        text = TextInput(text=msg, multiline=True, readonly=True, height = 300, font_size=18)
+        text = TextInput(text=msg, multiline=True, readonly=True, height = 300, font_size="18dp")
         popup = Popup(title="B - Syresättning, andningsfrekvens", 
         content=text,
         size_hint=(0.8, 0.5),
@@ -167,7 +163,7 @@ class EmergScreen(Screen):
         the user information about what should be written in each field.
         """
         msg = "Blodtryck, puls, kapillär återfyllnad, hudstatus."
-        text = TextInput(text=msg, multiline=True, readonly=True, height = 300, font_size=18)
+        text = TextInput(text=msg, multiline=True, readonly=True, height = 300, font_size="18dp")
         popup = Popup(title="C - cirkulation", 
         content=text,
         size_hint=(0.8, 0.5),
@@ -181,7 +177,7 @@ class EmergScreen(Screen):
         the user information about what should be written in each field.
         """
         msg = "Medvetande och neurologstatus, P-glukos."
-        text = TextInput(text=msg, multiline=True, readonly=True, height = 300, font_size=18)
+        text = TextInput(text=msg, multiline=True, readonly=True, height = 300, font_size="18dp")
         popup = Popup(title="D - Medvetande och neurologstatus", 
         content=text,   
         size_hint=(0.8, 0.5),
@@ -195,7 +191,7 @@ class EmergScreen(Screen):
         the user information about what should be written in each field.
         """
         msg = "Kroppsinspektion. \nVärm patienten om den är kall. \nEKG?"
-        text = TextInput(text=msg, multiline=True, readonly=True, height = 300, font_size=18)
+        text = TextInput(text=msg, multiline=True, readonly=True, height = 300, font_size="18dp")
         popup = Popup(title="E - Exponering", 
         content=text,   
         size_hint=(0.8, 0.5),
@@ -212,6 +208,20 @@ class EmergScreen(Screen):
         msg = "Rekommendation eller varför du tagit kontakt och vad mottagaren ska göra. Klargör för dig själv vad mottagaren förväntas göra utifrån det som rapporterats under Situation, Bakgrund och Aktuellt, samt inom vilken tid du anser att det ska göras."
         text = TextInput(text=msg, multiline=True, readonly=True, height = 300, font_size='18dp')
         popup = Popup(title="Rekommendation", 
+        content=text,
+        size_hint=(0.8, 0.5),
+        title_size="30sp"
+        )
+        popup.open()       
+        
+    def show_safty(self):
+        """
+        Code that excutes when you press on the text buttonsthat will show
+        the user information about what should be written in each field.
+        """
+        msg = "Är det säkert, behöver du skyddskläder och finns det risk för smitta eller blodsmitta."
+        text = TextInput(text=msg, multiline=True, readonly=True, height = 300, font_size='18dp')
+        popup = Popup(title="Säkerhet", 
         content=text,
         size_hint=(0.8, 0.5),
         title_size="30sp"
