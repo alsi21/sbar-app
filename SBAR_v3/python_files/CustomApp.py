@@ -16,7 +16,7 @@ from kivy.uix.button import Button
 from kivy.uix.popup import Popup
 
 from LocalStorage import STORE_NOTES, serialize_notes
-
+from LocalStorage import STORE_SETTINGS, get_font
 class MyScreenManager(ScreenManager):
     '''ScreenManager class'''
     # def transition(self, screen, direction):
@@ -31,23 +31,26 @@ class MyScreenManager(ScreenManager):
 class CustomApp(App):
     '''App class, keeps track of notes'''
     notes = serialize_notes(STORE_NOTES)
-
+    font_size = get_font(STORE_SETTINGS)
     def build(self):
-        '''Build function that calls Screenmanager, 
+        '''
+        Build function that calls Screenmanager, 
         adds screens to it 
-        and binds a popup window to when you attempt to close window'''
-        sm = ScreenManager(transition = SlideTransition())
-        sm.add_widget(PinScreen.PinScreen(name='pin'))
-        sm.add_widget(SetScreen.SetScreen(name='set'))
-        sm.add_widget(MainScreen.MainScreen(name='main'))  
-        sm.add_widget(SettingsScreen.SettingsScreen(name='settings'))
-        sm.add_widget(SbarScreen.SbarScreen(name='sbar'))
-        sm.add_widget(EmergScreen.EmergScreen(name='emerg'))
-        sm.add_widget(HelpScreen.HelpScreen(name='help'))
-        sm.add_widget(ManualScreen.ManualScreen(name='manual'))
-        Window.bind(on_request_close=self.on_request_close)
-        Window.bind(on_keyboard=self.android_back)
-        return sm
+        and binds a popup window to when you attempt to close window
+        '''
+        self.sm = ScreenManager(transition = SlideTransition())
+        print('building')
+        self.sm.add_widget(PinScreen.PinScreen(name='pin'))
+        self.sm.add_widget(SetScreen.SetScreen(name='set'))
+        self.sm.add_widget(MainScreen.MainScreen(name='main'))  
+        self.sm.add_widget(SettingsScreen.SettingsScreen(name='settings'))
+        self.sm.add_widget(SbarScreen.SbarScreen(name='sbar'))
+        self.sm.add_widget(EmergScreen.EmergScreen(name='emerg'))
+        self.sm.add_widget(HelpScreen.HelpScreen(name='help'))
+        self.sm.add_widget(ManualScreen.ManualScreen(name='manual'))
+
+        #Window.bind(on_request_close=self.on_request_close)
+        return self.sm
 
     def on_request_close(self, *args, **kwargs):
         '''Function to call TextPopup'''
@@ -65,8 +68,25 @@ class CustomApp(App):
             self.stop()
             return True
 
+    def reload_screens(self, *args):
+        '''
+        removes all screens, then adds them back to refresh font size
+        '''
+        print('reloading screen')
+        self.sm.clear_widgets()
+        self.sm.add_widget(MainScreen.MainScreen(name='main'))  
+        self.sm.add_widget(PinScreen.PinScreen(name='pin'))
+        self.sm.add_widget(SetScreen.SetScreen(name='set'))
+        self.sm.add_widget(SettingsScreen.SettingsScreen(name='settings'))
+        self.sm.add_widget(SbarScreen.SbarScreen(name='sbar'))
+        self.sm.add_widget(EmergScreen.EmergScreen(name='emerg'))
+        self.sm.add_widget(HelpScreen.HelpScreen(name='help'))
+        self.sm.add_widget(ManualScreen.ManualScreen(name='manual'))
+
     def TextPopup(self, title='', text=''):
-        '''Function to create a popup boxlayout with a button in it'''
+        '''
+        Function to create a popup boxlayout with a button in it
+        '''
         box = BoxLayout(orientation='vertical')
         box.add_widget(Label(text=text))
         btn_wrapper = BoxLayout(orientation='horizontal', size_hint=(1, 0.25))

@@ -9,7 +9,7 @@ from kivy.metrics import dp
 from LocalStorage import STORE_NOTES, delete_data
 from Encryption import encrypt
 
-NOTE_HEIGTH = dp(80) + 10 # +10 because of spacing and bottom padding.
+NOTE_HEIGTH = (dp(80) + 10) # +10 because of spacing and bottom padding.
 
 class MainScreen(Screen):
     '''Screen class for main menu'''
@@ -40,7 +40,7 @@ class MainScreen(Screen):
 
         for note in CustomApp.CustomApp.notes[::-1]:
             # Calculates new scroll-view height from note count.
-            self.ids.label_layout.height += NOTE_HEIGTH
+            self.ids.label_layout.height += NOTE_HEIGTH* self.get_font_size()
             if note.emergency:
                 full_widget = classes.EmergNote()
                 if note.checked:
@@ -58,6 +58,10 @@ class MainScreen(Screen):
             full_widget.ids.checkbox.bind(on_press=lambda instance, button_note=button_note: self.check_note(instance, button_note))
             self.ids.label_layout.add_widget(full_widget)
             full_widget.ids.buttonone.note = note
+    
+    def get_font_size(self):
+        self.font_size = CustomApp.CustomApp.font_size
+        return self.font_size
 
     def check_note(self, instance, note):
         ''' 
@@ -124,7 +128,7 @@ class MainScreen(Screen):
         Enters SbarScreen and clears any existing text, 
         not saved til save button is pressed on SbarScreen
         '''
-        self.ids.label_layout.height += NOTE_HEIGTH
+        self.ids.label_layout.height += NOTE_HEIGTH* self.get_font_size()
         self.manager.current = 'sbar'
         sbar_screen = self.manager.get_screen('sbar')
         sbar_screen.ids.patientid.text = ''
@@ -141,7 +145,7 @@ class MainScreen(Screen):
         Enters EmergScreen and clears any existing text, 
         not saved til save button is pressed on EmergScreen
         '''
-        self.ids.label_layout.height += NOTE_HEIGTH
+        self.ids.label_layout.height += NOTE_HEIGTH* self.get_font_size()
         self.manager.current = 'emerg'
         emerg_screen = self.manager.get_screen('emerg')
         emerg_screen.ids.patientid.text = ''

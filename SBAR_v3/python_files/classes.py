@@ -134,9 +134,17 @@ class SbarNote(BoxLayout):
         '''CheckBox Interaction'''
         pass
 
+    def get_font_size(self):
+        self.font_size = CustomApp.CustomApp.font_size
+        return self.font_size
+
 class EmergNote(BoxLayout):
     '''Mainscreen Emerg note handling'''
 
     def on_checkbox_active(self, checkbox):
         '''CheckBox Interaction'''
         pass
+
+    def get_font_size(self):
+        self.font_size = CustomApp.CustomApp.font_size
+        return self.font_size

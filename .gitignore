@@ -1,6 +1,7 @@
 # Local storage
 **/notes.json
 **/pin.json
+**/settings.json
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
