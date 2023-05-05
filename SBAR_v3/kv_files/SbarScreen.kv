@@ -205,6 +205,33 @@
                     Label:
                         size_hint: 1, None
                         height: 10
+                    BoxLayout:
+                        height: dp(50)* root.get_font_size()
+                        size_hint: 1, None
+                        orientation: 'horizontal'
+                        BoxLayout:
+                            orientation: 'horizontal'
+                            SbarWhiteButton:
+                                color: 0,0,0,1
+                                font_name:"Seguisym"
+                                text: '[Lägg till timer]     '
+                                valign: "middle"
+                                padding: dp(0), dp(10)
+                                font_size: dp(22)* root.get_font_size()
+                                size_hint: .7, None
+                                size: self.texture_size
+                                on_press: root.timer()
+                            TextInput:
+                                id: timer
+                                multiline: False
+                                background_color: (217/255,225/255,1,1) if self.focus else (217/255,225/255,1,1)
+                                background_normal: ''
+                                foreground_color: .1, .1, .1, 1  # default text color
+                                font_size: dp(30)* root.get_font_size()
+                                hint_text: '' if self.focus else '...'
+                                size_hint: .3,None
+                                height: self.minimum_height
+                        Label:
                     Label:
                         id: whitespace
                         size_hint_y: 0

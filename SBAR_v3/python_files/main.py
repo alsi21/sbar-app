@@ -3,7 +3,6 @@ Config.set('graphics', 'width', '360')#
 Config.set('graphics', 'height', '640')#
 
 import CustomApp
-
 from kivy.lang import Builder
 # Loading Multiple .kv files 
 Builder.load_file('SBAR_v3\kv_files\Classes.kv')

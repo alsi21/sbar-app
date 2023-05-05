@@ -10,6 +10,7 @@ from Encryption import encrypt
 from kivy.properties import StringProperty
 from kivy.core.window import Window
 from kivy.utils import platform
+from plyer import notification
 
 class SbarScreen(Screen):
     '''Screen class to handle Sbar notes ,similiar to EmergScreen'''
@@ -43,6 +44,17 @@ class SbarScreen(Screen):
                 self.repeat = True
         self.auto_save = Clock.schedule_interval(self.quick_save, 2.5)
 
+<<<<<<< Updated upstream
+=======
+    def timer(self):
+        minutes = self.ids.timer.text
+        notification.notify(title='Cock', message=minutes, app_name = 'Cock_app')
+
+    def get_font_size(self):
+        self.font_size = CustomApp.CustomApp.font_size
+        return self.font_size
+
+>>>>>>> Stashed changes
     def on_keyboard_height(self,window,keyboard_height):
         if keyboard_height > 0:
             self.ids.whitespace.height = keyboard_height
