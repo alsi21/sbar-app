@@ -85,8 +85,6 @@ class EmergScreen(Screen):
         title_size="30sp"
         )
         popup.open()
-    
-
 
     def show_bakgrund(self):
         """
@@ -101,8 +99,6 @@ class EmergScreen(Screen):
         title_size="30sp"
         )
         popup.open()    
-        
-
 
     def show_aktuellt(self):
         """
