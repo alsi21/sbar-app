@@ -120,7 +120,7 @@ class Note:
 
     def timed_out(self, hours: int) -> bool:
         now = datetime.now()
-        # Temporarily set to 1 instead of 3600.
+        # Temporarily set to 60 instead of 3600 to get minutes instead of hours.
         timeframe = (hours * 60)
         if self.checked:
             timeframe = (hours * 20)
