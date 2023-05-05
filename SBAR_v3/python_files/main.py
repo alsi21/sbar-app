@@ -34,3 +34,4 @@ else:
 
 if __name__ == '__main__':
     CustomApp.CustomApp().run()
+    

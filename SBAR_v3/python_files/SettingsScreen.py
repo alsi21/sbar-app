@@ -5,6 +5,8 @@ from kivy.uix.screenmanager import Screen
 from kivy.animation import Animation
 from LocalStorage import STORE_NOTES, delete_data
 
+from kivy.uix.slider import Slider
+from LocalStorage import STORE_SETTINGS
 class SettingsScreen(Screen):
     '''
     Screen class for settings,
@@ -45,8 +47,23 @@ class SettingsScreen(Screen):
             self.ids.label_layout.add_widget(full_widget)
             full_widget.ids.buttonone.note = note
 
+    def go_main(self, *args):
+        app = CustomApp.CustomApp.get_running_app()
+        app.reload_screens()
+
+    def get_font_size(self):
+        self.font_size = CustomApp.CustomApp.font_size
+        return self.font_size
+
     def go_to_help(self):
         self.manager.current = "help"
 
     def go_to_manual(self):
         self.manager.current = "manual"
+
+    def change_font(self, font_size):
+        CustomApp.CustomApp.font_size = round(font_size,1)
+        print(CustomApp.CustomApp.font_size)
+        STORE_SETTINGS.put('font_size', font = CustomApp.CustomApp.font_size)
+
+        

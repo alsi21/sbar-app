@@ -10,15 +10,6 @@ from kivy.uix.popup import Popup
 
 class EmergScreen(Screen):
     '''Screen class to handle emergency notes ,similiar to SbarScreen'''
-    def max_length_text(self,text):
-        """
-        Every time text is written it checks the length to see if it's too long,
-        if it is slice the last part of and override text of patientid
-        """
-        print(len(text))
-        if len(text) > 24:
-            text =text[:-1]
-            self.ids.patientid.text = text
     def on_enter(self):
         '''
         Code that gets executed everytime screen gets displayed
@@ -58,6 +49,20 @@ class EmergScreen(Screen):
 
         self.auto_save = Clock.schedule_interval(self.quick_save, 2.5)
 
+    def get_font_size(self):
+        self.font_size = CustomApp.CustomApp.font_size
+        return self.font_size
+
+    def max_length_text(self,text):
+        """
+        Every time text is written it checks the length to see if it's too long,
+        if it is slice the last part of and override text of patientid
+        """
+        print(len(text))
+        if len(text) > 24:
+            text =text[:-1]
+            self.ids.patientid.text = text
+            
     def show_p_id(self):
         """
         Code that excutes when you press on the text buttonsthat will show

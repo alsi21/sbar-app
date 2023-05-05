@@ -7,7 +7,7 @@ from kivy.uix.textinput import TextInput
 from kivy.uix.screenmanager import ScreenManager, Screen
 from LocalStorage import STORE_NOTES, delete_data
 from Encryption import encrypt
-from kivy.properties import StringProperty
+from kivy.properties import StringProperty, NumericProperty
 from kivy.core.window import Window
 from kivy.utils import platform
 
@@ -42,6 +42,10 @@ class SbarScreen(Screen):
                 self.old_note = note
                 self.repeat = True
         self.auto_save = Clock.schedule_interval(self.quick_save, 2.5)
+
+    def get_font_size(self):
+        self.font_size = CustomApp.CustomApp.font_size
+        return self.font_size
 
     def on_keyboard_height(self,window,keyboard_height):
         if keyboard_height > 0:
