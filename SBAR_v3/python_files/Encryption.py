@@ -5,9 +5,9 @@
 # f = Fernet(key)
 
 def encrypt(data: str) -> str:
-    return data
     # return f.encrypt(data.encode()).decode()
+    return data
 
 def decrypt(data: str) -> str:
-    return data
     # return f.decrypt(data.encode()).decode()
+    return data

@@ -19,26 +19,23 @@
                 Rectangle:
                     pos: self.pos
                     size: self.size
-            Button:
-                background_normal: 'SBAR_v3\images\SBAR_snake.png'
-                background_down: 'SBAR_v3\images\SBAR_snake.png'
+            Image:
+                source: 'SBAR_v3\images\SBAR_snake.png'
                 allow_stretch: True
-                keep_ratio: True
-                size_hint_x: .3
-                on_press: root.manager.current = 'main'
-                color: 0,0,0,1
+                keep_ratio: False
+                size_hint: .33, 1
             BackgroundLabel:
                 text: 'SBAR'
                 font_size: '50dp'
                 color: 0,0,0,1
                 background_color: 216/255, 210/255, 227/255, 1
-                size_hint_x: .4
+                size_hint: .33, 1
             BackgroundLabel:
                 background_color: 216/255, 210/255, 227/255, 1
-                size_hint_x: .3
-        
+                size_hint: .33, 1
+
         BoxLayout:
-            size_hint_y: .85
+            size_hint_y: .75
             orientation: 'horizontal'
             ScrollView:
                 id: scroll_view
@@ -212,10 +209,12 @@
                         id: whitespace
                         size_hint_y: 0
                         height: 0
+                    Label:
+                        size_hint: 1, None
+                        height: dp(120)
         BoxLayout:
             orientation: 'vertical'
-            size_hint_y: None
-            height: self.minimum_height + dp(15)
+            size_hint_y: 0.10
             padding: 0
             spacing: 0
             canvas.before:

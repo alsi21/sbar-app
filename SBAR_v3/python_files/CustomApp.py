@@ -45,14 +45,25 @@ class CustomApp(App):
         sm.add_widget(EmergScreen.EmergScreen(name='emerg'))
         sm.add_widget(HelpScreen.HelpScreen(name='help'))
         sm.add_widget(ManualScreen.ManualScreen(name='manual'))
-        #Window.bind(on_request_close=self.on_request_close)
+        Window.bind(on_request_close=self.on_request_close)
+        Window.bind(on_keyboard=self.android_back)
         return sm
 
     def on_request_close(self, *args, **kwargs):
         '''Function to call TextPopup'''
         #Save here
         # self.TextPopup(title='Avsluta', text='Vill du avsluta?')
-        return False
+        print('Called on_request_close.')
+        self.stop()
+        return True
+    
+    def android_back(self, window, key, *largs):
+        if key == 27:
+            # self.TextPopup(title='Avsluta', text='Vill du avsluta?')
+            print(key)
+            print('Pressed android back.')
+            self.stop()
+            return True
 
     def TextPopup(self, title='', text=''):
         '''Function to create a popup boxlayout with a button in it'''

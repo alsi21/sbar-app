@@ -28,10 +28,15 @@ class MainScreen(Screen):
         self.ids.label_layout.height = 10
 
         # Removes notes flagged as timed out.
-        for note in CustomApp.CustomApp.notes:
+        del_index = [] # List for storing index of notes to delete.
+        for index, note in enumerate(CustomApp.CustomApp.notes):
             if note.timed_out(3):
+                del_index.append(index)
                 delete_data(STORE_NOTES, note.time_of_creation)
-                CustomApp.CustomApp.notes.remove(note)
+
+        # Loop backwards to prevent out-of-bound pops.
+        for index in del_index[::-1]:
+            CustomApp.CustomApp.notes.pop(index)
 
         for note in CustomApp.CustomApp.notes[::-1]:
             # Calculates new scroll-view height from note count.
@@ -65,12 +70,12 @@ class MainScreen(Screen):
             CustomApp.CustomApp.notes.remove(note)
             self.delete_note(note)
             CustomApp.CustomApp.notes.insert(0, note)
-            note.export_note(STORE_NOTES, encrypt)
+            note.export_note(local_storage=STORE_NOTES, encrypt_func=encrypt)
         else:
             CustomApp.CustomApp.notes.remove(note)
             self.delete_note(note)
             CustomApp.CustomApp.notes.append(note)
-            note.export_note(STORE_NOTES, encrypt)
+            note.export_note(local_storage=STORE_NOTES, encrypt_func=encrypt)
             
         self.on_enter()
 

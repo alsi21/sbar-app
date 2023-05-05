@@ -3,6 +3,7 @@ import classes
 
 from kivy.uix.screenmanager import Screen
 from kivy.animation import Animation
+from LocalStorage import STORE_NOTES, delete_data
 
 class SettingsScreen(Screen):
     '''
@@ -12,6 +13,18 @@ class SettingsScreen(Screen):
     def on_enter(self):
         # clear any existing buttons
         self.ids.label_layout.clear_widgets()
+
+        # Removes notes flagged as timed out.
+        del_index = [] # List for storing index of notes to delete.
+        for index, note in enumerate(CustomApp.CustomApp.notes):
+            if note.timed_out(3):
+                del_index.append(index)
+                delete_data(STORE_NOTES, note.time_of_creation)
+
+        # Loop backwards to prevent out-of-bound pops.
+        for index in del_index[::-1]:
+            CustomApp.CustomApp.notes.pop(index)
+
         # add a button for each note
         for note in CustomApp.CustomApp.notes[::-1]:
             if note.emergency:

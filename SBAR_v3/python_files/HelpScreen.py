@@ -7,4 +7,4 @@ from kivy.uix.screenmanager import ScreenManager, Screen
 
 
 class HelpScreen(Screen):
-    '''Screen class to handle Sbar notes ,similiar to EmergScreen'''
+    '''Screen class to handle Sbar notes, similiar to EmergScreen'''
