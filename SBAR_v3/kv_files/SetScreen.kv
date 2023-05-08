@@ -36,78 +36,119 @@
                 size_hint_y: 0.15
                 orientation: 'horizontal'
                 spacing: 15
+                Label:
+                    size_hint: 0.01, None
                 RoundButton:
                     text: "1"
                     background_color: 1,1,1,1
                     color: 0,0,0,1
                     font_size: '40dp'
+                    size_hint_x: 1
+                    size_hint_max_x: self.height
                     on_press: root.on_button1_press(), root.update_text()
                 RoundButton:
                     text: '2'
                     background_color: 1,1,1,1
                     color: 0,0,0,1
                     font_size: '40dp'
+                    size_hint_x: 1
+                    size_hint_max_x: self.height
                     on_press: root.on_button2_press(), root.update_text()
                 RoundButton:
                     text: '3'
                     background_color: 1,1,1,1
                     color: 0,0,0,1
                     font_size: '40dp'
+                    size_hint_x: 1
+                    size_hint_max_x: self.height
                     on_press: root.on_button3_press(), root.update_text()
+                Label:
+                    size_hint: 0.01, None
             BoxLayout:
                 size_hint_y: 0.15
                 orientation: 'horizontal'
                 spacing: 15
+                Label:
+                    size_hint: 0.01, None
                 RoundButton:
                     text: '4'
                     background_color: 1,1,1,1
                     color: 0,0,0,1
                     font_size: '40dp'
+                    size_hint_x: 1
+                    size_hint_max_x: self.height
                     on_press: root.on_button4_press(), root.update_text()
                 RoundButton:
                     text: '5'
                     background_color: 1,1,1,1
                     color: 0,0,0,1
                     font_size: '40dp'
+                    size_hint_x: 1
+                    size_hint_max_x: self.height
                     on_press: root.on_button5_press(), root.update_text()
                 RoundButton:
                     text: '6'
                     background_color: 1,1,1,1
                     color: 0,0,0,1
                     font_size: '40dp'
+                    size_hint_x: 1
+                    size_hint_max_x: self.height
                     on_press: root.on_button6_press(), root.update_text()
+                Label:
+                    size_hint: 0.01, None
             BoxLayout:
                 size_hint_y: 0.15
                 orientation: 'horizontal'
                 spacing: 15
+                Label:
+                    size_hint: 0.01, None
                 RoundButton:
                     text: '7'
                     background_color: 1,1,1,1
                     color: 0,0,0,1
                     font_size: '40dp'
+                    size_hint_x: 1
+                    size_hint_max_x: self.height
                     on_press: root.on_button7_press(), root.update_text()
                 RoundButton:
                     text: '8'
                     background_color: 1,1,1,1
                     color: 0,0,0,1
                     font_size: '40dp'
+                    size_hint_x: 1
+                    size_hint_max_x: self.height
                     on_press: root.on_button8_press(), root.update_text()
                 RoundButton:
                     text: '9'
                     background_color: 1,1,1,1
                     color: 0,0,0,1
                     font_size: '40dp'
+                    size_hint_x: 1
+                    size_hint_max_x: self.height
                     on_press: root.on_button9_press(), root.update_text()
+                Label:
+                    size_hint: 0.01, None
             BoxLayout:
                 size_hint_y: 0.15
                 orientation: 'horizontal'
                 spacing: '20dp'
                 Label:
+                    size_hint: 0.01, None
+                Label:
+                    text: ''
+                    background_color: 0,0,0,0
+                    color: 0,0,0,1
+                    font_size: '40dp'
+                    size_hint_x: 1
+                    size_hint_max_x: self.height
+                    on_press:
                 RoundButton:
                     text: '0'
                     background_color: 1,1,1,1
                     color: 0,0,0,1
                     font_size: '40dp'
+                    size_hint_x: 1
+                    size_hint_max_x: self.height
                     on_press: root.on_button0_press(), root.update_text()
                 RoundButton:
                     font_name: "icon_font"
@@ -115,4 +156,8 @@
                     background_color: 1,1,1,1
                     color: 0,0,0,1
                     font_size: '40dp'
+                    size_hint_x: 1
+                    size_hint_max_x: self.height
                     on_press: root.on_buttondel_press()
+                Label:
+                    size_hint: 0.01, None
