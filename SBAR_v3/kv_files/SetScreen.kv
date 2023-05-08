@@ -11,23 +11,7 @@
                 pos: self.pos
                 size: self.size
         orientation: 'vertical'
-        BoxLayout:
-            size_hint_y: 0.15
-            orientation: 'horizontal'
-            Image:
-                source: 'SBAR_v3\images\SBAR_snake.png'
-                allow_stretch: True
-                keep_ratio: False
-                size_hint: .33, 1
-            BackgroundLabel:
-                text: 'SBAR'
-                font_size: '50dp'
-                color: 0,0,0,1
-                background_color: 216/255, 210/255, 227/255, 1
-                size_hint: .33,1
-            BackgroundLabel:
-                background_color: 216/255, 210/255, 227/255, 1
-                size_hint: .33,1
+        Header:
         BoxLayout:
             size_hint_y: 0.85
             spacing: 15

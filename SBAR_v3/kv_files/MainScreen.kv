@@ -12,24 +12,7 @@
                 pos: self.pos
                 size: self.size
         
-        BoxLayout:
-            orientation: 'horizontal'
-            size_hint_y: 0.15
-            padding: 0
-            Image:
-                source: 'SBAR_v3\images\SBAR_snake.png'
-                allow_stretch: True
-                keep_ratio: False
-                size_hint: .33, 1
-            BackgroundLabel:
-                text: 'SBAR'
-                font_size: '50dp'
-                color: 0,0,0,1
-                background_color: 216/255, 210/255, 227/255, 1
-                size_hint: .33,1
-            BackgroundLabel:
-                background_color: 216/255, 210/255, 227/255, 1
-                size_hint: .33,1
+        Header:
         ScrollView:
             id: scroll_view
             size_hint_y: .75

@@ -40,7 +40,7 @@ class MainScreen(Screen):
 
         for note in CustomApp.CustomApp.notes[::-1]:
             # Calculates new scroll-view height from note count.
-            self.ids.label_layout.height += NOTE_HEIGTH* self.get_font_size()
+            self.ids.label_layout.height += NOTE_HEIGTH
             if note.emergency:
                 full_widget = classes.EmergNote()
                 if note.checked:
