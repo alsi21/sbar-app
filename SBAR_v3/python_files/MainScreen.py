@@ -128,7 +128,7 @@ class MainScreen(Screen):
         Enters SbarScreen and clears any existing text, 
         not saved til save button is pressed on SbarScreen
         '''
-        self.ids.label_layout.height += NOTE_HEIGTH* self.get_font_size()
+        self.ids.label_layout.height += NOTE_HEIGTH
         self.manager.current = 'sbar'
         sbar_screen = self.manager.get_screen('sbar')
         sbar_screen.ids.patientid.text = ''
@@ -145,7 +145,7 @@ class MainScreen(Screen):
         Enters EmergScreen and clears any existing text, 
         not saved til save button is pressed on EmergScreen
         '''
-        self.ids.label_layout.height += NOTE_HEIGTH* self.get_font_size()
+        self.ids.label_layout.height += NOTE_HEIGTH
         self.manager.current = 'emerg'
         emerg_screen = self.manager.get_screen('emerg')
         emerg_screen.ids.patientid.text = ''
@@ -172,4 +172,3 @@ class MainScreen(Screen):
     
     def change_transition(self):
         self.manager.transition = NoTransition()
-    
