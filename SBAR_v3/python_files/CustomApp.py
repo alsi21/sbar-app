@@ -48,8 +48,9 @@ class CustomApp(App):
         self.sm.add_widget(EmergScreen.EmergScreen(name='emerg'))
         self.sm.add_widget(HelpScreen.HelpScreen(name='help'))
         self.sm.add_widget(ManualScreen.ManualScreen(name='manual'))
+        Window.bind(on_request_close=self.on_request_close)
+        Window.bind(on_keyboard=self.android_back)
 
-        #Window.bind(on_request_close=self.on_request_close)
         return self.sm
 
     def on_request_close(self, *args, **kwargs):
@@ -67,6 +68,10 @@ class CustomApp(App):
             print('Pressed android back.')
             self.stop()
             return True
+    
+    def on_stop(self):
+        print('Closing window.')
+        Window.close()
 
     def reload_screens(self, *args):
         '''
