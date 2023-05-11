@@ -9,7 +9,6 @@
             Rectangle:
                 pos: self.pos
                 size: self.size
-        
         BoxLayout:
             orientation: 'horizontal'
             size_hint_y: 0.15
@@ -22,7 +21,8 @@
             Image:
                 source: 'SBAR_v3\images\SBAR_snake.png'
                 allow_stretch: True
-                keep_ratio: False
+                keep_ratio: True
+                background_color: 216/255, 210/255, 227/255, 1
                 size_hint: .33, 1
             BackgroundLabel:
                 text: 'Hjälp'
@@ -33,7 +33,6 @@
             BackgroundLabel:
                 background_color: 216/255, 210/255, 227/255, 1
                 size_hint: .33, 1
-        
         BoxLayout:
             size_hint_y: .75
             orientation: 'horizontal'
