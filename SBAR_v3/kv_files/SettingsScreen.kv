@@ -100,7 +100,7 @@
             Button:
                 text: 'Manual'
                 background_color: 209/255,219/255,1,1
-                on_press: root.go_to_manual()
+                on_press: root.leave_settings('manual')
                 font_size: dp(16) * float(root.get_font_size())
             Label:
                 size_hint_y: .5
@@ -137,7 +137,7 @@
             Button:
                 text: 'Hjälp'
                 background_color: 209/255,219/255,1,1
-                on_press: root.go_to_help()
+                on_press: root.leave_settings('help')
                 font_size: dp(16)* root.get_font_size()
             Label:
                 size_hint_y: .5
@@ -158,4 +158,4 @@
                 on_press: 
                     root.manager.transition.direction = 'left'
                     root.manager.current = 'main'
-                    root.go_main()
+                    root.leave_settings('main')

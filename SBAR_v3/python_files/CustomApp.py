@@ -68,7 +68,7 @@ class CustomApp(App):
             self.stop()
             return True
 
-    def reload_screens(self, *args):
+    def reload_screens(self, screen_name,*args):
         '''
         removes all screens, then adds them back to refresh font size
         '''
@@ -82,6 +82,7 @@ class CustomApp(App):
         self.sm.add_widget(EmergScreen.EmergScreen(name='emerg'))
         self.sm.add_widget(HelpScreen.HelpScreen(name='help'))
         self.sm.add_widget(ManualScreen.ManualScreen(name='manual'))
+        self.sm.current = screen_name
 
     def TextPopup(self, title='', text=''):
         '''

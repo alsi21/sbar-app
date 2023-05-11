@@ -47,9 +47,13 @@ class SettingsScreen(Screen):
             self.ids.label_layout.add_widget(full_widget)
             full_widget.ids.buttonone.note = note
 
-    def go_main(self, *args):
+    def leave_settings(self,screen_name, *args):
         app = CustomApp.CustomApp.get_running_app()
-        app.reload_screens()
+        if CustomApp.CustomApp.font_size != self.font_size:
+            CustomApp.CustomApp.font_size = self.font_size
+            app.reload_screens(screen_name)
+        else:
+            self.manager.current = screen_name
 
     def get_font_size(self):
         self.font_size = CustomApp.CustomApp.font_size
@@ -62,8 +66,8 @@ class SettingsScreen(Screen):
         self.manager.current = "manual"
 
     def change_font(self, font_size):
-        CustomApp.CustomApp.font_size = round(font_size,1)
-        print(CustomApp.CustomApp.font_size)
-        STORE_SETTINGS.put('font_size', font = CustomApp.CustomApp.font_size)
+        self.font_size = round(font_size,1)
+        print(self.font_size)
+        STORE_SETTINGS.put('font_size', font = self.font_size)
 
         
