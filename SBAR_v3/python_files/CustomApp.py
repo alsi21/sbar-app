@@ -8,7 +8,7 @@ import ManualScreen
 import HelpScreen
 
 from kivy.app import App
-from kivy.uix.screenmanager import ScreenManager, Screen, SlideTransition
+from kivy.uix.screenmanager import ScreenManager, Screen, SlideTransition, NoTransition
 from kivy.uix.boxlayout import BoxLayout
 from kivy.core.window import Window
 from kivy.uix.label import Label
@@ -87,6 +87,7 @@ class CustomApp(App):
         self.sm.add_widget(EmergScreen.EmergScreen(name='emerg'))
         self.sm.add_widget(HelpScreen.HelpScreen(name='help'))
         self.sm.add_widget(ManualScreen.ManualScreen(name='manual'))
+        self.sm.transition = NoTransition()
         self.sm.current = screen_name
 
     def TextPopup(self, title='', text=''):
