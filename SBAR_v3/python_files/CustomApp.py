@@ -6,6 +6,8 @@ import SbarScreen
 import EmergScreen
 import ManualScreen
 import HelpScreen
+import SokScreen
+import EmergSearchScreen
 
 from kivy.app import App
 from kivy.uix.screenmanager import ScreenManager, Screen, SlideTransition
@@ -31,7 +33,7 @@ class MyScreenManager(ScreenManager):
 class CustomApp(App):
     '''App class, keeps track of notes'''
     notes = serialize_notes(STORE_NOTES)
-
+    #words = serialize_words(STORE_WORDS)
     def build(self):
         '''Build function that calls Screenmanager, 
         adds screens to it 
@@ -45,6 +47,8 @@ class CustomApp(App):
         sm.add_widget(EmergScreen.EmergScreen(name='emerg'))
         sm.add_widget(HelpScreen.HelpScreen(name='help'))
         sm.add_widget(ManualScreen.ManualScreen(name='manual'))
+        sm.add_widget(SokScreen.SokScreen(name='search'))
+        sm.add_widget(EmergSearchScreen.EmergSearchScreen(name='emergsearch'))
         #Window.bind(on_request_close=self.on_request_close)
         return sm
 

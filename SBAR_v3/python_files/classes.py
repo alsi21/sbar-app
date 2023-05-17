@@ -18,6 +18,7 @@ class BlueTextInput(TextInput):
     '''Blue TextInput'''
 
 
+
 class Note:
     '''Class that holds information presented in notes'''
 
@@ -25,7 +26,7 @@ class Note:
             self, patientid, situation, background,
             relevant, recommendation, extra, safety, airway,
             breath, circ, disability, exposure, emergency,
-            checked, time_of_creation, timestamp = None):
+            checked, communication, breathing, circulation, elimination, pain, activity, sleep, psycho, time_of_creation, timestamp = None):
         '''
         Parameters
         ----------
@@ -71,7 +72,15 @@ class Note:
         self.exposure = exposure
         self.emergency = emergency
         self.checked = checked
-
+        #Search
+        self.communication = communication
+        self.breathing = breathing
+        self.circulation = circulation
+        self.elimination = elimination
+        self.pain = pain
+        self.activity = activity
+        self.sleep = sleep
+        self.psycho = psycho
         self.time_of_creation = time_of_creation
 
         # Timestamp used for auto-deletion.
@@ -114,6 +123,14 @@ class Note:
             exposure = encrypt_func(self.exposure),
             emergency = self.emergency,
             checked = self.checked,
+            communication = encrypt_func(self.communication),
+            breathing = encrypt_func(self.breathing),
+            circulation = encrypt_func(self.circulation),
+            elimination = encrypt_func(self.elimination),
+            pain = encrypt_func(self.pain),
+            activity = encrypt_func(self.activity),
+            sleep = encrypt_func(self.sleep),
+            psycho = encrypt_func(self.psycho),
             time_of_creation = encrypt_func(self.time_of_creation),
             timestamp = encrypt_func(self.timestamp.strftime('%Y-%m-%d %H:%M:%S'))
         )
@@ -125,7 +142,6 @@ class Note:
         if self.checked:
             timeframe = (hours * 20)
         return (now - self.timestamp).total_seconds() > timeframe
-
 
 class SbarNote(BoxLayout):
     '''Mainscreen Sbar note handling'''

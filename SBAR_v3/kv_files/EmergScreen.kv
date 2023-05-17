@@ -54,6 +54,47 @@
                         on_value: scroll_view.scroll_y = self.value
                     Label:
                         id: toc_var
+
+
+                    BoxLayout:
+                        orientation: 'vertical'
+                        size_hint_y: 0.10
+                        padding: 0
+                        spacing: 0
+                        canvas.before:
+                            Color:
+                                rgba: 216/255, 210/255, 227/255, 0.5
+                            Rectangle:
+                                pos: self.pos
+                                size: self.size
+                        Label:
+                            size_hint_y: .02
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        size_hint_y: None
+                        height: dp(40)
+                        #halign: "top"
+                        padding: 0
+                        spacing: 0    
+                        RoundedRedButton:
+                            text: "Sökord"
+                            background_color: 227/255,210/255,210/255,1
+                            color: 0,0,0,1
+                            font_size: '35dp'
+                            on_press:
+                                root.manager.transition.direction = 'right'
+                                root.to_search()
+                        Label:
+                            size_hint_x:0.1
+                        RoundedRedButton:
+                            text: "SBAR"
+                            background_color: 179/255, 173/255, 171/255, 1
+                            color: 0,0,0,1
+                            font_size: '35dp'
+                            on_press:
+                                root.manager.transition.direction = 'right'
+                                #root.to_search()
+
                     BoxLayout:
                         height: dp(50)
                         size_hint: 1, None
@@ -64,7 +105,7 @@
                             text: 'Patient ID ⓘ'
                             valign: "middle"
                             padding: dp(0), dp(10)
-                            font_size: dp(22)
+                            font_size: dp(20.6)
                             size_hint: None, None
                             size: self.texture_size
                             on_press: root.show_p_id()
@@ -89,7 +130,7 @@
                             text: 'Situation ⓘ'
                             valign: "middle"
                             padding: dp(0), dp(10)
-                            font_size: dp(22)
+                            font_size: dp(20.6)
                             size_hint: None, None
                             size: self.texture_size
                             on_press: root.show_situation()
@@ -113,7 +154,7 @@
                             text: 'Bakgrund ⓘ'
                             valign: "middle"
                             padding: dp(0), dp(10)
-                            font_size: dp(22)
+                            font_size: dp(20.6)
                             size_hint: None, None
                             size: self.texture_size
                             on_press: root.show_bakgrund()
@@ -137,7 +178,7 @@
                             text: 'Aktuellt ⓘ'
                             valign: "middle"
                             padding: dp(0), dp(10)
-                            font_size: dp(22)
+                            font_size: dp(20.6)
                             size_hint: None, None
                             size: self.texture_size
                             on_press: root.show_aktuellt()
@@ -152,7 +193,7 @@
                             text: 'S-Säkerhet ⓘ'
                             valign: "middle"
                             padding: dp(0), dp(10)
-                            font_size: dp(22)
+                            font_size: dp(20.6)
                             size_hint: None, None
                             size: self.texture_size
                             on_press:
@@ -176,7 +217,7 @@
                             text: 'A-Luftväg ⓘ'
                             valign: "middle"
                             padding: dp(0), dp(10)
-                            font_size: dp(22)
+                            font_size: dp(20.6)
                             size_hint: None, None
                             size: self.texture_size
                             on_press: root.show_airway()
@@ -200,7 +241,7 @@
                             text: 'B-Andning ⓘ'
                             valign: "middle"
                             padding: dp(0), dp(10)
-                            font_size: dp(22)
+                            font_size: dp(20.6)
                             size_hint: None, None
                             size: self.texture_size
                             height: dp(50)
@@ -225,7 +266,7 @@
                             text: 'C-Cirkulation ⓘ'
                             valign: "middle"
                             padding: dp(0), dp(10)
-                            font_size: dp(22)
+                            font_size: dp(20.6)
                             size_hint: None, None
                             size: self.texture_size
                             on_press: root.show_circulation()
@@ -249,7 +290,7 @@
                             text: 'D-Medvetandegrad ⓘ'
                             valign: "middle"
                             padding: dp(0), dp(10)
-                            font_size: dp(22)
+                            font_size: dp(20.6)
                             size_hint: None, None
                             size: self.texture_size
                             on_press: root.show_disability()
@@ -273,7 +314,7 @@
                             text: 'E-Exponering ⓘ'
                             valign: "middle"
                             padding: dp(0), dp(10)
-                            font_size: dp(22)
+                            font_size: dp(20.6)
                             size_hint: None, None
                             size: self.texture_size
                             on_press: root.show_exposure()
@@ -297,7 +338,7 @@
                             text: 'Rekomendation ⓘ'
                             valign: "middle"
                             padding: dp(0), dp(10)
-                            font_size: dp(22)
+                            font_size: dp(20.6)
                             size_hint: None, None
                             size: self.texture_size
                             on_press: root.show_rekommendation()
@@ -321,7 +362,7 @@
                             text: 'Övrigt ⓘ'
                             valign: "middle"
                             padding: dp(0), dp(10)
-                            font_size: dp(22)
+                            font_size: dp(20.6)
                             size_hint: None, None
                             size: self.texture_size
                             on_press: root.show_extra_notes()
@@ -338,6 +379,38 @@
                     Label:
                         size_hint: 1, None
                         height: 10
+                    Label:
+                        id: communication
+                        font_size: dp(0)
+                        size: self.texture_size
+                    Label:
+                        id: breathing
+                        font_size: dp(0)
+                        size: self.texture_size
+                    Label:
+                        id: circulation
+                        font_size: dp(0)
+                        size: self.texture_size
+                    Label:
+                        id: elimination
+                        font_size: dp(0)
+                        size: self.texture_size
+                    Label:
+                        id: pain
+                        font_size: dp(0)
+                        size: self.texture_size
+                    Label:
+                        id: activity
+                        font_size: dp(0)
+                        size: self.texture_size
+                    Label:
+                        id: sleep
+                        font_size: dp(0)
+                        size: self.texture_size
+                    Label:
+                        id: psycho
+                        font_size: dp(0)
+                        size: self.texture_size
         BoxLayout:
             orientation: 'vertical'
             size_hint_y: 0.1

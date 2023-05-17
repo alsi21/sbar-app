@@ -23,7 +23,7 @@ class MainScreen(Screen):
         self.manager.transition = SlideTransition(direction='left')
         # clear any existing buttons
         self.ids.label_layout.clear_widgets()
-        # add a button for each note
+        # add communication button for each note
         # Resets scroll-view height. Set to 10 to take top padding into account.
         self.ids.label_layout.height = 10
 
@@ -48,7 +48,7 @@ class MainScreen(Screen):
                     full_widget.ids.checkbox.active = True
                     
             full_widget.ids.buttonone.text = note.patientid + '      ' + note.time_of_creation
-            button_note = note  # create a new variable with the value of note
+            button_note = note  # create communication new variable with the value of note
             full_widget.ids.buttonone.bind(on_press=lambda instance, button_note=button_note: self.edit_note(instance, button_note))
             full_widget.ids.checkbox.bind(on_press=lambda instance, button_note=button_note: self.check_note(instance, button_note))
             self.ids.label_layout.add_widget(full_widget)
@@ -56,7 +56,7 @@ class MainScreen(Screen):
 
     def check_note(self, instance, note):
         ''' 
-        Toggles the checked state for a SBAR Note
+        Toggles the checked state for communication SBAR Note
         '''
         state = note.checked
         note.checked = not state
@@ -96,6 +96,14 @@ class MainScreen(Screen):
             sbar_screen.ids.rekomendation.text = note.recommendation
             sbar_screen.ids.extra.text = note.extra
             sbar_screen.ids.time_of_creation = note.time_of_creation
+            sbar_screen.ids.communication.text = note.communication
+            sbar_screen.ids.breathing.text = note.breathing
+            sbar_screen.ids.circulation.text = note.circulation
+            sbar_screen.ids.elimination.text = note.elimination
+            sbar_screen.ids.pain.text = note.pain
+            sbar_screen.ids.activity.text = note.activity
+            sbar_screen.ids.sleep.text = note.sleep
+            sbar_screen.ids.psycho.text = note.psycho
             print(sbar_screen.ids.patientid.text)            
         else:
             self.manager.current = 'emerg'
@@ -112,6 +120,14 @@ class MainScreen(Screen):
             emerg_screen.ids.exposure.text = note.exposure
             emerg_screen.ids.reko.text = note.recommendation
             emerg_screen.ids.extra.text = note.extra
+            emerg_screen.ids.communication.text = note.communication
+            emerg_screen.ids.breathing.text = note.breathing
+            emerg_screen.ids.circulation.text = note.circulation
+            emerg_screen.ids.elimination.text = note.elimination
+            emerg_screen.ids.pain.text = note.pain
+            emerg_screen.ids.activity.text = note.activity
+            emerg_screen.ids.sleep.text = note.sleep
+            emerg_screen.ids.psycho.text = note.psycho
             emerg_screen.ids.time_of_creation = note.time_of_creation
 
     def add_sbar(self):
@@ -128,7 +144,15 @@ class MainScreen(Screen):
         sbar_screen.ids.aktuellt.text = ''
         sbar_screen.ids.rekomendation.text = ''
         sbar_screen.ids.extra.text = ''
-        sbar_screen.ids.toc_var.text = time.strftime('%d/%m    %H:%M:%S')
+        sbar_screen.ids.communication.text = ''
+        sbar_screen.ids.breathing.text = ''
+        sbar_screen.ids.circulation.text = ''
+        sbar_screen.ids.elimination.text = ''
+        sbar_screen.ids.pain.text = ''
+        sbar_screen.ids.activity.text = ''
+        sbar_screen.ids.sleep.text = ''
+        sbar_screen.ids.psycho.text = ''
+        sbar_screen.ids.toc_var.text = time.strftime('%e/%m    %H:%M:%S')
         
 
     def add_emerg(self):
@@ -151,7 +175,15 @@ class MainScreen(Screen):
         emerg_screen.ids.exposure.text = ''
         emerg_screen.ids.reko.text = ''
         emerg_screen.ids.extra.text = ''
-        emerg_screen.ids.toc_var.text = time.strftime('%d/%m    %H:%M:%S')
+        emerg_screen.ids.communication.text = ''
+        emerg_screen.ids.breathing.text = ''
+        emerg_screen.ids.circulation.text = ''
+        emerg_screen.ids.elimination.text = ''
+        emerg_screen.ids.pain.text = ''
+        emerg_screen.ids.activity.text = ''
+        emerg_screen.ids.sleep.text = ''
+        emerg_screen.ids.psycho.text = ''
+        emerg_screen.ids.toc_var.text = time.strftime('%e/%m    %H:%M:%S')
 
     def go_to_settings(self):
         '''Simple function to go to SettingsScreen'''

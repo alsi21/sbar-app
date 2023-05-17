@@ -16,7 +16,7 @@ class SbarScreen(Screen):
     def on_enter(self):
         '''
         Code that gets executed everytime screen gets displayed
-        Checks if there exists a note with exact same content
+        Checks if there exists communication note with exact same content
         '''
         if platform ==  "android":
             Window.bind(on_keyboard_height=self.on_keyboard_height)
@@ -29,6 +29,14 @@ class SbarScreen(Screen):
         self.old_akt = self.ids.aktuellt.text
         self.old_rek = self.ids.rekomendation.text
         self.old_ext = self.ids.extra.text
+        self.old_a = self.ids.communication.text
+        self.old_b = self.ids.breathing.text
+        self.old_c = self.ids.circulation.text
+        self.old_d = self.ids.elimination.text
+        self.old_e = self.ids.pain.text
+        self.old_f = self.ids.activity.text
+        self.old_g = self.ids.sleep.text
+        self.old_h = self.ids.psycho.text
         for note in CustomApp.CustomApp.notes:
             if (
                 self.old_id == note.patientid and
@@ -41,6 +49,7 @@ class SbarScreen(Screen):
                 print('found old note: ', note.patientid)
                 self.old_note = note
                 self.repeat = True
+        
         self.auto_save = Clock.schedule_interval(self.quick_save, 2.5)
 
     def on_keyboard_height(self,window,keyboard_height):
@@ -152,6 +161,14 @@ class SbarScreen(Screen):
         aktuellt = self.ids.aktuellt.text
         rekomendation = self.ids.rekomendation.text
         extra = self.ids.extra.text
+        communication = self.ids.communication.text
+        breathing = self.ids.breathing.text
+        circulation = self.ids.circulation.text
+        elimination = self.ids.elimination.text
+        pain = self.ids.pain.text
+        activity = self.ids.activity.text
+        sleep = self.ids.sleep.text
+        psycho = self.ids.psycho.text
 
         if self.repeat:
             toc = self.old_note.time_of_creation
@@ -161,8 +178,8 @@ class SbarScreen(Screen):
         note = classes.Note(
             patientid, situation, bakgrund,
             aktuellt, rekomendation, extra,
-            '', '', '', '', '', '',
-            False, False, toc)
+            '', '', '', '', '', '', 
+            False, False, communication, breathing, circulation, elimination, pain, activity, sleep, psycho, toc)
         
         if self.repeat and self.old_note:
             note.checked = self.old_note.checked
@@ -177,7 +194,7 @@ class SbarScreen(Screen):
     def save_note(self):
         '''
         Code that gets executed when button is pressed to go to main menu
-        Creates a note with current info and if it is not a previous note it gets put into list of notes
+        Creates communication note with current info and if it is not communication previous note it gets put into list of notes
         changes to main menu
         '''
         patientid = self.ids.patientid.text
@@ -186,6 +203,14 @@ class SbarScreen(Screen):
         aktuellt = self.ids.aktuellt.text
         rekomendation = self.ids.rekomendation.text
         extra = self.ids.extra.text
+        communication = self.ids.communication.text
+        breathing = self.ids.breathing.text
+        circulation = self.ids.circulation.text
+        elimination = self.ids.elimination.text
+        pain = self.ids.pain.text
+        activity = self.ids.activity.text
+        sleep = self.ids.sleep.text
+        psycho = self.ids.psycho.text
 
         if self.repeat:
             toc = self.old_note.time_of_creation
@@ -195,8 +220,8 @@ class SbarScreen(Screen):
         note = classes.Note(
             patientid, situation, bakgrund,
             aktuellt, rekomendation, extra,
-            '', '', '', '', '', '',
-            False, False, toc)
+            '', '', '', '', '', '', 
+            False, False, communication, breathing, circulation, elimination, pain, activity, sleep, psycho, toc)
 
         if self.repeat and self.old_note:
             note.checked = self.old_note.checked
@@ -211,5 +236,73 @@ class SbarScreen(Screen):
             CustomApp.CustomApp.notes.append(note)
             note.export_note(local_storage=STORE_NOTES, encrypt_func=encrypt)
 
+        for note in CustomApp.CustomApp.notes:
+            for note2 in CustomApp.CustomApp.notes:
+                if note != note2:
+                    if note.time_of_creation == note2.time_of_creation:
+                        CustomApp.CustomApp.notes.remove(note)
+                        break
+
         Clock.unschedule(self.auto_save)
         self.manager.current = 'main'
+
+    def to_search(self):
+        patientid = self.ids.patientid.text
+        situation = self.ids.situation.text
+        bakgrund = self.ids.bakgrund.text
+        aktuellt = self.ids.aktuellt.text
+        rekomendation = self.ids.rekomendation.text
+        extra = self.ids.extra.text
+        communication = self.ids.communication.text
+        breathing = self.ids.breathing.text
+        circulation = self.ids.circulation.text
+        elimination = self.ids.elimination.text
+        pain = self.ids.pain.text
+        activity = self.ids.activity.text
+        sleep = self.ids.sleep.text
+        psycho = self.ids.psycho.text
+
+        if self.repeat:
+            toc = self.old_note.time_of_creation
+        else:
+            toc = self.ids.toc_var.text
+
+        note = classes.Note(
+            patientid, situation, bakgrund,
+            aktuellt, rekomendation, extra,
+            '', '', '', '', '', '', 
+            False, False, communication, breathing, circulation, elimination, 
+            pain, activity, sleep, psycho, toc)
+        
+        if self.repeat and self.old_note:
+            note.checked = self.old_note.checked
+            note.timestamp = self.old_note.timestamp
+
+        if self.repeat:
+            if self.old_note:
+                delete_data(STORE_NOTES, self.old_note.time_of_creation)
+        if not note.is_empty():
+            note.export_note(local_storage=STORE_NOTES, encrypt_func=encrypt)
+
+        Clock.unschedule(self.auto_save)
+        self.manager.current = 'search'
+        #print('note patientid: ',note.patientid)
+        sok_screen = self.manager.get_screen('search')
+        sok_screen.old_note = note
+        sok_screen.ids.patientid.text = note.patientid
+        sok_screen.ids.situation.text = note.situation
+        sok_screen.ids.bakgrund.text = note.background
+        sok_screen.ids.aktuellt.text = note.relevant
+        sok_screen.ids.rekomendation.text = note.recommendation
+        sok_screen.ids.extra.text = note.extra
+        sok_screen.ids.toc_var.text = note.time_of_creation
+        sok_screen.ids.communication.text = note.communication
+        sok_screen.ids.breathing.text = note.breathing
+        sok_screen.ids.circulation.text = note.circulation
+        sok_screen.ids.elimination.text = note.elimination
+        sok_screen.ids.pain.text = note.pain
+        sok_screen.ids.activity.text = note.activity
+        sok_screen.ids.sleep.text = note.sleep
+        sok_screen.ids.psycho.text = note.psycho
+
+        

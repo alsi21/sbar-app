@@ -7,10 +7,8 @@ from LocalStorage import STORE_NOTES, delete_data
 from Encryption import encrypt
 from kivy.uix.textinput import TextInput
 from kivy.uix.popup import Popup
-from kivy.core.window import Window
-from kivy.utils import platform
 
-class EmergScreen(Screen):
+class EmergSearchScreen(Screen):
     '''Screen class to handle emergency notes ,similiar to SbarScreen'''
     def max_length_text(self,text):
         """
@@ -26,10 +24,9 @@ class EmergScreen(Screen):
         Code that gets executed everytime screen gets displayed
         Checks if there exists a note with exact same content
         '''
-        if platform ==  "android":
-            Window.bind(on_keyboard_height=self.on_keyboard_height)
+        
         self.repeat = False
-        self.old_note = None
+        #self.old_note = None
         self.old_toc = self.ids.toc_var.text
         self.old_id = self.ids.patientid.text
         self.old_situation = self.ids.situation.text
@@ -61,6 +58,8 @@ class EmergScreen(Screen):
                 print('found old note: ', note.patientid)
                 self.old_note = note
                 self.repeat = True
+        note = self.old_note
+        delete_data(STORE_NOTES, self.old_note.time_of_creation)
         self.auto_save = Clock.schedule_interval(self.quick_save, 2.5)
 
     def show_p_id(self):
@@ -330,8 +329,8 @@ class EmergScreen(Screen):
 
         Clock.unschedule(self.auto_save)
         self.manager.current = 'main'
-    
-    def to_search(self):
+
+    def to_sbar(self):
         patientid = self.ids.patientid.text
         situation = self.ids.situation.text
         bakgrund = self.ids.bakgrund.text
@@ -375,28 +374,26 @@ class EmergScreen(Screen):
             note.export_note(local_storage=STORE_NOTES, encrypt_func=encrypt)
 
         Clock.unschedule(self.auto_save)
-        self.manager.current = 'emergsearch'
-
-        emerg_search_screen = self.manager.get_screen('emergsearch')
-        emerg_search_screen.old_note = note
-        emerg_search_screen.ids.patientid.text = note.patientid
-        emerg_search_screen.ids.situation.text = note.situation
-        emerg_search_screen.ids.bakgrund.text = note.background
-        #emerg_search_screen.ids.aktuellt.text = note.relevant
-        emerg_search_screen.ids.reko.text = note.recommendation
-        emerg_search_screen.ids.extra.text = note.extra
-        emerg_search_screen.ids.toc_var.text = note.time_of_creation
-        emerg_search_screen.ids.communication.text = note.communication
-        emerg_search_screen.ids.breathing.text = note.breathing
-        emerg_search_screen.ids.circulation.text = note.circulation
-        emerg_search_screen.ids.elimination.text = note.elimination
-        emerg_search_screen.ids.pain.text = note.pain
-        emerg_search_screen.ids.activity.text = note.activity
-        emerg_search_screen.ids.sleep.text = note.sleep
-        emerg_search_screen.ids.psycho.text = note.psycho
-        emerg_search_screen.ids.safety.text = note.safety
-        emerg_search_screen.ids.air.text = note.airway
-        emerg_search_screen.ids.breath.text = note.breath
-        emerg_search_screen.ids.circ.text = note.circ
-        emerg_search_screen.ids.deg.text = note.disability
-        emerg_search_screen.ids.exposure.text = note.exposure
+        self.manager.current = 'emerg'
+        emerg_screen = self.manager.get_screen('emerg')
+        emerg_screen.ids.patientid.text = note.patientid
+        emerg_screen.ids.situation.text = note.situation
+        emerg_screen.ids.bakgrund.text = note.background
+        #emerg_screen.ids.aktuellt.text = note.relevant
+        emerg_screen.ids.reko.text = note.recommendation
+        emerg_screen.ids.extra.text = note.extra
+        emerg_screen.ids.time_of_creation = note.time_of_creation
+        emerg_screen.ids.communication.text = note.communication
+        emerg_screen.ids.breathing.text = note.breathing
+        emerg_screen.ids.circulation.text = note.circulation
+        emerg_screen.ids.elimination.text = note.elimination
+        emerg_screen.ids.pain.text = note.pain
+        emerg_screen.ids.activity.text = note.activity
+        emerg_screen.ids.sleep.text = note.sleep
+        emerg_screen.ids.psycho.text = note.psycho
+        emerg_screen.ids.safety.text = note.safety
+        emerg_screen.ids.air.text = note.airway
+        emerg_screen.ids.breath.text = note.breath
+        emerg_screen.ids.circ.text = note.circ
+        emerg_screen.ids.deg.text = note.disability
+        emerg_screen.ids.exposure.text = note.exposure

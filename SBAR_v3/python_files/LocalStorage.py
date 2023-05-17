@@ -7,6 +7,7 @@ from datetime import datetime
 # Storage constants used when interacting with local storage managed by Kivy.
 STORE_NOTES = JsonStore('notes.json')
 STORE_PIN = JsonStore('pin.json')
+#STORE_WORDS = JsonStore('words.json')
 
 def serialize_notes(notes_storage):
     '''Takes in JsonStore link, returns a list of Notes.'''
@@ -29,6 +30,14 @@ def serialize_notes(notes_storage):
             decrypt(data['exposure']),
             data['emergency'],
             data['checked'],
+            decrypt(data['communication']),
+            decrypt(data['breathing']),
+            decrypt(data['circulation']),
+            decrypt(data['elimination']),
+            decrypt(data['pain']),
+            decrypt(data['activity']),
+            decrypt(data['sleep']),
+            decrypt(data['psycho']),
             decrypt(data['time_of_creation']),
             datetime.strptime(decrypt(data['timestamp']), '%Y-%m-%d %H:%M:%S')
 

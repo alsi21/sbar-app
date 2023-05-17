@@ -1,6 +1,6 @@
 #:kivy 1.0.9
 
-<SbarScreen>:
+<SokScreen>:
     BoxLayout:
         orientation: 'vertical'
         canvas.before:
@@ -55,20 +55,6 @@
                         on_value: scroll_view.scroll_y = self.value
                     Label:
                         id: toc_var
-                    
-                    BoxLayout:
-                        orientation: 'vertical'
-                        size_hint_y: 0.10
-                        padding: 0
-                        spacing: 0
-                        canvas.before:
-                            Color:
-                                rgba: 216/255, 210/255, 227/255, 0.5
-                            Rectangle:
-                                pos: self.pos
-                                size: self.size
-                        Label:
-                            size_hint_y: .02
 
                     BoxLayout:
                         orientation: 'horizontal'
@@ -79,25 +65,23 @@
                         spacing: 0    
                         RoundedRedButton:
                             text: "Sökord"
+                            background_color: 179/255, 173/255, 171/255, 1
+                            color: 0,0,0,1
+                            font_size: '35dp'
+                            on_press: 
+                                root.manager.transition.direction = 'right'
+                                #root.to_search()
+                        Label:
+                            size_hint_x:0.1
+                        RoundedRedButton:
+                            text: "SBAR"
                             background_color: 217/255,225/255,1,1
                             color: 0,0,0,1
                             font_size: '35dp'
                             on_press:
                                 root.manager.transition.direction = 'right'
-                                root.to_search()
-                        Label:
-                            size_hint_x:0.1
-                        RoundedRedButton:
-                            text: "SBAR"
-                            background_color: 179/255, 173/255, 171/255, 1
-                            color: 0,0,0,1
-                            font_size: '35dp'
-                            on_press:
-                                root.manager.transition.direction = 'right'
-                                #root.to_search()
-                # Label:
-                #     size_hint_y: .02
-                    
+                                root.to_sbar()
+
                     BoxLayout:
                         height: dp(50)
                         size_hint: 1, None
@@ -105,18 +89,18 @@
                         SbarWhiteButton:
                             color: 0,0,0,1
                             font_name:"Seguisym"
-                            text: 'Patient ID ⓘ'
+                            text: 'Communication ⓘ'
                             valign: "middle"
                             padding: dp(0), dp(10)
                             font_size: dp(20.6)
                             size_hint: None, None
                             size: self.texture_size
-                            on_press: root.show_p_id()
+                            #on_press: root.show_com()
                         Label:
                     TextInput:
-                        id: patientid
-                        multiline: False
-                        maxlength: 24
+                        id: communication
+                        #multiline: False
+                        #maxlength: 24
                         background_color: (217/255,225/255,1,1) if self.focus else (217/255,225/255,1,1)
                         background_normal: ''
                         foreground_color: .1, .1, .1, 1  # default text color
@@ -124,48 +108,24 @@
                         hint_text: '' if self.focus else 'Börja skriva här...'
                         size_hint: 1,None
                         height: self.minimum_height
-                        on_text: root.max_length_text(self.text)
+                        #on_text: root.max_length_text(self.text)
                     BoxLayout:
-                        height: dp(49)
+                        height: dp(50)
                         size_hint: 1, None
                         orientation: 'horizontal'
                         SbarWhiteButton:
                             color: 0,0,0,1
                             font_name:"Seguisym"
-                            text: 'Situation ⓘ'
+                            text: 'Breathing ⓘ'
                             valign: "middle"
                             padding: dp(0), dp(10)
                             font_size: dp(20.6)
                             size_hint: None, None
                             size: self.texture_size
-                            on_press: root.show_situation()
+                            #on_press: root.show_breath()
                         Label:
                     TextInput:
-                        id: situation
-                        background_color: (217/255,225/255,1,1) if self.focus else (217/255,225/255,1,1)
-                        background_normal: ''
-                        foreground_color: .1, .1, .1, 1  # default text color
-                        font_size: dp(30)
-                        hint_text: '' if self.focus else 'Börja skriva här...'
-                        size_hint: 1,None
-                        height: self.minimum_height
-                    BoxLayout:
-                        height: dp(49)
-                        size_hint: 1, None
-                        orientation: 'horizontal'
-                        SbarWhiteButton:
-                            color: 0,0,0,1
-                            font_name:"Seguisym"
-                            text: 'Bakgrund ⓘ'
-                            valign: "middle"
-                            padding: dp(0), dp(10)
-                            font_size: dp(20.6)
-                            size_hint: None, None
-                            size: self.texture_size
-                            on_press: root.show_bakgrund()
-                        Label:
-                    TextInput:
-                        id: bakgrund
+                        id: breathing
                         background_color: (217/255,225/255,1,1) if self.focus else (217/255,225/255,1,1)
                         background_normal: ''
                         foreground_color: .1, .1, .1, 1  # default text color
@@ -174,22 +134,22 @@
                         size_hint: 1,None
                         height: self.minimum_height
                     BoxLayout:
-                        height: dp(49) #var 50 innan
+                        height: dp(50)
                         size_hint: 1, None
                         orientation: 'horizontal'
                         SbarWhiteButton:
                             color: 0,0,0,1
                             font_name:"Seguisym"
-                            text: 'Aktuellt ⓘ'
+                            text: 'Circulation ⓘ'
                             valign: "middle"
                             padding: dp(0), dp(10)
-                            font_size: dp(20.6) #var 22 innan
+                            font_size: dp(20.6)
                             size_hint: None, None
                             size: self.texture_size
-                            on_press: root.show_aktuellt()
+                            #on_press: root.show_circ()
                         Label:
                     TextInput:
-                        id: aktuellt
+                        id: circulation
                         background_color: (217/255,225/255,1,1) if self.focus else (217/255,225/255,1,1)
                         background_normal: ''
                         foreground_color: .1, .1, .1, 1  # default text color
@@ -198,22 +158,22 @@
                         size_hint: 1,None
                         height: self.minimum_height
                     BoxLayout:
-                        height: dp(49)
+                        height: dp(50)
                         size_hint: 1, None
                         orientation: 'horizontal'
                         SbarWhiteButton:
                             color: 0,0,0,1
                             font_name:"Seguisym"
-                            text: 'Rekomendation ⓘ'
+                            text: 'Elimination ⓘ'
                             valign: "middle"
                             padding: dp(0), dp(10)
                             font_size: dp(20.6)
                             size_hint: None, None
                             size: self.texture_size
-                            on_press: root.show_rekommendation()
+                            #on_press: root.show_elim()
                         Label:
                     TextInput:
-                        id: rekomendation
+                        id: elimination
                         background_color: (217/255,225/255,1,1) if self.focus else (217/255,225/255,1,1)
                         background_normal: ''
                         foreground_color: .1, .1, .1, 1  # default text color
@@ -222,22 +182,94 @@
                         size_hint: 1,None
                         height: self.minimum_height
                     BoxLayout:
-                        height: dp(49)
+                        height: dp(50)
                         size_hint: 1, None
                         orientation: 'horizontal'
                         SbarWhiteButton:
                             color: 0,0,0,1
                             font_name:"Seguisym"
-                            text: 'Övrigt ⓘ'
+                            text: 'Pain ⓘ'
                             valign: "middle"
                             padding: dp(0), dp(10)
                             font_size: dp(20.6)
                             size_hint: None, None
                             size: self.texture_size
-                            on_press: root.show_extra_notes()
+                            #on_press: root.show_pain()
                         Label:
                     TextInput:
-                        id: extra
+                        id: pain
+                        background_color: (217/255,225/255,1,1) if self.focus else (217/255,225/255,1,1)
+                        background_normal: ''
+                        foreground_color: .1, .1, .1, 1  # default text color
+                        font_size: dp(30)
+                        hint_text: '' if self.focus else 'Börja skriva här...'
+                        size_hint: 1,None
+                        height: self.minimum_height
+                    BoxLayout:
+                        height: dp(50)
+                        size_hint: 1, None
+                        orientation: 'horizontal'
+                        SbarWhiteButton:
+                            color: 0,0,0,1
+                            font_name:"Seguisym"
+                            text: 'Activity ⓘ'
+                            valign: "middle"
+                            padding: dp(0), dp(10)
+                            font_size: dp(20.6)
+                            size_hint: None, None
+                            size: self.texture_size
+                            #on_press: root.show_activity()
+                        Label:
+                    TextInput:
+                        id: activity
+                        background_color: (217/255,225/255,1,1) if self.focus else (217/255,225/255,1,1)
+                        background_normal: ''
+                        foreground_color: .1, .1, .1, 1  # default text color
+                        font_size: dp(30)
+                        hint_text: '' if self.focus else 'Börja skriva här...'
+                        size_hint: 1,None
+                        height: self.minimum_height
+                    BoxLayout:
+                        height: dp(50)
+                        size_hint: 1, None
+                        orientation: 'horizontal'
+                        SbarWhiteButton:
+                            color: 0,0,0,1
+                            font_name:"Seguisym"
+                            text: 'Sleep ⓘ'
+                            valign: "middle"
+                            padding: dp(0), dp(10)
+                            font_size: dp(20.6)
+                            size_hint: None, None
+                            size: self.texture_size
+                            #on_press: root.show_sleep()
+                        Label:
+                    TextInput:
+                        id: sleep
+                        background_color: (217/255,225/255,1,1) if self.focus else (217/255,225/255,1,1)
+                        background_normal: ''
+                        foreground_color: .1, .1, .1, 1  # default text color
+                        font_size: dp(30)
+                        hint_text: '' if self.focus else 'Börja skriva här...'
+                        size_hint: 1,None
+                        height: self.minimum_height
+                    BoxLayout:
+                        height: dp(50)
+                        size_hint: 1, None
+                        orientation: 'horizontal'
+                        SbarWhiteButton:
+                            color: 0,0,0,1
+                            font_name:"Seguisym"
+                            text: 'Psychosocial ⓘ'
+                            valign: "middle"
+                            padding: dp(0), dp(10)
+                            font_size: dp(20.6)
+                            size_hint: None, None
+                            size: self.texture_size
+                            #on_press: root.show_psycho()
+                        Label:
+                    TextInput:
+                        id: psycho
                         background_color: (217/255,225/255,1,1) if self.focus else (217/255,225/255,1,1)
                         background_normal: ''
                         foreground_color: .1, .1, .1, 1  # default text color
@@ -252,44 +284,30 @@
                         id: whitespace
                         size_hint_y: 0
                         height: 0
-                    # BoxLayout:
-                    #     height: dp(50)
-                    #     size_hint: 1, None
-                    #     orientation: 'horizontal'
-                    #     Label:
                     Label:
-                        id: communication
+                        id: patientid
                         font_size: dp(0)
                         size: self.texture_size
                     Label:
-                        id: breathing
+                        id: situation
                         font_size: dp(0)
                         size: self.texture_size
                     Label:
-                        id: circulation
+                        id: bakgrund
                         font_size: dp(0)
                         size: self.texture_size
                     Label:
-                        id: elimination
+                        id: aktuellt
                         font_size: dp(0)
                         size: self.texture_size
                     Label:
-                        id: pain
+                        id: rekomendation
                         font_size: dp(0)
                         size: self.texture_size
                     Label:
-                        id: activity
+                        id: extra
                         font_size: dp(0)
                         size: self.texture_size
-                    Label:
-                        id: sleep
-                        font_size: dp(0)
-                        size: self.texture_size
-                    Label:
-                        id: psycho
-                        font_size: dp(0)
-                        size: self.texture_size
-  
         BoxLayout:
             orientation: 'vertical'
             size_hint_y: 0.10
@@ -319,4 +337,3 @@
                 Label:
             Label:
                 size_hint_y: .02
-            
