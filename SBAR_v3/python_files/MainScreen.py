@@ -9,7 +9,7 @@ from kivy.metrics import dp
 from LocalStorage import STORE_NOTES, delete_data
 from Encryption import encrypt
 
-NOTE_HEIGTH = dp(80) + 10 # +10 because of spacing and bottom padding.
+NOTE_HEIGTH = (dp(80) + 10) # +10 because of spacing and bottom padding.
 
 class MainScreen(Screen):
     '''Screen class for main menu'''
@@ -28,10 +28,15 @@ class MainScreen(Screen):
         self.ids.label_layout.height = 10
 
         # Removes notes flagged as timed out.
-        for note in CustomApp.CustomApp.notes:
+        del_index = [] # List for storing index of notes to delete.
+        for index, note in enumerate(CustomApp.CustomApp.notes):
             if note.timed_out(3):
+                del_index.append(index)
                 delete_data(STORE_NOTES, note.time_of_creation)
-                CustomApp.CustomApp.notes.remove(note)
+
+        # Loop backwards to prevent out-of-bound pops.
+        for index in del_index[::-1]:
+            CustomApp.CustomApp.notes.pop(index)
 
         for note in CustomApp.CustomApp.notes[::-1]:
             # Calculates new scroll-view height from note count.
@@ -53,6 +58,10 @@ class MainScreen(Screen):
             full_widget.ids.checkbox.bind(on_press=lambda instance, button_note=button_note: self.check_note(instance, button_note))
             self.ids.label_layout.add_widget(full_widget)
             full_widget.ids.buttonone.note = note
+    
+    def get_font_size(self):
+        self.font_size = CustomApp.CustomApp.font_size
+        return self.font_size
 
     def check_note(self, instance, note):
         ''' 
@@ -65,12 +74,12 @@ class MainScreen(Screen):
             CustomApp.CustomApp.notes.remove(note)
             self.delete_note(note)
             CustomApp.CustomApp.notes.insert(0, note)
-            note.export_note(STORE_NOTES, encrypt)
+            note.export_note(local_storage=STORE_NOTES, encrypt_func=encrypt)
         else:
             CustomApp.CustomApp.notes.remove(note)
             self.delete_note(note)
             CustomApp.CustomApp.notes.append(note)
-            note.export_note(STORE_NOTES, encrypt)
+            note.export_note(local_storage=STORE_NOTES, encrypt_func=encrypt)
             
         self.on_enter()
 
@@ -195,4 +204,3 @@ class MainScreen(Screen):
     
     def change_transition(self):
         self.manager.transition = NoTransition()
-    

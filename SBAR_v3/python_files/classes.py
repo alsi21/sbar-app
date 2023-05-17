@@ -137,7 +137,7 @@ class Note:
 
     def timed_out(self, hours: int) -> bool:
         now = datetime.now()
-        # Temporarily set to 1 instead of 3600.
+        # Temporarily set to 60 instead of 3600 to get minutes instead of hours.
         timeframe = (hours * 60)
         if self.checked:
             timeframe = (hours * 20)
@@ -150,9 +150,17 @@ class SbarNote(BoxLayout):
         '''CheckBox Interaction'''
         pass
 
+    def get_font_size(self):
+        self.font_size = CustomApp.CustomApp.font_size
+        return self.font_size
+
 class EmergNote(BoxLayout):
     '''Mainscreen Emerg note handling'''
 
     def on_checkbox_active(self, checkbox):
         '''CheckBox Interaction'''
         pass
+
+    def get_font_size(self):
+        self.font_size = CustomApp.CustomApp.font_size
+        return self.font_size

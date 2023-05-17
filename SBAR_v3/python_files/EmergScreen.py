@@ -12,15 +12,6 @@ from kivy.utils import platform
 
 class EmergScreen(Screen):
     '''Screen class to handle emergency notes ,similiar to SbarScreen'''
-    def max_length_text(self,text):
-        """
-        Every time text is written it checks the length to see if it's too long,
-        if it is slice the last part of and override text of patientid
-        """
-        print(len(text))
-        if len(text) > 24:
-            text =text[:-1]
-            self.ids.patientid.text = text
     def on_enter(self):
         '''
         Code that gets executed everytime screen gets displayed
@@ -63,6 +54,20 @@ class EmergScreen(Screen):
                 self.repeat = True
         self.auto_save = Clock.schedule_interval(self.quick_save, 2.5)
 
+    def get_font_size(self):
+        self.font_size = CustomApp.CustomApp.font_size
+        return self.font_size
+
+    def max_length_text(self,text):
+        """
+        Every time text is written it checks the length to see if it's too long,
+        if it is slice the last part of and override text of patientid
+        """
+        print(len(text))
+        if len(text) > 24:
+            text =text[:-1]
+            self.ids.patientid.text = text
+            
     def show_p_id(self):
         """
         Code that excutes when you press on the text buttonsthat will show
@@ -90,8 +95,6 @@ class EmergScreen(Screen):
         title_size="30sp"
         )
         popup.open()
-    
-
 
     def show_bakgrund(self):
         """
@@ -106,8 +109,6 @@ class EmergScreen(Screen):
         title_size="30sp"
         )
         popup.open()    
-        
-
 
     def show_aktuellt(self):
         """
@@ -123,6 +124,19 @@ class EmergScreen(Screen):
         )
         popup.open()   
 
+    def show_safety(self):
+            """
+            Code that excutes when you press on the text buttonsthat will show
+            the user information about what should be written in each field.
+            """
+            msg = "Är det säkert? Behövs skyddskläder? Finns det risk för smitta?"
+            text = TextInput(text=msg, multiline=True, readonly=True, height = 300, font_size=18)
+            popup = Popup(title="S - Säkerhet", 
+            content=text,
+            size_hint=(0.8, 0.5),
+            title_size="30sp"
+            )
+            popup.open()  
 
     def show_airway(self):
         """
@@ -130,7 +144,7 @@ class EmergScreen(Screen):
         the user information about what should be written in each field.
         """
         msg = "Stabilisering av nacke?"
-        text = TextInput(text=msg, multiline=True, readonly=True, height = 300, font_size=18)
+        text = TextInput(text=msg, multiline=True, readonly=True, height = 300, font_size="18dp")
         popup = Popup(title="A - Fri luftväg", 
         content=text,
         size_hint=(0.8, 0.5),
@@ -145,7 +159,7 @@ class EmergScreen(Screen):
         the user information about what should be written in each field.
         """
         msg = "Lyssna på lungor.\nAndningsrörelse."
-        text = TextInput(text=msg, multiline=True, readonly=True, height = 300, font_size=18)
+        text = TextInput(text=msg, multiline=True, readonly=True, height = 300, font_size="18dp")
         popup = Popup(title="B - Syresättning, andningsfrekvens", 
         content=text,
         size_hint=(0.8, 0.5),
@@ -159,7 +173,7 @@ class EmergScreen(Screen):
         the user information about what should be written in each field.
         """
         msg = "Blodtryck, puls, kapillär återfyllnad, hudstatus."
-        text = TextInput(text=msg, multiline=True, readonly=True, height = 300, font_size=18)
+        text = TextInput(text=msg, multiline=True, readonly=True, height = 300, font_size="18dp")
         popup = Popup(title="C - cirkulation", 
         content=text,
         size_hint=(0.8, 0.5),
@@ -173,7 +187,7 @@ class EmergScreen(Screen):
         the user information about what should be written in each field.
         """
         msg = "Medvetande och neurologstatus, P-glukos."
-        text = TextInput(text=msg, multiline=True, readonly=True, height = 300, font_size=18)
+        text = TextInput(text=msg, multiline=True, readonly=True, height = 300, font_size="18dp")
         popup = Popup(title="D - Medvetande och neurologstatus", 
         content=text,   
         size_hint=(0.8, 0.5),
@@ -187,7 +201,7 @@ class EmergScreen(Screen):
         the user information about what should be written in each field.
         """
         msg = "Kroppsinspektion. \nVärm patienten om den är kall. \nEKG?"
-        text = TextInput(text=msg, multiline=True, readonly=True, height = 300, font_size=18)
+        text = TextInput(text=msg, multiline=True, readonly=True, height = 300, font_size="18dp")
         popup = Popup(title="E - Exponering", 
         content=text,   
         size_hint=(0.8, 0.5),
@@ -204,6 +218,20 @@ class EmergScreen(Screen):
         msg = "Rekommendation eller varför du tagit kontakt och vad mottagaren ska göra. Klargör för dig själv vad mottagaren förväntas göra utifrån det som rapporterats under Situation, Bakgrund och Aktuellt, samt inom vilken tid du anser att det ska göras."
         text = TextInput(text=msg, multiline=True, readonly=True, height = 300, font_size='18dp')
         popup = Popup(title="Rekommendation", 
+        content=text,
+        size_hint=(0.8, 0.5),
+        title_size="30sp"
+        )
+        popup.open()       
+        
+    def show_safty(self):
+        """
+        Code that excutes when you press on the text buttonsthat will show
+        the user information about what should be written in each field.
+        """
+        msg = "Är det säkert, behöver du skyddskläder och finns det risk för smitta eller blodsmitta."
+        text = TextInput(text=msg, multiline=True, readonly=True, height = 300, font_size='18dp')
+        popup = Popup(title="Säkerhet", 
         content=text,
         size_hint=(0.8, 0.5),
         title_size="30sp"

@@ -7,7 +7,7 @@ from datetime import datetime
 # Storage constants used when interacting with local storage managed by Kivy.
 STORE_NOTES = JsonStore('notes.json')
 STORE_PIN = JsonStore('pin.json')
-#STORE_WORDS = JsonStore('words.json')
+STORE_SETTINGS = JsonStore('settings.json')
 
 def serialize_notes(notes_storage):
     '''Takes in JsonStore link, returns a list of Notes.'''
@@ -54,6 +54,14 @@ def serialize_pin(pin_storage) -> str:
     if pin_storage.exists('pin'):
         pin = decrypt(pin_storage.get('pin')['code'])
     return pin
+
+def get_font(font_storage) -> str:
+    '''Takes in JsonStore link, returns pin.'''
+    if font_storage.exists('font_size'):
+        font = font_storage.get('font_size')['font']
+    else:
+        font = 1
+    return font
 
 def get_data(notes_storage, time_of_creation: str):
     '''Takes in JsonStore link, patient ID and time of creation.

@@ -11,25 +11,7 @@
             Rectangle:
                 pos: self.pos
                 size: self.size
-        
-        BoxLayout:
-            orientation: 'horizontal'
-            size_hint_y: 0.15
-            padding: 0
-            Image:
-                source: 'SBAR_v3\images\SBAR_snake.png'
-                allow_stretch: True
-                keep_ratio: False
-                size_hint: .33, 1
-            BackgroundLabel:
-                text: 'SBAR'
-                font_size: '50dp'
-                color: 0,0,0,1
-                background_color: 216/255, 210/255, 227/255, 1
-                size_hint: .33, 1
-            BackgroundLabel:
-                background_color: 216/255, 210/255, 227/255, 1
-                size_hint: .33, 1
+        Header:
         ScrollView:
             id: scroll_view
             size_hint_y: .75
@@ -100,24 +82,45 @@
             Button:
                 text: 'Manual'
                 background_color: 209/255,219/255,1,1
-                on_press: root.go_to_manual()
+                on_press: root.leave_settings('manual')
+                font_size: dp(16) * float(root.get_font_size())
             Label:
                 size_hint_y: .5
-            Button:
-                text: 'Inställningar'
-                background_color: 209/255,219/255,1,1
+
+            BoxLayout:
+                orientation: 'vertical'
+                canvas.before:
+                    Color:
+                        rgba: 72/255,76/255,88/255,1
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+                Label:
+                    text: 'font size: ' + str(round(slider.value, 1))
+                Slider:
+                    id: slider
+                    min: .7
+                    max: 1.3
+                    step:.1
+                    cursor_size: (25, 25)
+                    cursor_image: 'SBAR_v3/images/white_square.png'
+                    value: root.get_font_size()
+                    on_touch_up: root.change_font(self.value)
+                
             Label:
                 size_hint_y: .5
             Button:
                 text: 'Byt Pin'
                 background_color: 209/255,219/255,1,1
                 on_press: root.manager.current = 'set'
+                font_size: dp(16)* root.get_font_size()
             Label:
                 size_hint_y: .5
             Button:
                 text: 'Hjälp'
                 background_color: 209/255,219/255,1,1
-                on_press: root.go_to_help()
+                on_press: root.leave_settings('help')
+                font_size: dp(16)* root.get_font_size()
             Label:
                 size_hint_y: .5
             Label:
@@ -137,3 +140,4 @@
                 on_press: 
                     root.manager.transition.direction = 'left'
                     root.manager.current = 'main'
+                    root.leave_settings('main')
