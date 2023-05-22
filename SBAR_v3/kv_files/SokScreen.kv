@@ -59,7 +59,7 @@
                     BoxLayout:
                         orientation: 'horizontal'
                         size_hint_y: None
-                        height: dp(40)
+                        height: dp(40) * root.get_font_size()
                         #halign: "top"
                         padding: 0
                         spacing: 0    
@@ -67,7 +67,7 @@
                             text: "Sökord"
                             background_color: 179/255, 173/255, 171/255, 1
                             color: 0,0,0,1
-                            font_size: '35dp'
+                            font_size: dp(35) * root.get_font_size()
                             on_press: 
                                 root.manager.transition.direction = 'right'
                                 #root.to_search()
@@ -77,13 +77,13 @@
                             text: "SBAR"
                             background_color: 217/255,225/255,1,1
                             color: 0,0,0,1
-                            font_size: '35dp'
+                            font_size: dp(35) * root.get_font_size()
                             on_press:
                                 root.manager.transition.direction = 'right'
                                 root.to_sbar()
 
                     BoxLayout:
-                        height: dp(50)
+                        height: dp(50) * root.get_font_size()
                         size_hint: 1, None
                         orientation: 'horizontal'
                         SbarWhiteButton:
@@ -92,7 +92,7 @@
                             text: 'Communication ⓘ'
                             valign: "middle"
                             padding: dp(0), dp(10)
-                            font_size: dp(20.6)
+                            font_size: dp(20.6) * root.get_font_size()
                             size_hint: None, None
                             size: self.texture_size
                             #on_press: root.show_com()
@@ -104,13 +104,13 @@
                         background_color: (217/255,225/255,1,1) if self.focus else (217/255,225/255,1,1)
                         background_normal: ''
                         foreground_color: .1, .1, .1, 1  # default text color
-                        font_size: dp(30)
+                        font_size: dp(30) * root.get_font_size()
                         hint_text: '' if self.focus else 'Börja skriva här...'
                         size_hint: 1,None
                         height: self.minimum_height
                         #on_text: root.max_length_text(self.text)
                     BoxLayout:
-                        height: dp(50)
+                        height: dp(50) * root.get_font_size()
                         size_hint: 1, None
                         orientation: 'horizontal'
                         SbarWhiteButton:
@@ -119,7 +119,7 @@
                             text: 'Breathing ⓘ'
                             valign: "middle"
                             padding: dp(0), dp(10)
-                            font_size: dp(20.6)
+                            font_size: dp(20.6) * root.get_font_size()
                             size_hint: None, None
                             size: self.texture_size
                             #on_press: root.show_breath()
@@ -129,12 +129,12 @@
                         background_color: (217/255,225/255,1,1) if self.focus else (217/255,225/255,1,1)
                         background_normal: ''
                         foreground_color: .1, .1, .1, 1  # default text color
-                        font_size: dp(30)
+                        font_size: dp(30) * root.get_font_size()
                         hint_text: '' if self.focus else 'Börja skriva här...'
                         size_hint: 1,None
                         height: self.minimum_height
                     BoxLayout:
-                        height: dp(50)
+                        height: dp(50) * root.get_font_size()
                         size_hint: 1, None
                         orientation: 'horizontal'
                         SbarWhiteButton:
@@ -143,7 +143,7 @@
                             text: 'Circulation ⓘ'
                             valign: "middle"
                             padding: dp(0), dp(10)
-                            font_size: dp(20.6)
+                            font_size: dp(20.6) * root.get_font_size()
                             size_hint: None, None
                             size: self.texture_size
                             #on_press: root.show_circ()
@@ -153,12 +153,12 @@
                         background_color: (217/255,225/255,1,1) if self.focus else (217/255,225/255,1,1)
                         background_normal: ''
                         foreground_color: .1, .1, .1, 1  # default text color
-                        font_size: dp(30)
+                        font_size: dp(30) * root.get_font_size()
                         hint_text: '' if self.focus else 'Börja skriva här...'
                         size_hint: 1,None
                         height: self.minimum_height
                     BoxLayout:
-                        height: dp(50)
+                        height: dp(50) * root.get_font_size()
                         size_hint: 1, None
                         orientation: 'horizontal'
                         SbarWhiteButton:
@@ -167,7 +167,7 @@
                             text: 'Elimination ⓘ'
                             valign: "middle"
                             padding: dp(0), dp(10)
-                            font_size: dp(20.6)
+                            font_size: dp(20.6) * root.get_font_size()
                             size_hint: None, None
                             size: self.texture_size
                             #on_press: root.show_elim()
@@ -177,12 +177,12 @@
                         background_color: (217/255,225/255,1,1) if self.focus else (217/255,225/255,1,1)
                         background_normal: ''
                         foreground_color: .1, .1, .1, 1  # default text color
-                        font_size: dp(30)
+                        font_size: dp(30) * root.get_font_size()
                         hint_text: '' if self.focus else 'Börja skriva här...'
                         size_hint: 1,None
                         height: self.minimum_height
                     BoxLayout:
-                        height: dp(50)
+                        height: dp(50) * root.get_font_size()
                         size_hint: 1, None
                         orientation: 'horizontal'
                         SbarWhiteButton:
@@ -191,7 +191,7 @@
                             text: 'Pain ⓘ'
                             valign: "middle"
                             padding: dp(0), dp(10)
-                            font_size: dp(20.6)
+                            font_size: dp(20.6) * root.get_font_size()
                             size_hint: None, None
                             size: self.texture_size
                             #on_press: root.show_pain()
@@ -201,12 +201,12 @@
                         background_color: (217/255,225/255,1,1) if self.focus else (217/255,225/255,1,1)
                         background_normal: ''
                         foreground_color: .1, .1, .1, 1  # default text color
-                        font_size: dp(30)
+                        font_size: dp(30) * root.get_font_size()
                         hint_text: '' if self.focus else 'Börja skriva här...'
                         size_hint: 1,None
                         height: self.minimum_height
                     BoxLayout:
-                        height: dp(50)
+                        height: dp(50) * root.get_font_size()
                         size_hint: 1, None
                         orientation: 'horizontal'
                         SbarWhiteButton:
@@ -215,7 +215,7 @@
                             text: 'Activity ⓘ'
                             valign: "middle"
                             padding: dp(0), dp(10)
-                            font_size: dp(20.6)
+                            font_size: dp(20.6) * root.get_font_size()
                             size_hint: None, None
                             size: self.texture_size
                             #on_press: root.show_activity()
@@ -225,12 +225,12 @@
                         background_color: (217/255,225/255,1,1) if self.focus else (217/255,225/255,1,1)
                         background_normal: ''
                         foreground_color: .1, .1, .1, 1  # default text color
-                        font_size: dp(30)
+                        font_size: dp(30) * root.get_font_size()
                         hint_text: '' if self.focus else 'Börja skriva här...'
                         size_hint: 1,None
                         height: self.minimum_height
                     BoxLayout:
-                        height: dp(50)
+                        height: dp(50) * root.get_font_size()
                         size_hint: 1, None
                         orientation: 'horizontal'
                         SbarWhiteButton:
@@ -239,7 +239,7 @@
                             text: 'Sleep ⓘ'
                             valign: "middle"
                             padding: dp(0), dp(10)
-                            font_size: dp(20.6)
+                            font_size: dp(20.6) * root.get_font_size()
                             size_hint: None, None
                             size: self.texture_size
                             #on_press: root.show_sleep()
@@ -249,12 +249,12 @@
                         background_color: (217/255,225/255,1,1) if self.focus else (217/255,225/255,1,1)
                         background_normal: ''
                         foreground_color: .1, .1, .1, 1  # default text color
-                        font_size: dp(30)
+                        font_size: dp(30) * root.get_font_size()
                         hint_text: '' if self.focus else 'Börja skriva här...'
                         size_hint: 1,None
                         height: self.minimum_height
                     BoxLayout:
-                        height: dp(50)
+                        height: dp(50) * root.get_font_size()
                         size_hint: 1, None
                         orientation: 'horizontal'
                         SbarWhiteButton:
@@ -263,7 +263,7 @@
                             text: 'Psychosocial ⓘ'
                             valign: "middle"
                             padding: dp(0), dp(10)
-                            font_size: dp(20.6)
+                            font_size: dp(20.6) * root.get_font_size()
                             size_hint: None, None
                             size: self.texture_size
                             #on_press: root.show_psycho()
@@ -273,7 +273,7 @@
                         background_color: (217/255,225/255,1,1) if self.focus else (217/255,225/255,1,1)
                         background_normal: ''
                         foreground_color: .1, .1, .1, 1  # default text color
-                        font_size: dp(30)
+                        font_size: dp(30) * root.get_font_size()
                         hint_text: '' if self.focus else 'Börja skriva här...'
                         size_hint: 1,None
                         height: self.minimum_height
@@ -308,6 +308,9 @@
                         id: extra
                         font_size: dp(0)
                         size: self.texture_size
+                    Label:
+                        size_hint: 1, None
+                        height: dp(260)
         BoxLayout:
             orientation: 'vertical'
             size_hint_y: 0.10
@@ -324,13 +327,13 @@
             BoxLayout:
                 orientation: 'horizontal'
                 size_hint_y: None
-                height: dp(40)
+                height: dp(40) * root.get_font_size()
                 Label:
                 RoundedRedButton:
                     text: "Back"
                     background_color: 217/255,225/255,1,1
                     color: 0,0,0,1
-                    font_size: '35dp'
+                    font_size: dp(35) * root.get_font_size()
                     on_press:
                         root.manager.transition.direction = 'right'
                         root.save_note()

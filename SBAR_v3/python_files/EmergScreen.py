@@ -17,8 +17,8 @@ class EmergScreen(Screen):
         Code that gets executed everytime screen gets displayed
         Checks if there exists a note with exact same content
         '''
-        if platform ==  "android":
-            Window.bind(on_keyboard_height=self.on_keyboard_height)
+        # if platform ==  "android":
+        #     Window.bind(on_keyboard_height=self.on_keyboard_height)
         self.repeat = False
         self.old_note = None
         self.old_toc = self.ids.toc_var.text

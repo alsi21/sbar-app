@@ -68,6 +68,10 @@ class SokScreen(Screen):
         #                         self.ids.breathing.text, self.ids.circulation.text, self.ids.elimination.text, self.ids.pain.text, self.ids.activity.text, self.ids.toc_var.text)
 
         self.auto_save = Clock.schedule_interval(self.quick_save, 2.5)
+    
+    def get_font_size(self):
+        self.font_size = CustomApp.CustomApp.font_size
+        return self.font_size
 
     def on_keyboard_height(self,window,keyboard_height):
         if keyboard_height > 0:

@@ -34,24 +34,24 @@ class CustomApp(App):
     '''App class, keeps track of notes'''
     notes = serialize_notes(STORE_NOTES)
     font_size = get_font(STORE_SETTINGS)
+    sm = ScreenManager(transition = SlideTransition())
     def build(self):
         '''
         Build function that calls Screenmanager, 
         adds screens to it 
         and binds a popup window to when you attempt to close window'''
-        sm = ScreenManager(transition = SlideTransition())
-        sm.add_widget(PinScreen.PinScreen(name='pin'))
-        sm.add_widget(SetScreen.SetScreen(name='set'))
-        sm.add_widget(MainScreen.MainScreen(name='main'))  
-        sm.add_widget(SettingsScreen.SettingsScreen(name='settings'))
-        sm.add_widget(SbarScreen.SbarScreen(name='sbar'))
-        sm.add_widget(EmergScreen.EmergScreen(name='emerg'))
-        sm.add_widget(HelpScreen.HelpScreen(name='help'))
-        sm.add_widget(ManualScreen.ManualScreen(name='manual'))
-        sm.add_widget(SokScreen.SokScreen(name='search'))
-        sm.add_widget(EmergSearchScreen.EmergSearchScreen(name='emergsearch'))
+        self.sm.add_widget(PinScreen.PinScreen(name='pin'))
+        self.sm.add_widget(SetScreen.SetScreen(name='set'))
+        self.sm.add_widget(MainScreen.MainScreen(name='main'))  
+        self.sm.add_widget(SettingsScreen.SettingsScreen(name='settings'))
+        self.sm.add_widget(SbarScreen.SbarScreen(name='sbar'))
+        self.sm.add_widget(EmergScreen.EmergScreen(name='emerg'))
+        self.sm.add_widget(HelpScreen.HelpScreen(name='help'))
+        self.sm.add_widget(ManualScreen.ManualScreen(name='manual'))
+        self.sm.add_widget(SokScreen.SokScreen(name='search'))
+        self.sm.add_widget(EmergSearchScreen.EmergSearchScreen(name='emergsearch'))
         Window.bind(on_request_close=self.on_request_close)
-        return sm
+        return self.sm
 
     def on_request_close(self, *args, **kwargs):
         '''Function to call TextPopup'''
@@ -78,6 +78,7 @@ class CustomApp(App):
         removes all screens, then adds them back to refresh font size
         '''
         print('reloading screen')
+        #sm = ScreenManager()
         self.sm.clear_widgets()
         self.sm.add_widget(MainScreen.MainScreen(name='main'))  
         self.sm.add_widget(PinScreen.PinScreen(name='pin'))
@@ -87,8 +88,22 @@ class CustomApp(App):
         self.sm.add_widget(EmergScreen.EmergScreen(name='emerg'))
         self.sm.add_widget(HelpScreen.HelpScreen(name='help'))
         self.sm.add_widget(ManualScreen.ManualScreen(name='manual'))
-        self.sm.transition = NoTransition()
+        self.sm.add_widget(SokScreen.SokScreen(name='search'))
+        self.sm.add_widget(EmergSearchScreen.EmergSearchScreen(name='emergsearch'))
+        self.sm.transition = SlideTransition()
         self.sm.current = screen_name
+
+        # self.sm.clear_widgets()
+        # self.sm.add_widget(MainScreen.MainScreen(name='main'))  
+        # self.sm.add_widget(PinScreen.PinScreen(name='pin'))
+        # self.sm.add_widget(SetScreen.SetScreen(name='set'))
+        # self.sm.add_widget(SettingsScreen.SettingsScreen(name='settings'))
+        # self.sm.add_widget(SbarScreen.SbarScreen(name='sbar'))
+        # self.sm.add_widget(EmergScreen.EmergScreen(name='emerg'))
+        # self.sm.add_widget(HelpScreen.HelpScreen(name='help'))
+        # self.sm.add_widget(ManualScreen.ManualScreen(name='manual'))
+        # self.sm.transition = NoTransition()
+        # self.sm.current = screen_name
 
     def TextPopup(self, title='', text=''):
         '''

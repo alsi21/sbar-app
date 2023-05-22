@@ -62,6 +62,10 @@ class EmergSearchScreen(Screen):
         delete_data(STORE_NOTES, self.old_note.time_of_creation)
         self.auto_save = Clock.schedule_interval(self.quick_save, 2.5)
 
+    def get_font_size(self):
+        self.font_size = CustomApp.CustomApp.font_size
+        return self.font_size
+
     def show_p_id(self):
         """
         Code that excutes when you press on the text buttonsthat will show
